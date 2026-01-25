@@ -4,15 +4,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import Navigation from "./components/Navigation";
 import Loader from "./components/Loader";
 
-// Import multiple songs
+// Import songs (unchanged)
 import song1 from "./assets/audio/song1.mp3";
 import song2 from "./assets/audio/song2.mp3";
 import song3 from "./assets/audio/song3.mp3";
 import song4 from "./assets/audio/song4.mp3";
 import song5 from "./assets/audio/song5.mp3";
 import song6 from "./assets/audio/song6.mp3";
+import song7 from "./assets/audio/song7.mp3";
+import song8 from "./assets/audio/song8.mp3";
+import song9 from "./assets/audio/song9.mp3";
+import song10 from "./assets/audio/song10.mp3";
+import song11 from "./assets/audio/song11.mp3";
+import song12 from "./assets/audio/song12.mp3";
 
-// Lazy load ALL your pages (original + new)
+// Lazy load pages (unchanged)
 const Home = lazy(() => import("./pages/Home"));
 const AboutFalguni = lazy(() => import("./pages/AboutFalguni"));
 const OurStory = lazy(() => import("./pages/OurStory"));
@@ -26,8 +32,6 @@ const Reasons = lazy(() => import("./pages/Reasons"));
 const Quiz = lazy(() => import("./pages/Quiz"));
 const Future = lazy(() => import("./pages/Future"));
 const Compatibility = lazy(() => import("./pages/Compatibility"));
-
-// NEW 3 SCREENS
 const Promises = lazy(() => import("./pages/Promises"));
 const Timeline = lazy(() => import("./pages/FutureTimeline"));
 const ThankYou = lazy(() => import("./pages/ThankYou"));
@@ -41,11 +45,11 @@ function App() {
   const [currentSongName, setCurrentSongName] = useState("");
   const [controlsExpanded, setControlsExpanded] = useState(false);
   const [controlsVisible, setControlsVisible] = useState(true);
-
+  const [shuffledPlaylist, setShuffledPlaylist] = useState([]);
 
   const lastScrollY = useRef(0);
+  const isChangingSong = useRef(false);
 
-  // Playlist with song names
   const playlist = [
     { src: song1, name: "Tum Se Hi" },
     { src: song2, name: "Khoobsurat" },
@@ -53,53 +57,89 @@ function App() {
     { src: song4, name: "Phir Bhi Tumko Chaahunga" },
     { src: song5, name: "Channa Ve" },
     { src: song6, name: "Ve Maahi Kesari" },
+    { src: song7, name: "Agar Tum Saath Ho" },
+    { src: song8, name: "Tera Ban Jaunga" },
+    { src: song9, name: "Perfect" },
+    { src: song10, name: "Rewrite The Stars" },
+    { src: song11, name: "Until I Found You" },
+    { src: song12, name: "Say You Won't Let Go" },
   ];
 
-  // Shuffle playlist on mount
-  const [shuffledPlaylist, setShuffledPlaylist] = useState([]);
-
+  // Shuffle playlist ONCE on mount
   useEffect(() => {
     const shuffled = [...playlist].sort(() => Math.random() - 0.5);
     setShuffledPlaylist(shuffled);
     setCurrentSongName(shuffled[0]?.name || "");
-  }, []);
+  }, []); // Empty dependency array - only runs once
 
-
-
-  const startExperience = async () => {
-    if (audioRef.current && shuffledPlaylist.length > 0) {
-      try {
-        audioRef.current.volume = 0.3;
-        await audioRef.current.play();
-        setIsPlaying(true);
-        setShowWelcome(false);
-      } catch (error) {
-        console.log("Could not play audio:", error);
-        setShowWelcome(false);
-      }
+  // Start experience - simplified
+  const startExperience = () => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+      audioRef.current.play().catch(err => console.log("Play failed:", err));
+      setIsPlaying(true);
+      setShowWelcome(false);
     }
   };
 
+  // Initialize audio element with first song when playlist is ready
   useEffect(() => {
-    const tryAutoplay = async () => {
-      if (audioRef.current && shuffledPlaylist.length > 0) {
-        try {
-          audioRef.current.volume = 0.3;
-          await audioRef.current.play();
-          setIsPlaying(true);
-          setShowWelcome(false);
-        } catch (error) {
-          console.log("Autoplay blocked, showing welcome screen");
-        }
-      }
-    };
-
-    if (shuffledPlaylist.length > 0) {
-      tryAutoplay();
+    if (shuffledPlaylist.length > 0 && audioRef.current) {
+      audioRef.current.volume = 0.3;
+      audioRef.current.src = shuffledPlaylist[0].src;
+      audioRef.current.load(); // Preload the first song
     }
   }, [shuffledPlaylist]);
 
-  // Auto-hide controls on scroll (mobile only)
+  // Handle song changes - SEAMLESS transition
+  useEffect(() => {
+    if (!audioRef.current || shuffledPlaylist.length === 0 || isChangingSong.current) return;
+
+    const audio = audioRef.current;
+    const wasPlaying = !audio.paused;
+
+    // Change source
+    audio.src = shuffledPlaylist[currentSongIndex].src;
+    audio.load();
+
+    // Continue playing if it was playing before
+    if (wasPlaying) {
+      audio.play().catch(err => console.log("Playback error:", err));
+    }
+  }, [currentSongIndex, shuffledPlaylist]);
+
+  // Auto-advance to next song when current ends
+  const handleSongEnd = () => {
+    const nextIndex = (currentSongIndex + 1) % shuffledPlaylist.length;
+    setCurrentSongIndex(nextIndex);
+    setCurrentSongName(shuffledPlaylist[nextIndex]?.name || "");
+  };
+
+  // Control functions
+  const toggleMute = () => {
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+
+  const nextSong = () => {
+    isChangingSong.current = true;
+    const nextIndex = (currentSongIndex + 1) % shuffledPlaylist.length;
+    setCurrentSongIndex(nextIndex);
+    setCurrentSongName(shuffledPlaylist[nextIndex]?.name || "");
+    setTimeout(() => { isChangingSong.current = false; }, 100);
+  };
+
+  const previousSong = () => {
+    isChangingSong.current = true;
+    const prevIndex = currentSongIndex === 0 ? shuffledPlaylist.length - 1 : currentSongIndex - 1;
+    setCurrentSongIndex(prevIndex);
+    setCurrentSongName(shuffledPlaylist[prevIndex]?.name || "");
+    setTimeout(() => { isChangingSong.current = false; }, 100);
+  };
+
+  // Auto-hide controls on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -116,42 +156,13 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSongEnd = () => {
-    const nextIndex = (currentSongIndex + 1) % shuffledPlaylist.length;
-    setCurrentSongIndex(nextIndex);
-    setCurrentSongName(shuffledPlaylist[nextIndex]?.name || "");
-  };
-
-  const toggleMute = () => {
-    if (audioRef.current) {
-      audioRef.current.muted = !audioRef.current.muted;
-      setIsMuted(!isMuted);
-    }
-  };
-
-  const nextSong = () => {
-    const nextIndex = (currentSongIndex + 1) % shuffledPlaylist.length;
-    setCurrentSongIndex(nextIndex);
-    setCurrentSongName(shuffledPlaylist[nextIndex]?.name || "");
-  };
-
-  const previousSong = () => {
-    const prevIndex =
-      currentSongIndex === 0
-        ? shuffledPlaylist.length - 1
-        : currentSongIndex - 1;
-    setCurrentSongIndex(prevIndex);
-    setCurrentSongName(shuffledPlaylist[prevIndex]?.name || "");
-  };
-
   return (
     <Router>
       <div className="min-h-screen bg-almost-black overflow-hidden">
-        {/* Background Audio */}
+        {/* Background Audio - CONTINUOUS PLAYBACK */}
         {shuffledPlaylist.length > 0 && (
           <audio
             ref={audioRef}
-            src={shuffledPlaylist[currentSongIndex]?.src}
             preload="auto"
             className="hidden"
             onEnded={handleSongEnd}
@@ -167,7 +178,6 @@ function App() {
               exit={{ opacity: 0 }}
               transition={{ duration: 1 }}
             >
-              {/* Your existing welcome screen JSX - UNCHANGED */}
               <div className="absolute inset-0 bg-almost-black/95 backdrop-blur-3xl" />
               <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-muted-magenta/20 rounded-full blur-[150px] pointer-events-none" />
               <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-soft-purple/20 rounded-full blur-[150px] pointer-events-none" />
@@ -219,10 +229,8 @@ function App() {
                     whileHover={{ scale: 1.08, y: -4 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <div
-                      className="absolute inset-0 bg-gradient-to-r from-muted-magenta/20 to-soft-purple/20
-                                   opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-muted-magenta/20 to-soft-purple/20
+                                   opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                     <div className="relative flex items-center gap-4">
                       <motion.svg
@@ -255,6 +263,7 @@ function App() {
           )}
         </AnimatePresence>
 
+        {/* Music Controls - Floating */}
         <AnimatePresence>
           {!showWelcome && controlsVisible && (
             <motion.div
@@ -264,7 +273,6 @@ function App() {
               exit={{ opacity: 0, scale: 0, y: 20 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Compact Main Button */}
               <div className="relative">
                 <motion.button
                   onClick={() => setControlsExpanded(!controlsExpanded)}
@@ -289,7 +297,6 @@ function App() {
                   </svg>
                 </motion.button>
 
-                {/* Expanded Controls */}
                 <AnimatePresence>
                   {controlsExpanded && (
                     <motion.div
@@ -314,7 +321,7 @@ function App() {
                         </p>
                       </motion.div>
 
-                      {/* Control Buttons Row */}
+                      {/* Control Buttons */}
                       <motion.div
                         className="flex gap-2"
                         initial={{ opacity: 0, x: 20 }}
@@ -381,14 +388,11 @@ function App() {
           )}
         </AnimatePresence>
 
-        {/* SCROLL-HIDING NAVIGATION */}
-
-          <Navigation />
+        <Navigation />
 
         {/* Main Content */}
         <Suspense fallback={<Loader />}>
           <Routes>
-            {/* Your Original 12 Routes */}
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<AboutFalguni />} />
             <Route path="/story" element={<OurStory />} />
@@ -402,8 +406,6 @@ function App() {
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/future" element={<Future />} />
             <Route path="/compatibility" element={<Compatibility />} />
-
-            {/* NEW 3 ROUTES */}
             <Route path="/promises" element={<Promises />} />
             <Route path="/timeline" element={<Timeline />} />
             <Route path="/thankyou" element={<ThankYou />} />
