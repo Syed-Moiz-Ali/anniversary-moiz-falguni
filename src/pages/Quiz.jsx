@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Check, X, ArrowRight, Trophy, RefreshCcw, HelpCircle, Star } from 'lucide-react'
 
 const Quiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [score, setScore] = useState(0)
   const [showResult, setShowResult] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
+  const [isAnswered, setIsAnswered] = useState(false)
 
+  // ==========================================
+  // ===== QUESTION DATA (PRESERVED) ========
+  // ==========================================
   const questions = [
     {
       question: "Where did our story truly begin?",
@@ -249,20 +254,28 @@ const Quiz = () => {
     }
   ]
 
+  // ==========================================
+  // ===== LOGIC HANDLERS ===================
+  // ==========================================
+
   const handleAnswer = (index) => {
+    if (isAnswered) return
     setSelectedAnswer(index)
+    setIsAnswered(true)
+
     if (index === questions[currentQuestion].correct) {
       setScore(score + 1)
     }
+  }
 
-    setTimeout(() => {
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1)
-        setSelectedAnswer(null)
-      } else {
-        setShowResult(true)
-      }
-    }, 1500)
+  const nextQuestion = () => {
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1)
+      setSelectedAnswer(null)
+      setIsAnswered(false)
+    } else {
+      setShowResult(true)
+    }
   }
 
   const getResultMessage = () => {
@@ -287,195 +300,154 @@ const Quiz = () => {
     setScore(0)
     setShowResult(false)
     setSelectedAnswer(null)
+    setIsAnswered(false)
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center section-padding pt-32 pb-20">
-      <div className="container-custom max-w-3xl">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2 }}
-        >
-          <h2 className="text-5xl md:text-6xl font-cinzel font-normal tracking-ultra text-center mb-8 text-near-white">
-            How Well Do You Know Us?
-          </h2>
-          <p className="text-center text-soft-purple opacity-70 font-cinzel italic text-lg mb-24">
-            Test your memory of our journey from Lonavala to forever
-          </p>
-        </motion.div>
+    <section className="min-h-screen bg-black text-white py-32 relative overflow-hidden flex items-center justify-center">
+
+      {/* Background Ambience */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-900/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="container max-w-3xl mx-auto px-6 relative z-10">
 
         <AnimatePresence mode="wait">
           {!showResult ? (
             <motion.div
-              key={currentQuestion}
-              className="glass-card"
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.6 }}
+              key="question-card"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.5 }}
+              className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden"
             >
               {/* Progress Bar */}
-              <div className="mb-8">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="text-sm text-soft-purple opacity-70 tracking-widest uppercase font-inter">
-                    Question {currentQuestion + 1} of {questions.length}
-                  </div>
-                  <div className="text-sm text-muted-magenta opacity-70 tracking-wider font-inter">
-                    Score: {score}
-                  </div>
-                </div>
-                <div className="h-1.5 bg-white/[0.08] rounded-full overflow-hidden">
-                  <motion.div
-                    className="h-full bg-gradient-to-r from-soft-purple to-muted-magenta"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </div>
+              <div className="absolute top-0 left-0 w-full h-1 bg-white/10">
+                <motion.div
+                  className="h-full bg-rose-500"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
+                  transition={{ duration: 0.5 }}
+                />
+              </div>
+
+              {/* Header Info */}
+              <div className="flex justify-between items-center mb-8 opacity-60 text-xs font-mono tracking-widest uppercase">
+                <span>Question {currentQuestion + 1} / {questions.length}</span>
+                <span>Score: {score}</span>
               </div>
 
               {/* Question */}
-              <h3 className="text-2xl md:text-3xl font-cinzel tracking-wider mb-10 leading-relaxed text-near-white">
+              <h2 className="text-2xl md:text-4xl font-serif leading-tight mb-10 text-white/90">
                 {questions[currentQuestion].question}
-              </h3>
+              </h2>
 
               {/* Options */}
-              <div className="space-y-4">
-                {questions[currentQuestion].options.map((option, index) => (
-                  <motion.button
-                    key={index}
-                    onClick={() => handleAnswer(index)}
-                    disabled={selectedAnswer !== null}
-                    className={`w-full text-left p-5 md:p-6 border rounded-sm font-inter
-                               tracking-wide transition-all duration-500 relative overflow-hidden
-                               ${selectedAnswer === index
-                                 ? index === questions[currentQuestion].correct
-                                   ? 'border-green-500/60 bg-green-500/10 text-near-white'
-                                   : 'border-red-500/60 bg-red-500/10 text-near-white'
-                                 : selectedAnswer !== null && index === questions[currentQuestion].correct
-                                   ? 'border-green-500/60 bg-green-500/10 text-near-white'
-                                   : 'border-white/[0.15] hover:border-muted-magenta/40 hover:bg-white/[0.03] text-near-white'
-                               }
-                               disabled:cursor-not-allowed`}
-                    whileHover={selectedAnswer === null ? { x: 4 } : {}}
-                    whileTap={selectedAnswer === null ? { scale: 0.98 } : {}}
-                  >
-                    <span className="relative z-10">{option}</span>
-                    {selectedAnswer === index && index === questions[currentQuestion].correct && (
-                      <motion.div
-                        className="absolute right-4 top-1/2 -translate-y-1/2"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        ✓
-                      </motion.div>
-                    )}
-                    {selectedAnswer === index && index !== questions[currentQuestion].correct && (
-                      <motion.div
-                        className="absolute right-4 top-1/2 -translate-y-1/2"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        ✗
-                      </motion.div>
-                    )}
-                  </motion.button>
-                ))}
+              <div className="space-y-4 mb-8">
+                {questions[currentQuestion].options.map((option, index) => {
+                  const isCorrect = index === questions[currentQuestion].correct
+                  const isSelected = selectedAnswer === index
+
+                  let buttonStyle = "border-white/10 hover:bg-white/5 hover:border-white/30 text-white/70"
+                  if (isAnswered) {
+                    if (isCorrect) buttonStyle = "bg-green-500/10 border-green-500/50 text-green-200"
+                    else if (isSelected && !isCorrect) buttonStyle = "bg-red-500/10 border-red-500/50 text-red-200"
+                    else buttonStyle = "border-white/5 text-white/30 opacity-50"
+                  }
+
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => handleAnswer(index)}
+                      disabled={isAnswered}
+                      className={`w-full text-left p-5 rounded-xl border transition-all duration-300 flex items-center justify-between group ${buttonStyle}`}
+                    >
+                      <span className="font-serif text-lg">{option}</span>
+                      {isAnswered && isCorrect && <Check size={20} className="text-green-400" />}
+                      {isAnswered && isSelected && !isCorrect && <X size={20} className="text-red-400" />}
+                    </button>
+                  )
+                })}
               </div>
 
-              {/* Fun Fact */}
-              {selectedAnswer !== null && (
-                <motion.div
-                  className="mt-8 p-6 bg-muted-magenta/5 border border-muted-magenta/20 rounded-sm"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                >
-                  <p className="text-sm font-cinzel italic text-soft-purple opacity-90 leading-relaxed">
-                    💭 {questions[currentQuestion].funFact}
-                  </p>
-                </motion.div>
-              )}
+              {/* Footer: Fun Fact & Next Button */}
+              <AnimatePresence>
+                {isAnswered && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="pt-6 border-t border-white/10"
+                  >
+                    <div className="bg-rose-900/10 border border-rose-500/20 p-4 rounded-xl mb-6">
+                      <div className="flex items-center gap-2 mb-2 text-rose-400 text-xs font-bold uppercase tracking-widest">
+                        <Star size={12} fill="currentColor" /> Memory Unlocked
+                      </div>
+                      <p className="text-sm md:text-base font-serif italic text-white/80 leading-relaxed">
+                        "{questions[currentQuestion].funFact}"
+                      </p>
+                    </div>
+
+                    <div className="flex justify-end">
+                      <button
+                        onClick={nextQuestion}
+                        className="flex items-center gap-2 px-8 py-3 bg-white text-black rounded-full font-bold uppercase tracking-wider hover:bg-white/90 transition-all hover:scale-105"
+                      >
+                        {currentQuestion === questions.length - 1 ? 'Finish Quiz' : 'Next Question'}
+                        <ArrowRight size={16} />
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
             </motion.div>
           ) : (
+            // ================= RESULT SCREEN =================
             <motion.div
-              className="glass-card text-center"
+              key="result"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              className="text-center"
             >
-              {/* Score Display */}
-              <div className="mb-10">
-                <motion.div
-                  className="text-7xl md:text-8xl font-cinzel font-semibold text-muted-magenta mb-4"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                >
-                  {score}/{questions.length}
-                </motion.div>
-                <div className="text-sm text-soft-purple opacity-70 tracking-widest uppercase font-inter">
-                  Your Score • {Math.round((score / questions.length) * 100)}% Correct
-                </div>
+              <div className="inline-block p-6 rounded-full bg-gradient-to-tr from-rose-500/20 to-indigo-500/20 border border-white/10 mb-8 animate-pulse">
+                <Trophy size={64} className="text-white" />
               </div>
 
-              {/* Result Message */}
-              <p className="font-cinzel italic text-lg md:text-xl leading-loose tracking-wide text-near-white opacity-90 mb-12 max-w-2xl mx-auto">
-                {getResultMessage()}
+              <h2 className="text-5xl md:text-7xl font-serif font-bold mb-4 bg-gradient-to-r from-rose-400 to-indigo-400 bg-clip-text text-transparent">
+                {score} / {questions.length}
+              </h2>
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-white/50 mb-12">
+                Final Score • {Math.round((score / questions.length) * 100)}% Accuracy
               </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl max-w-2xl mx-auto mb-12">
+                <p className="font-serif text-lg md:text-xl leading-loose italic text-white/90">
+                  "{getResultMessage()}"
+                </p>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-4">
                 <button
                   onClick={resetQuiz}
-                  className="px-10 py-4 border border-muted-magenta/40 rounded-sm
-                             font-inter text-sm tracking-widest uppercase text-near-white
-                             hover:bg-muted-magenta/10 hover:border-muted-magenta/60
-                             transition-all duration-500"
+                  className="flex items-center gap-2 px-8 py-4 rounded-full border border-white/20 hover:bg-white/5 hover:border-white/50 transition-all font-bold uppercase tracking-widest text-xs"
                 >
-                  Take Again
+                  <RefreshCcw size={16} /> Replay
                 </button>
                 <button
-                  onClick={() => window.location.href = '/'}
-                  className="px-10 py-4 bg-muted-magenta/20 border border-muted-magenta/50 rounded-sm
-                             font-inter text-sm tracking-widest uppercase text-near-white
-                             hover:bg-muted-magenta/30 hover:border-muted-magenta/70
-                             transition-all duration-500"
+                  onClick={() => window.location.reload()}
+                  className="flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black hover:bg-white/90 transition-all font-bold uppercase tracking-widest text-xs"
                 >
                   Back to Home
                 </button>
               </div>
-
-              {/* Perfect Score Special Message */}
-              {score === questions.length && (
-                <motion.div
-                  className="mt-12 p-6 bg-gradient-to-r from-muted-magenta/10 to-soft-purple/10
-                             border border-muted-magenta/30 rounded-sm"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <div className="animate-heartbeat inline-block mb-4">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-                      <path
-                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                        className="fill-muted-magenta"
-                      />
-                    </svg>
-                  </div>
-                  <p className="font-cinzel italic text-base text-near-white opacity-90">
-                    Perfect score means you've been paying attention to every detail,
-                    every moment, every word, every gift, every package, every whispered confession.
-                    That's how I know you love me as deeply as I love you. ❤️
-                  </p>
-                </motion.div>
-              )}
             </motion.div>
           )}
         </AnimatePresence>
+
       </div>
     </section>
   )

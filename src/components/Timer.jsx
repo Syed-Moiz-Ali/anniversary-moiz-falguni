@@ -1,116 +1,85 @@
-import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
+import { Heart } from 'lucide-react'
 
-const Timer = () => {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-
-  useEffect(() => {
-    // July 12, 2025 - Lonavala trip start
-    const startDate = new Date('2025-07-12T10:00:00+05:30')
-
-    const calculateTime = () => {
-      const now = new Date()
-      const difference = now - startDate
-
-      setTimeLeft({
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60)
-      })
-    }
-
-    calculateTime()
-    const interval = setInterval(calculateTime, 1000)
-    return () => clearInterval(interval)
-  }, [])
-
+const Loader = () => {
   return (
-    <div className="my-16">
-      {/* Timer Label */}
-      <div className="text-center mb-8">
-        <p className="text-xs md:text-sm font-inter tracking-widest uppercase text-soft-purple opacity-60">
-          Time Since Lonavala
-        </p>
-      </div>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black relative overflow-hidden text-white">
 
-      {/* Timer Display */}
-      <div className="flex justify-center items-center gap-3 md:gap-6 flex-wrap">
-        <TimerBlock value={timeLeft.days} label="Days" />
-        <span className="text-3xl md:text-4xl font-cinzel text-muted-magenta opacity-30 hidden sm:block">:</span>
-        <TimerBlock value={String(timeLeft.hours).padStart(2, '0')} label="Hours" />
-        <span className="text-3xl md:text-4xl font-cinzel text-muted-magenta opacity-30 hidden sm:block">:</span>
-        <TimerBlock value={String(timeLeft.minutes).padStart(2, '0')} label="Minutes" />
-        <span className="text-3xl md:text-4xl font-cinzel text-muted-magenta opacity-30 hidden sm:block">:</span>
-        <TimerBlock value={String(timeLeft.seconds).padStart(2, '0')} label="Seconds" />
-      </div>
+      {/* --- BACKGROUND AMBIENCE --- */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-900/10 rounded-full blur-[120px]" />
 
-      {/* Milestone Messages */}
-      <div className="text-center mt-8">
-        <p className="text-xs md:text-sm font-cinzel italic text-near-white opacity-50">
-          {timeLeft.days >= 365 ?
-            `Over a year of us 💕` :
-            timeLeft.days >= 180 ?
-            `Six months and counting ✨` :
-            `Every second with you matters`
-          }
-        </p>
-      </div>
-    </div>
-  )
-}
+      {/* --- CENTER CONTENT --- */}
+      <div className="relative z-10 flex flex-col items-center justify-center gap-12">
 
-const TimerBlock = ({ value, label }) => {
-  const [prevValue, setPrevValue] = useState(value)
-
-  useEffect(() => {
-    if (value !== prevValue) {
-      setPrevValue(value)
-    }
-  }, [value, prevValue])
-
-  return (
-    <div className="text-center min-w-[70px] md:min-w-[90px]">
-      {/* Value Container */}
-      <div className="relative h-16 md:h-20 flex items-center justify-center
-                      bg-white/[0.02] border border-white/[0.08] rounded-sm
-                      backdrop-blur-sm overflow-hidden group
-                      hover:border-muted-magenta/30 hover:bg-white/[0.03]
-                      transition-all duration-500">
-        {/* Gradient glow on hover */}
-        <div className="absolute inset-0 bg-gradient-to-br from-muted-magenta/5 to-transparent
-                      opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-        {/* Animated number */}
-        <AnimatePresence mode="wait">
+        {/* 1. The Breathing Heart */}
+        <div className="relative">
+          {/* Inner Glow */}
           <motion.div
-            key={value}
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 20, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="font-cinzel text-4xl md:text-5xl font-semibold tracking-wider
-                      text-near-white relative z-10"
-            style={{
-              textShadow: '0 0 20px rgba(192, 132, 252, 0.15)'
+            animate={{ opacity: [0.2, 0.6, 0.2], scale: [0.8, 1.2, 0.8] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-0 bg-rose-500 blur-xl rounded-full"
+          />
+
+          {/* Icon */}
+          <motion.div
+            animate={{ scale: [1, 1.1, 1, 1.1, 1] }} // Double beat pattern
+            transition={{
+              duration: 1.5,
+              times: [0, 0.1, 0.2, 0.3, 1], // Timing for thump-thump... pause
+              repeat: Infinity,
+              ease: "easeInOut"
             }}
           >
-            {value}
+            <Heart size={48} fill="#e11d48" className="text-rose-600 drop-shadow-[0_0_15px_rgba(225,29,72,0.5)]" />
           </motion.div>
-        </AnimatePresence>
+        </div>
 
-        {/* Top shine effect */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r
-                      from-transparent via-muted-magenta/20 to-transparent" />
+        {/* 2. Cinematic Loading Text */}
+        <div className="text-center space-y-4">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="font-serif text-2xl italic tracking-wide text-white"
+          >
+            Moiz & Falguni
+          </motion.h2>
+
+          <div className="flex flex-col items-center gap-4">
+            <span className="text-[10px] uppercase tracking-[0.4em] text-white/40">
+              Loading Memories
+            </span>
+
+            {/* Thin Progress Bar */}
+            <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden">
+              <motion.div
+                initial={{ x: "-100%" }}
+                animate={{ x: "0%" }}
+                transition={{ duration: 2, ease: "easeInOut", repeat: Infinity }}
+                className="w-full h-full bg-gradient-to-r from-transparent via-rose-500 to-transparent"
+              />
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      {/* Label */}
-      <div className="font-inter text-[10px] md:text-xs font-light text-soft-purple
-                    tracking-widest uppercase mt-3 opacity-70">
-        {label}
-      </div>
+      {/* --- FOOTER QUOTE --- */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className="absolute bottom-12 text-center px-6"
+      >
+        <p className="font-serif italic text-xs text-white/30 tracking-widest">
+          "From Lonavala to Forever"
+        </p>
+      </motion.div>
+
     </div>
   )
 }
 
-export default Timer
+export default Loader

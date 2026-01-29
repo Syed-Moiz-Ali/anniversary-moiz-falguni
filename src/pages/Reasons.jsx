@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-gsap.registerPlugin(ScrollTrigger)
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Heart, Star, Quote, Shuffle, Sparkles } from 'lucide-react'
 
 const Reasons = () => {
+  const [randomReason, setRandomReason] = useState(null)
+
+  // THE FULL LIST (Preserved)
   const reasons = [
     "The way you looked at me like a mouse in the office—shy, adorable, pretending not to stare but failing every time",
     "Your 'Bhai saab' when you're being dramatic, delivered with that mock-serious tone that makes me laugh every single time",
@@ -107,122 +108,134 @@ const Reasons = () => {
     "Because loving you is the easiest thing I've ever done, and being loved by you is the greatest gift I've ever received"
   ]
 
-  useEffect(() => {
-    const elements = gsap.utils.toArray('.reason-block')
-
-    elements.forEach((element) => {
-      gsap.fromTo(
-        element,
-        { opacity: 0, y: 50 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.5,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: element,
-            start: 'top 88%',
-            end: 'top 65%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      )
-    })
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-    }
-  }, [])
+  const showRandom = () => {
+    const random = reasons[Math.floor(Math.random() * reasons.length)]
+    setRandomReason(random)
+  }
 
   return (
-    <section className="min-h-screen section-padding pt-32 pb-20">
-      <div className="container-custom max-w-4xl">
-        <h2 className="text-5xl md:text-6xl font-cinzel font-normal tracking-ultra text-center mb-8 text-near-white">
-          {reasons.length}+ Reasons
-        </h2>
-        <p className="text-center text-soft-purple opacity-70 font-cinzel italic text-lg mb-4">
-          Why I love you beyond words, beyond reason, beyond everything
-        </p>
-        <p className="text-center text-near-white opacity-50 text-sm tracking-widest uppercase mb-32">
-          (And this is still not enough to capture it all)
-        </p>
+    <section className="min-h-screen bg-black text-white py-32 relative overflow-hidden">
 
-        <div className="space-y-20 md:space-y-28">
-          {reasons.map((reason, index) => (
-            <div
-              key={index}
-              className={`reason-block min-h-[50vh] flex items-center justify-center
-                         ${index % 3 === 0 ? 'text-left' : index % 3 === 1 ? 'text-center' : 'text-right'}`}
+      {/* Background Ambience */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-rose-900/20 rounded-full blur-[120px]" />
+      </div>
+
+      <div className="container max-w-7xl mx-auto px-6 relative z-10">
+
+        {/* Header */}
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6"
+          >
+            <Heart size={14} className="text-rose-400" fill="currentColor" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">Infinite Reasons</span>
+          </motion.div>
+
+          <h1 className="text-5xl md:text-7xl font-serif mb-6 bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">
+            Why I Love You
+          </h1>
+          <div className="flex justify-center gap-4">
+            <button
+              onClick={showRandom}
+              className="flex items-center gap-2 px-6 py-3 rounded-full bg-rose-600 hover:bg-rose-500 text-white font-bold tracking-wide transition-all hover:scale-105 shadow-lg shadow-rose-900/40"
             >
-              <div className="max-w-3xl w-full">
-                <div className="text-4xl md:text-5xl font-cinzel font-semibold text-muted-magenta opacity-20 mb-6">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-                <p className="font-cinzel italic text-base md:text-lg leading-relaxed md:leading-loose tracking-wide text-near-white opacity-85">
-                  {reason}
-                </p>
-              </div>
-            </div>
+              <Shuffle size={16} />
+              Surprise Me
+            </button>
+          </div>
+        </div>
+
+        {/* MASONRY GRID */}
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6">
+          {reasons.map((reason, index) => (
+            <ReasonCard key={index} reason={reason} index={index} />
           ))}
         </div>
 
-        {/* Stats Grid */}
-        <div className="mt-32 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div className="glass-card py-6">
-            <div className="text-3xl md:text-4xl font-cinzel text-muted-magenta mb-2">
-              {reasons.length}
-            </div>
-            <div className="text-xs text-soft-purple opacity-70 tracking-wider uppercase">
-              Reasons Listed
-            </div>
-          </div>
-          <div className="glass-card py-6">
-            <div className="text-3xl md:text-4xl font-cinzel text-muted-magenta mb-2">
-              ∞
-            </div>
-            <div className="text-xs text-soft-purple opacity-70 tracking-wider uppercase">
-              More Discovered Daily
-            </div>
-          </div>
-          <div className="glass-card py-6">
-            <div className="text-3xl md:text-4xl font-cinzel text-muted-magenta mb-2">
-              1
-            </div>
-            <div className="text-xs text-soft-purple opacity-70 tracking-wider uppercase">
-              Perfect Woman
-            </div>
-          </div>
-          <div className="glass-card py-6">
-            <div className="text-3xl md:text-4xl font-cinzel text-muted-magenta mb-2">
-              100%
-            </div>
-            <div className="text-xs text-soft-purple opacity-70 tracking-wider uppercase">
-              In Love
-            </div>
-          </div>
+        {/* Stats Footer */}
+        <div className="mt-32 border-t border-white/10 pt-16 text-center">
+          <p className="font-serif italic text-2xl text-white/80 mb-4">
+            "And a million more reasons I discover every day."
+          </p>
+          <p className="text-xs uppercase tracking-widest text-white/40">
+            {reasons.length} Reasons Listed • ∞ To Go
+          </p>
         </div>
 
-        {/* Final Message */}
-        <div className="mt-24 text-center glass-card">
-          <div className="mb-6 animate-heartbeat inline-block">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                className="fill-muted-magenta"
-              />
-            </svg>
-          </div>
-          <p className="text-xl md:text-2xl font-cinzel italic leading-loose tracking-wide text-near-white opacity-90 max-w-2xl mx-auto mb-6">
-            "I could write a thousand more reasons and still not capture what you mean to me.
-            From black lace gifts to packages across cities, from washroom kisses to Nagpur mornings—
-            you're not just someone I love, you're the reason I understand what love actually is."
-          </p>
-          <p className="text-sm text-muted-magenta opacity-70 tracking-widest font-inter uppercase">
-            — Forever finding new reasons to love you more, Falguni
-          </p>
-        </div>
       </div>
+
+      {/* RANDOM REASON MODAL */}
+      <AnimatePresence>
+        {randomReason && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setRandomReason(null)}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-6"
+          >
+            <motion.div
+              initial={{ scale: 0.8, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.8, y: 50 }}
+              className="bg-[#0a0a0a] border border-rose-500/30 p-10 rounded-2xl max-w-2xl text-center relative shadow-[0_0_50px_rgba(225,29,72,0.2)]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Sparkles className="absolute top-6 right-6 text-rose-500" />
+              <Quote className="mx-auto text-white/20 mb-6" size={48} />
+              <h3 className="text-2xl md:text-3xl font-serif text-white leading-relaxed mb-8">
+                "{randomReason}"
+              </h3>
+              <button
+                onClick={showRandom}
+                className="text-xs font-bold uppercase tracking-widest text-rose-400 hover:text-white transition-colors"
+              >
+                Show Another
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
+  )
+}
+
+// --- SUB-COMPONENT: REASON CARD ---
+const ReasonCard = ({ reason, index }) => {
+  const isHighlight = index % 7 === 0; // Highlight every 7th card
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "100px" }}
+      transition={{ delay: Math.random() * 0.3, duration: 0.6 }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className={`relative break-inside-avoid rounded-2xl p-6 border transition-all duration-300 group
+        ${isHighlight
+          ? 'bg-rose-900/10 border-rose-500/30'
+          : 'bg-white/5 border-white/10 hover:border-white/20'
+        }
+      `}
+    >
+      <div className="flex items-start justify-between mb-4 opacity-50">
+        <span className="text-[10px] font-bold font-mono">#{String(index + 1).padStart(3, '0')}</span>
+        {isHighlight && <Heart size={12} className="text-rose-400" fill="currentColor" />}
+      </div>
+
+      <p className={`font-serif leading-relaxed ${isHighlight ? 'text-lg text-white' : 'text-sm text-white/80'}`}>
+        {reason}
+      </p>
+
+      {/* Hover Glow Effect */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/0 to-white/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl pointer-events-none" />
+    </motion.div>
   )
 }
 

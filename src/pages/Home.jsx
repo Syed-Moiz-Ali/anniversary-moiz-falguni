@@ -1,164 +1,159 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { ArrowDown, Heart, MapPin, Calendar } from 'lucide-react'
 import Timer from '../components/Timer'
 
 const Home = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  // Track mouse for subtle parallax background only
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: e.clientX / window.innerWidth,
+        y: e.clientY / window.innerHeight,
+      })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
   return (
-    <section className="min-h-screen flex flex-col justify-center section-padding pt-32 relative overflow-hidden">
-      {/* Ambient background effects */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-muted-magenta/3 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-soft-purple/3 rounded-full blur-[120px] pointer-events-none" />
+    <section className="min-h-screen relative overflow-hidden bg-black text-white flex flex-col justify-center items-center py-25">
 
-      <div className="container-custom relative z-10">
+      {/* --- BACKGROUND EFFECTS --- */}
+      <div className="fixed inset-0 pointer-events-none">
+        {/* Grain Overlay */}
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+
+        {/* Ambient Orbs - Respond to mouse */}
         <motion.div
-          className="text-center max-w-4xl mx-auto"
-          initial={{ opacity: 0, y: 60 }}
+          animate={{
+            x: mousePosition.x * 20,
+            y: mousePosition.y * 20,
+          }}
+          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-rose-900/20 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            x: mousePosition.x * -20,
+            y: mousePosition.y * -20,
+          }}
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-indigo-900/20 rounded-full blur-[120px]"
+        />
+
+        {/* Floating Particles (CSS Animation) */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute bg-white/10 rounded-full"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${Math.random() * 4 + 1}px`,
+                height: `${Math.random() * 4 + 1}px`,
+                animation: `float ${Math.random() * 10 + 10}s linear infinite`,
+                opacity: Math.random() * 0.5
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* --- MAIN CONTENT --- */}
+      <div className="container max-w-6xl mx-auto px-6 relative z-10 text-center">
+
+        {/* 1. TOP LABEL */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.8, ease: [0.6, 0.05, 0.01, 0.9] }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="mb-8"
         >
-          {/* Main Title */}
-          <motion.h1
-            className="text-6xl md:text-7xl lg:text-8xl font-cinzel font-normal tracking-ultra mb-8 text-near-white"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 1.5 }}
-          >
-            Moiz & Falguni
-          </motion.h1>
+          <span className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">
+            Est. July 2025
+          </span>
+        </motion.div>
 
-          {/* Subtitle */}
-          <motion.p
-            className="text-lg md:text-xl font-cinzel italic tracking-wider text-soft-purple opacity-80 mb-3"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 1.5 }}
-          >
-            From a Lonavala fight to forever
-          </motion.p>
+        {/* 2. NAMES (HERO) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="mb-6 relative inline-block"
+        >
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-bold tracking-tighter bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
+            Moiz <span className="text-rose-500 font-sans font-light">&</span> Falguni
+          </h1>
+          {/* Subtle glow behind text */}
+          <div className="absolute -inset-10 bg-rose-500/10 blur-[60px] -z-10 rounded-full opacity-50" />
+        </motion.div>
 
-          <motion.p
-            className="text-sm md:text-base font-inter tracking-widest uppercase text-muted-magenta opacity-60 mb-12"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 1.5 }}
-          >
-            July 2025 — Present
-          </motion.p>
+        {/* 3. SUBTITLE */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 1 }}
+          className="text-lg md:text-2xl font-serif italic text-white/60 mb-12 max-w-2xl mx-auto leading-relaxed"
+        >
+          "From a misunderstanding in Lonavala to a sanctuary in Nagpur."
+        </motion.p>
 
-          {/* Timer */}
+        {/* 4. LIVE TIMER */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="mb-20"
+        >
+          <Timer />
+        </motion.div>
+
+        {/* 5. STATS GRID */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-24"
+        >
+          <StatCard icon={<Calendar />} value="196+" label="Days Together" />
+          <StatCard icon={<MapPin />} value="3" label="Cities Conquered" />
+          <StatCard icon={<Heart />} value="∞" label="Love Remaining" />
+        </motion.div>
+
+        {/* 6. SCROLL PROMPT */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2.5, duration: 1.5 }}
+          className="flex flex-col items-center gap-3"
+        >
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/30">Begin The Journey</span>
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.9, duration: 1.5 }}
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <Timer />
-          </motion.div>
-
-          {/* Main Quote */}
-          <motion.div
-            className="mt-20 space-y-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 1.5 }}
-          >
-            <p className="font-cinzel italic text-lg md:text-xl leading-relaxed md:leading-loose tracking-wide text-near-white opacity-85 max-w-3xl mx-auto">
-              "In the darkness of your eyes, I found a fire that still burns beneath my skin—
-              every touch, every stolen moment, every whispered 'Moiz' when you're desperate.
-              A promise we keep in silence, written in gasps and sealed with surrender."
-            </p>
-          </motion.div>
-
-          {/* Journey Highlights */}
-          <motion.div
-            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 1.5 }}
-          >
-            <div className="p-6 bg-white/[0.02] border border-white/[0.05] rounded-sm hover:border-muted-magenta/20 transition-all duration-500">
-              <div className="text-3xl font-cinzel font-semibold text-muted-magenta mb-2">
-                196+
-              </div>
-              <div className="text-xs font-inter tracking-widest uppercase text-soft-purple opacity-60">
-                Days Together
-              </div>
-            </div>
-
-            <div className="p-6 bg-white/[0.02] border border-white/[0.05] rounded-sm hover:border-muted-magenta/20 transition-all duration-500">
-              <div className="text-3xl font-cinzel font-semibold text-muted-magenta mb-2">
-                3
-              </div>
-              <div className="text-xs font-inter tracking-widest uppercase text-soft-purple opacity-60">
-                Cities • Infinite Memories
-              </div>
-            </div>
-
-            <div className="p-6 bg-white/[0.02] border border-white/[0.05] rounded-sm hover:border-muted-magenta/20 transition-all duration-500">
-              <div className="text-3xl font-cinzel font-semibold text-muted-magenta mb-2">
-                ∞
-              </div>
-              <div className="text-xs font-inter tracking-widest uppercase text-soft-purple opacity-60">
-                Forever To Go
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Milestones */}
-          <motion.div
-            className="mt-16 space-y-3 text-sm font-cinzel italic text-near-white opacity-60"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.6, duration: 1.5 }}
-          >
-            <p>Lonavala • Office Washroom • Hyderabad Hotels • Nagpur Sanctuary</p>
-            <p>From mouse looks to midnight confessions to morning afters</p>
-            <p>Six months down, forever to go</p>
-          </motion.div>
-
-          {/* Heart Icon */}
-          <motion.div
-            className="mt-16 animate-heartbeat"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.8, duration: 1.2 }}
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="inline-block">
-              <path
-                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                className="fill-muted-magenta"
-              />
-            </svg>
-          </motion.div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            className="mt-20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 1.5 }}
-          >
-            <div className="flex flex-col items-center gap-2">
-              <p className="text-xs font-inter tracking-widest uppercase text-near-white opacity-40">
-                Explore Our Story
-              </p>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                <svg className="w-5 h-5 text-muted-magenta opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </motion.div>
-            </div>
+            <ArrowDown className="text-white/30" size={20} />
           </motion.div>
         </motion.div>
+
       </div>
     </section>
   )
 }
+
+// --- SUB-COMPONENT: STAT CARD ---
+const StatCard = ({ icon, value, label }) => (
+  <div className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors group">
+    <div className="flex flex-col items-center gap-2">
+      <div className="text-rose-400 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
+        {React.cloneElement(icon, { size: 24 })}
+      </div>
+      <span className="text-4xl font-serif font-bold text-white">{value}</span>
+      <span className="text-xs font-bold uppercase tracking-widest text-white/40">{label}</span>
+    </div>
+  </div>
+)
 
 export default Home

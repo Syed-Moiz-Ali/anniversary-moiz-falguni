@@ -1,5 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Lock, Unlock, X, ChevronLeft, ChevronRight, Image as ImageIcon, Film, Play } from 'lucide-react'
+
+// ==========================================
+// ===== ORIGINAL ASSET IMPORTS (KEPT) ======
+// ==========================================
 
 // ===== LONAVALA IMAGES (16) =====
 import lonavalaImg1 from '../assets/images/lonavala/img1.jpg'
@@ -115,25 +120,28 @@ import privateImg7 from '../assets/images/private/img7.jpg'
 import privateImg8 from '../assets/images/private/img8.jpg'
 import privateImg9 from '../assets/images/private/img9.jpg'
 
+
 const Gallery = () => {
   const [selectedMedia, setSelectedMedia] = useState(null)
+  const [currentAlbum, setCurrentAlbum] = useState(null)
   const [currentMediaIndex, setCurrentMediaIndex] = useState(0)
-  const [currentAlbumMedia, setCurrentAlbumMedia] = useState([])
-  const [currentAlbumTitle, setCurrentAlbumTitle] = useState('')
   const [isPrivateUnlocked, setIsPrivateUnlocked] = useState(false)
   const [password, setPassword] = useState('')
   const [showPasswordPrompt, setShowPasswordPrompt] = useState(false)
   const videoRef = useRef(null)
 
-  // ==== PUBLIC ALBUMS ====
+  // ==========================================
+  // ===== ALBUM DATA STRUCTURE MAPPED ======
+  // ==========================================
+
   const publicAlbums = [
     {
       id: 1,
       key: 'lonavala',
-      title: 'Lonavala Company Trip',
-      date: 'First Week July 2025',
-      caption: 'The trip that started everything—truth and dare, misunderstandings, and the beginning of us.',
-      coverImage: lonavalaImg1,
+      title: 'Lonavala Beginnings',
+      date: 'July 2025',
+      cover: lonavalaImg1,
+      caption: 'The trip that started everything.',
       media: [
         { type: 'image', src: lonavalaImg1, caption: 'The hills where our story began.' },
         { type: 'image', src: lonavalaImg2, caption: 'Company team – we barely knew each other.' },
@@ -162,10 +170,10 @@ const Gallery = () => {
     {
       id: 2,
       key: 'office',
-      title: 'Office Days',
-      date: 'August – October 2025',
-      caption: 'Where we "accidentally" ran into each other every single day.',
-      coverImage: officeImg1,
+      title: 'Office Stolen Moments',
+      date: 'Aug - Oct 2025',
+      cover: officeImg1,
+      caption: 'Where we "accidentally" met every day.',
       media: [
         { type: 'image', src: officeImg1, caption: 'The corridors where we planned secret meetings.' },
         { type: 'video', src: officeVid1, thumbnail: officeImg1, caption: 'Walking through office corridors together.' },
@@ -179,8 +187,8 @@ const Gallery = () => {
       key: 'hotel',
       title: 'First Hotel Room',
       date: 'Late August 2025',
-      caption: 'Our first time truly alone—exploring, discovering, and building anticipation.',
-      coverImage: hotelImg1,
+      cover: hotelImg1,
+      caption: 'Our first time truly alone.',
       media: [
         { type: 'image', src: hotelImg1, caption: 'The hotel that became special.' },
         { type: 'video', src: hotelVid1, thumbnail: hotelImg1, caption: 'Finally alone, completely.' },
@@ -196,10 +204,10 @@ const Gallery = () => {
     {
       id: 4,
       key: 'hyderabad',
-      title: 'Hyderabad',
+      title: 'Hyderabad Nights',
       date: 'October 2025',
-      caption: 'The city where we finally surrendered completely.',
-      coverImage: hydImg1,
+      cover: hydImg1,
+      caption: 'The city where we surrendered completely.',
       media: [
         { type: 'image', src: hydImg1, caption: 'The city that changed everything.' },
         { type: 'video', src: hydVid1, thumbnail: hydImg1, caption: 'Arriving in Hyderabad, excited hearts.' },
@@ -225,10 +233,10 @@ const Gallery = () => {
     {
       id: 5,
       key: 'nagpur',
-      title: 'Nagpur – Our City',
-      date: 'November 2025 onwards',
-      caption: 'Where we could finally be ourselves, with no more hiding.',
-      coverImage: nagpurImg1,
+      title: 'Nagpur Diaries',
+      date: 'Nov 2025 - Present',
+      cover: nagpurImg1,
+      caption: 'Our sanctuary city.',
       media: [
         { type: 'image', src: nagpurImg1, caption: 'The streets we walked hand in hand.' },
         { type: 'video', src: nagpurVid1, thumbnail: nagpurImg1, caption: 'Futala Lake – our favorite sunset spot.' },
@@ -243,10 +251,10 @@ const Gallery = () => {
     {
       id: 6,
       key: 'random',
-      title: 'Us – Random Moments',
-      date: 'July – December 2025',
-      caption: 'Selfies, screenshots, Snapchat memories—spontaneous moments captured together.',
-      coverImage: randomImg1,
+      title: 'Spontaneous Us',
+      date: 'July - Dec 2025',
+      cover: randomImg1,
+      caption: 'Selfies, snaps, and smiles.',
       media: [
         { type: 'image', src: randomImg1, caption: 'Random selfie – just us.' },
         { type: 'image', src: randomImg2, caption: 'Another moment, another memory.' },
@@ -278,321 +286,183 @@ const Gallery = () => {
     }
   ]
 
-  // ==== PRIVATE ALBUMS ====
-  const privateAlbums = [
-    {
-      id: 7,
-      key: 'private',
-      title: 'Intimate Moments',
-      date: 'August – December 2025',
-      caption: 'Behind closed doors—our most private, passionate memories.',
-      coverImage: privateImg1,
-      isPrivate: true,
-      media: [
-        { type: 'image', src: privateImg1, caption: 'The moment we locked the door.' },
-        { type: 'image', src: privateImg2, caption: 'Your nervous laugh as I pulled you closer.' },
-        { type: 'image', src: privateImg3, caption: 'Learning every spot that makes you gasp.' },
-        { type: 'image', src: privateImg4, caption: 'Hours of foreplay, building tension.' },
-        { type: 'image', src: privateImg5, caption: 'The first time we became one.' },
-        { type: 'image', src: privateImg6, caption: 'After – tangled together, breathless.' },
-        { type: 'image', src: privateImg7, caption: 'You on top, taking control.' },
-        { type: 'image', src: privateImg8, caption: 'Morning light on your bare skin.' },
-        { type: 'image', src: privateImg9, caption: 'Our bodies memorized in the dark.' }
-      ]
-    }
-  ]
-
-  const allPublicMediaCount = publicAlbums.reduce((sum, a) => sum + a.media.length, 0)
-  const allPrivateMediaCount = privateAlbums.reduce((sum, a) => sum + a.media.length, 0)
-
-  const openAlbum = (album) => {
-    setCurrentAlbumMedia(album.media)
-    setCurrentAlbumTitle(album.title)
-    setSelectedMedia(album.media[0])
-    setCurrentMediaIndex(0)
+  // PRIVATE ALBUM
+  const privateAlbum = {
+    id: 99,
+    key: 'private',
+    title: 'The Vault',
+    date: 'For Our Eyes Only',
+    cover: privateImg1,
+    caption: 'Behind closed doors.',
+    media: [
+      { type: 'image', src: privateImg1, caption: 'The moment we locked the door.' },
+      { type: 'image', src: privateImg2, caption: 'Your nervous laugh as I pulled you closer.' },
+      { type: 'image', src: privateImg3, caption: 'Learning every spot that makes you gasp.' },
+      { type: 'image', src: privateImg4, caption: 'Hours of foreplay, building tension.' },
+      { type: 'image', src: privateImg5, caption: 'The first time we became one.' },
+      { type: 'image', src: privateImg6, caption: 'After – tangled together, breathless.' },
+      { type: 'image', src: privateImg7, caption: 'You on top, taking control.' },
+      { type: 'image', src: privateImg8, caption: 'Morning light on your bare skin.' },
+      { type: 'image', src: privateImg9, caption: 'Our bodies memorized in the dark.' }
+    ]
   }
 
-  const openMediaFromAlbum = (album, index) => {
-    setCurrentAlbumMedia(album.media)
-    setCurrentAlbumTitle(album.title)
-    setSelectedMedia(album.media[index])
-    setCurrentMediaIndex(index)
+  // ==========================================
+  // ===== LOGIC HANDLERS =====================
+  // ==========================================
+
+  const openAlbum = (album) => {
+    setCurrentAlbum(album)
+    setSelectedMedia(album.media[0])
+    setCurrentMediaIndex(0)
   }
 
   const closeLightbox = () => {
     if (videoRef.current) videoRef.current.pause()
     setSelectedMedia(null)
-    setCurrentAlbumMedia([])
-    setCurrentAlbumTitle('')
+    setCurrentAlbum(null)
   }
 
-  const nextMedia = () => {
-    if (!currentAlbumMedia.length) return
+  const navigateMedia = (direction) => {
+    if (!currentAlbum) return
     if (videoRef.current) videoRef.current.pause()
-    const next = (currentMediaIndex + 1) % currentAlbumMedia.length
-    setCurrentMediaIndex(next)
-    setSelectedMedia(currentAlbumMedia[next])
+
+    let newIndex = currentMediaIndex + direction
+    if (newIndex < 0) newIndex = currentAlbum.media.length - 1
+    if (newIndex >= currentAlbum.media.length) newIndex = 0
+
+    setCurrentMediaIndex(newIndex)
+    setSelectedMedia(currentAlbum.media[newIndex])
   }
 
-  const prevMedia = () => {
-    if (!currentAlbumMedia.length) return
-    if (videoRef.current) videoRef.current.pause()
-    const prev = (currentMediaIndex - 1 + currentAlbumMedia.length) % currentAlbumMedia.length
-    setCurrentMediaIndex(prev)
-    setSelectedMedia(currentAlbumMedia[prev])
-  }
-
-  const handlePasswordSubmit = (e) => {
+  const handlePassword = (e) => {
     e.preventDefault()
     if (password === 'falgunimoiz2025') {
       setIsPrivateUnlocked(true)
       setShowPasswordPrompt(false)
       setPassword('')
     } else {
-      alert('Incorrect password. Try again.')
-      setPassword('')
+      alert("Wrong password, baby. Try again.")
     }
   }
 
-  // Keyboard navigation for lightbox
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKey = (e) => {
       if (!selectedMedia) return
       if (e.key === 'Escape') closeLightbox()
-      if (e.key === 'ArrowRight') nextMedia()
-      if (e.key === 'ArrowLeft') prevMedia()
+      if (e.key === 'ArrowRight') navigateMedia(1)
+      if (e.key === 'ArrowLeft') navigateMedia(-1)
     }
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [selectedMedia, currentMediaIndex, currentAlbumMedia])
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [selectedMedia, currentMediaIndex])
+
 
   return (
-    <section className="min-h-screen section-padding pt-32">
-      <div className="container-custom max-w-7xl">
-        <h2 className="text-5xl md:text-6xl font-cinzel tracking-ultra text-center mb-6 text-near-white">
-          Gallery
-        </h2>
-        <p className="text-center text-soft-purple opacity-80 font-cinzel italic text-lg mb-3">
-          From Lonavala to Hyderabad to Nagpur—98 memories in photos and videos.
-        </p>
-        <p className="text-center text-near-white opacity-50 text-xs tracking-widest uppercase mb-12">
-          {publicAlbums.length} Public Albums • {allPublicMediaCount} Items
-          {isPrivateUnlocked && ` • ${privateAlbums.length} Private Album • ${allPrivateMediaCount} Items`}
-        </p>
+    <section className="min-h-screen bg-black text-white py-32 relative overflow-hidden">
 
-        {/* PUBLIC ALBUM GRID */}
-        <div className="mb-24">
-          <h3 className="text-3xl font-cinzel tracking-widest text-center mb-10 text-near-white">
-            Our Journey Together
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {publicAlbums.map((album, index) => {
-              const videoCount = album.media.filter(m => m.type === 'video').length
-              return (
-                <motion.article
-                  key={album.id}
-                  className="group relative overflow-hidden rounded-md cursor-pointer
-                             border border-white/10 hover:border-muted-magenta/40
-                             hover:shadow-[0_0_30px_rgba(192,132,252,0.25)]
-                             transition-all duration-500 bg-white/[0.02]"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ delay: index * 0.05, duration: 0.5 }}
-                  whileHover={{ y: -6 }}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => openAlbum(album)}
-                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && openAlbum(album)}
-                >
-                  <div className="aspect-[4/3] overflow-hidden relative">
-                    <img
-                      src={album.coverImage}
-                      alt={album.title}
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    />
-                    {videoCount > 0 && (
-                      <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md rounded-full px-3 py-1.5 flex items-center gap-1.5">
-                        <svg className="w-4 h-4 text-muted-magenta" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-                        </svg>
-                        <span className="text-[11px] text-near-white font-inter">{videoCount} videos</span>
-                      </div>
-                    )}
-                  </div>
+      {/* Background Ambience */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-rose-900/20 rounded-full blur-[120px]" />
+      </div>
 
-                  <div className="p-5 space-y-2">
-                    <h4 className="font-cinzel text-lg text-near-white tracking-wide">
-                      {album.title}
-                    </h4>
-                    <p className="text-xs text-soft-purple opacity-80 tracking-wider font-inter">
-                      {album.date}
-                    </p>
-                    <p className="text-xs text-near-white opacity-70 font-inter leading-relaxed line-clamp-2">
-                      {album.caption}
-                    </p>
-                    <p className="text-[11px] text-soft-purple/70 tracking-widest uppercase mt-1">
-                      {album.media.length} items
-                    </p>
-                  </div>
-                </motion.article>
-              )
-            })}
-          </div>
+      <div className="container max-w-7xl mx-auto px-6 relative z-10">
+
+        {/* Header */}
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6"
+          >
+            <ImageIcon size={14} className="text-rose-400" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">The Archives</span>
+          </motion.div>
+
+          <h1 className="text-5xl md:text-7xl font-serif mb-6 bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">
+            Visual Memories
+          </h1>
+          <p className="text-white/50 font-serif italic text-lg">
+            "A collection of moments that time can't erase."
+          </p>
         </div>
 
-        {/* PRIVATE VAULT */}
-        <div className="mt-24 pt-16 border-t border-white/10">
-          <div className="text-center mb-10">
-            <h3 className="text-4xl md:text-5xl font-cinzel tracking-ultra mb-4 text-muted-magenta">
-              Private Vault
-            </h3>
-            <p className="text-sm text-soft-purple opacity-80 tracking-wider mb-2">
-              {isPrivateUnlocked ? 'Unlocked • For our eyes only' : 'Locked • Protected content'}
-            </p>
-            <p className="text-xs text-near-white opacity-60 italic font-cinzel">
-              The memories we keep just between us.
-            </p>
+        {/* Public Albums Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+          {publicAlbums.map((album, index) => (
+            <AlbumCard key={index} album={album} index={index} onClick={() => openAlbum(album)} />
+          ))}
+        </div>
+
+        {/* Private Vault Section */}
+        <div className="border-t border-white/10 pt-20">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-serif">Restricted Access</h2>
+            <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest ${isPrivateUnlocked ? 'bg-green-500/10 text-green-400 border border-green-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+              {isPrivateUnlocked ? <Unlock size={12} /> : <Lock size={12} />}
+              {isPrivateUnlocked ? 'Unlocked' : 'Locked'}
+            </div>
           </div>
 
           {!isPrivateUnlocked ? (
-            <div className="max-w-md mx-auto">
-              <div className="glass-card p-8 border border-muted-magenta/40 rounded-md bg-black/40">
-                <div className="mb-6 text-center">
-                  <svg className="w-14 h-14 mx-auto mb-3 text-muted-magenta/70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                  </svg>
-                  <p className="font-cinzel italic text-sm text-near-white opacity-80">
-                    Enter our secret password to unlock the intimate album.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setShowPasswordPrompt(true)}
-                  className="w-full px-6 py-3 border border-muted-magenta/60 rounded-sm
-                             font-inter text-xs tracking-[0.25em] uppercase text-near-white
-                             hover:bg-muted-magenta/20 hover:border-muted-magenta
-                             transition-all duration-400"
-                >
-                  Unlock Private Gallery
-                </button>
+            <motion.button
+              onClick={() => setShowPasswordPrompt(true)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full h-64 rounded-2xl border border-white/10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-white/5 flex flex-col items-center justify-center gap-4 group relative overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-rose-900/20 to-purple-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div className="w-16 h-16 rounded-full bg-black border border-white/20 flex items-center justify-center relative z-10 group-hover:border-rose-500/50 transition-colors">
+                <Lock className="text-white/50 group-hover:text-rose-400 transition-colors" />
               </div>
-            </div>
+              <div className="text-center relative z-10">
+                <p className="font-serif text-xl text-white/90">Intimate Moments</p>
+                <p className="text-xs uppercase tracking-widest text-white/40 mt-2">Password Required</p>
+              </div>
+            </motion.button>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {privateAlbums.map((album, index) => (
-                <motion.article
-                  key={album.id}
-                  className="group relative overflow-hidden rounded-md cursor-pointer
-                             border border-muted-magenta/40 hover:border-muted-magenta
-                             hover:shadow-[0_0_32px_rgba(192,132,252,0.35)]
-                             transition-all duration-500 bg-muted-magenta/5"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ delay: index * 0.05, duration: 0.5 }}
-                  whileHover={{ y: -6 }}
-                  role="button"
-                  tabIndex={0}
-                  onClick={() => openAlbum(album)}
-                  onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && openAlbum(album)}
-                >
-                  <div className="aspect-[4/3] overflow-hidden relative">
-                    <img
-                      src={album.coverImage}
-                      alt={album.title}
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md rounded-full p-2 flex items-center gap-1 border border-muted-magenta/40">
-                      <svg className="w-4 h-4 text-muted-magenta" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
-                      </svg>
-                      <span className="text-[11px] text-near-white uppercase tracking-wider">Private</span>
-                    </div>
-                  </div>
-                  <div className="p-5 space-y-2">
-                    <h4 className="font-cinzel text-lg text-near-white tracking-wide italic">
-                      {album.title}
-                    </h4>
-                    <p className="text-xs text-muted-magenta/90 tracking-wider font-inter">
-                      {album.date}
-                    </p>
-                    <p className="text-xs text-near-white opacity-75 font-inter leading-relaxed line-clamp-2">
-                      {album.caption}
-                    </p>
-                    <p className="text-[11px] text-muted-magenta/80 tracking-widest uppercase mt-1">
-                      {album.media.length} items
-                    </p>
-                  </div>
-                </motion.article>
-              ))}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <AlbumCard album={privateAlbum} index={0} onClick={() => openAlbum(privateAlbum)} isPrivate />
             </div>
           )}
         </div>
       </div>
 
-      {/* PASSWORD MODAL */}
+      {/* --- PASSWORD MODAL --- */}
       <AnimatePresence>
         {showPasswordPrompt && (
           <motion.div
-            className="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center z-[70] p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setShowPasswordPrompt(false)}
+            className="fixed inset-0 z-[60] bg-black/90 backdrop-blur-xl flex items-center justify-center p-6"
           >
             <motion.div
-              className="bg-deep-black border border-muted-magenta/40 rounded-md p-8 md:p-10 max-w-md w-full"
-              initial={{ scale: 0.9, opacity: 0, y: 40 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 40 }}
-              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="w-full max-w-md bg-[#0a0a0a] border border-white/10 rounded-2xl p-8 shadow-2xl"
             >
-              <div className="text-center mb-6">
-                <div className="inline-block p-3 bg-muted-magenta/15 rounded-full mb-3">
-                  <svg className="w-8 h-8 text-muted-magenta" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5}
-                      d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-cinzel tracking-widest mb-2 text-near-white">
-                  Enter Password
-                </h3>
-                <p className="text-xs text-soft-purple opacity-80 tracking-wide font-cinzel italic">
-                  Our secret code unlocks our intimate world.
-                </p>
+              <div className="text-center mb-8">
+                <Lock className="mx-auto text-rose-500 mb-4" size={32} />
+                <h3 className="text-2xl font-serif">Security Check</h3>
+                <p className="text-white/40 text-sm mt-2">Enter the key to our private world.</p>
               </div>
-              <form onSubmit={handlePasswordSubmit} className="space-y-4">
+
+              <form onSubmit={handlePassword} className="space-y-4">
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full bg-white/[0.05] border border-white/[0.18] rounded-sm px-4 py-3
-                             font-inter text-sm tracking-wider text-near-white text-center
-                             focus:outline-none focus:border-muted-magenta/70 focus:bg-white/[0.08]
-                             transition-all duration-300 placeholder:text-white/30"
                   placeholder="••••••••••"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-center text-white tracking-[0.5em] focus:outline-none focus:border-rose-500/50 transition-colors"
                   autoFocus
                 />
-                <div className="flex gap-3">
-                  <button
-                    type="submit"
-                    className="flex-1 py-3 bg-muted-magenta/25 border border-muted-magenta/70 rounded-sm
-                               font-inter text-xs tracking-[0.25em] uppercase text-near-white
-                               hover:bg-muted-magenta/35 transition-all duration-300"
-                  >
-                    Unlock
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setShowPasswordPrompt(false)}
-                    className="flex-1 py-3 border border-white/[0.2] rounded-sm
-                               font-inter text-xs tracking-[0.25em] uppercase text-near-white
-                               hover:bg-white/[0.08] transition-all duration-300"
-                  >
-                    Cancel
-                  </button>
+                <div className="grid grid-cols-2 gap-4">
+                  <button type="button" onClick={() => setShowPasswordPrompt(false)} className="py-3 rounded-lg border border-white/10 hover:bg-white/5 text-sm uppercase tracking-wider text-white/60">Cancel</button>
+                  <button type="submit" className="py-3 rounded-lg bg-rose-600 hover:bg-rose-500 text-sm uppercase tracking-wider font-bold">Unlock</button>
                 </div>
               </form>
             </motion.div>
@@ -600,138 +470,115 @@ const Gallery = () => {
         )}
       </AnimatePresence>
 
-      {/* LIGHTBOX MODAL */}
+      {/* --- LIGHTBOX VIEWER --- */}
       <AnimatePresence>
         {selectedMedia && (
           <motion.div
-            id="media-lightbox"
-            role="dialog"
-            aria-modal="true"
-            aria-label={currentAlbumTitle || 'Media viewer'}
-            tabIndex={-1}
-            className="fixed inset-0 bg-black/95 backdrop-blur-2xl flex items-center justify-center z-[80]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={closeLightbox}
+            className="fixed inset-0 z-[70] bg-black/98 backdrop-blur-3xl flex flex-col"
           >
-            {/* Prev */}
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); prevMedia(); }}
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 p-3 md:p-4
-                         bg-white/5 backdrop-blur-md border border-white/15 rounded-full
-                         hover:bg-white/10 hover:border-muted-magenta/40 transition-all duration-200 z-[90]"
-              aria-label="Previous media"
-            >
-              <svg className="w-6 h-6 md:w-7 md:h-7 text-near-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            {/* Next */}
-            <button
-              type="button"
-              onClick={(e) => { e.stopPropagation(); nextMedia(); }}
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 p-3 md:p-4
-                         bg-white/5 backdrop-blur-md border border-white/15 rounded-full
-                         hover:bg-white/10 hover:border-muted-magenta/40 transition-all duration-200 z-[90]"
-              aria-label="Next media"
-            >
-              <svg className="w-6 h-6 md:w-7 md:h-7 text-near-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-
-            {/* Close */}
-            <button
-              type="button"
-              onClick={closeLightbox}
-              className="absolute top-4 md:top-6 right-4 md:right-6 p-3
-                         bg-white/5 backdrop-blur-md border border-white/15 rounded-full
-                         hover:bg-red-500/25 hover:border-red-500/50 transition-all duration-200 z-[90]"
-              aria-label="Close viewer"
-            >
-              <svg className="w-6 h-6 md:w-7 md:h-7 text-near-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-
-            {/* Counter + type */}
-            <div className="absolute top-4 md:top-6 left-4 md:left-6 px-4 py-2 bg-white/5 backdrop-blur-md border border-white/15 rounded-full flex items-center gap-3 z-[90]">
-              <span className="text-xs text-near-white tracking-widest font-inter">
-                {currentMediaIndex + 1} / {currentAlbumMedia.length}
-              </span>
-              {selectedMedia.type === 'video' && (
-                <span className="flex items-center gap-1 text-[11px] text-muted-magenta font-medium">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-                  </svg>
-                  VIDEO
+            {/* Top Bar */}
+            <div className="h-16 flex items-center justify-between px-6 border-b border-white/10">
+              <div className="flex items-center gap-4">
+                <span className="text-xs font-bold uppercase tracking-widest text-white/40">
+                  {currentMediaIndex + 1} / {currentAlbum.media.length}
                 </span>
-              )}
+                <span className="text-sm font-serif text-white/80">{currentAlbum.title}</span>
+              </div>
+              <button onClick={closeLightbox} className="p-2 rounded-full hover:bg-white/10 transition-colors">
+                <X size={20} />
+              </button>
             </div>
 
-            {/* MAIN MEDIA */}
-            <motion.div
-              className="max-w-6xl w-full mx-4 md:mx-8"
-              initial={{ scale: 0.92, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              transition={{ duration: 0.25 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative flex flex-col items-center">
-                {selectedMedia.type === 'image' ? (
-                  <motion.img
-                    key={currentMediaIndex}
-                    src={selectedMedia.src}
-                    alt={selectedMedia.caption}
-                    className="max-h-[80vh] max-w-[100vw] w-auto h-auto object-contain mx-auto rounded-md"
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -40 }}
-                    transition={{ duration: 0.25 }}
-                  />
+            {/* Main Content */}
+            <div className="flex-1 flex items-center justify-center relative p-6">
+              <button onClick={(e) => { e.stopPropagation(); navigateMedia(-1); }} className="absolute left-6 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all z-20 group">
+                <ChevronLeft className="group-hover:-translate-x-1 transition-transform" />
+              </button>
+
+              <motion.div
+                key={currentMediaIndex}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="relative max-h-full max-w-5xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {selectedMedia.type === 'video' ? (
+                  <div className="relative">
+                    <video
+                      ref={videoRef}
+                      src={selectedMedia.src}
+                      controls
+                      autoPlay
+                      className="max-h-[80vh] rounded-lg shadow-2xl"
+                    />
+                    <div className="absolute top-4 right-4 bg-black/50 px-2 py-1 rounded text-xs text-white/80 flex items-center gap-1 pointer-events-none">
+                      <Film size={12} /> Video
+                    </div>
+                  </div>
                 ) : (
-                  <motion.video
-                    key={currentMediaIndex}
-                    ref={videoRef}
-                    src={selectedMedia.src}
-                    controls
-                    autoPlay
-                    muted
-                    className="max-h-[80vh] max-w-[100vw] w-auto h-auto object-contain mx-auto rounded-md"
-                    initial={{ opacity: 0, x: 40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -40 }}
-                    transition={{ duration: 0.25 }}
-                  />
+                  <img src={selectedMedia.src} alt="Memory" className="max-h-[80vh] rounded-lg shadow-2xl object-contain" />
                 )}
 
-                <motion.div
-                  className="w-full mt-4 px-4 md:px-6"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.1, duration: 0.25 }}
-                >
-                  <div className="bg-black/70 backdrop-blur-md border border-white/15 rounded-md px-4 py-3 md:py-4">
-                    {currentAlbumTitle && (
-                      <p className="text-[11px] md:text-xs text-soft-purple/80 tracking-widest uppercase mb-1">
-                        {currentAlbumTitle}
-                      </p>
-                    )}
-                    <p className="text-sm md:text-base font-cinzel italic text-near-white leading-relaxed">
-                      {selectedMedia.caption}
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
+                {/* Caption overlay */}
+                <div className="absolute -bottom-16 left-0 right-0 text-center">
+                  <p className="font-serif italic text-white/80 text-lg">"{selectedMedia.caption}"</p>
+                </div>
+              </motion.div>
+
+              <button onClick={(e) => { e.stopPropagation(); navigateMedia(1); }} className="absolute right-6 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all z-20 group">
+                <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
+
     </section>
+  )
+}
+
+// --- SUB-COMPONENT: ALBUM CARD ---
+const AlbumCard = ({ album, index, onClick, isPrivate }) => {
+  const videoCount = album.media.filter(m => m.type === 'video').length
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      onClick={onClick}
+      className="group cursor-pointer"
+    >
+      <div className="relative aspect-[4/5] rounded-xl overflow-hidden mb-4 border border-white/10 group-hover:border-white/30 transition-colors">
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10" />
+
+        {/* Cover Image */}
+        <img src={album.cover} alt={album.title} className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" />
+
+        {/* Video Badge */}
+        {videoCount > 0 && (
+          <div className="absolute top-3 right-3 z-20 bg-black/60 backdrop-blur-md rounded-full px-2 py-1 flex items-center gap-1 border border-white/10">
+            <Play size={10} className="text-white fill-current" />
+            <span className="text-[10px] text-white/80">{videoCount}</span>
+          </div>
+        )}
+
+        {/* Overlay Info */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-bold uppercase tracking-widest text-white/60">{album.media.length} Items</span>
+            {isPrivate && <Lock size={14} className="text-rose-400" />}
+          </div>
+        </div>
+      </div>
+
+      <h3 className="text-xl font-serif text-white group-hover:text-rose-400 transition-colors">{album.title}</h3>
+      <p className="text-xs uppercase tracking-widest text-white/40 mt-1">{album.date}</p>
+    </motion.div>
   )
 }
 

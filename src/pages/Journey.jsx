@@ -1,183 +1,224 @@
-import React, { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
+import React, { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import {
+  MapPin, Flame, Moon, Gift, Home,
+  Smartphone, Infinity as InfinityIcon,
+  Heart, Calendar, Star, Sparkles
+} from 'lucide-react';
 
 const Journey = () => {
-  const months = [
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const scaleY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const timelineData = [
     {
       month: "July 2025",
+      title: "The Ignition",
+      icon: <MapPin size={24} />,
+      color: "text-blue-400",
       fragment: "Lonavala changed everything. A fight born from misunderstanding sparked conversations that turned into confessions. We went from strangers to conspirators, planning our first forbidden kiss in an office washroom."
     },
     {
       month: "August 2025",
+      title: "The First Touch",
+      icon: <Flame size={24} />,
+      color: "text-orange-500",
       fragment: "The washroom kiss that started it all—urgent, reckless, perfect. Then our first hotel room, learning each other's bodies without crossing the final line. WhatsApp became our playground for dark fantasies we'd never shared with anyone else."
     },
     {
       month: "September 2025",
+      title: "Forbidden Office",
+      icon: <Moon size={24} />,
+      color: "text-indigo-400",
       fragment: "Office nights after everyone left. You in my lap, hands exploring under clothes, pushing every boundary except the last one. The anticipation was torture—the most delicious kind. We were building toward something inevitable."
     },
     {
       month: "October 2025",
-      fragment: "Hyderabad finally gave us what we'd been craving. Hotel room doors closing, no more waiting, no more holding back. We made love for the first time—every fantasy realized, every whispered promise fulfilled. Before you left the office, I gifted you black lace lingerie. When you wore it for me in our last Hyderabad hotel, you looked absolutely breathtaking—no words could capture how stunning you were."
+      title: "Hyderabad & Lace",
+      icon: <Gift size={24} />,
+      color: "text-rose-500",
+      fragment: "Hyderabad finally gave us what we'd been craving. Hotel room doors closing, no more waiting. We made love for the first time. Before you left, I gifted you black lace lingerie. When you wore it for me, you looked absolutely breathtaking—no words could capture it."
     },
     {
       month: "November 2025",
-      fragment: "You left the office and my days felt empty. But Nagpur became our sanctuary. After months apart, our reunion was explosive—months of longing combusting the moment we had privacy. From Nagpur, you'd order t-shirts and shirts for me in Hyderabad, little surprises that made the distance bearable. Your city became our secret world where we could finally be loud and free."
+      title: "Nagpur Sanctuary",
+      icon: <Home size={24} />,
+      color: "text-emerald-400",
+      fragment: "You left the office, but Nagpur became our sanctuary. After months apart, our reunion was explosive. From Nagpur, you'd order t-shirts for me in Hyderabad, little surprises that made the distance bearable. Your city became our secret world."
     },
     {
       month: "December 2025",
-      fragment: "Distance made us bolder. Video calls that turned into virtual intimacy, sexting that left us both aching. Every Nagpur visit was combustion—we stopped being shy, started taking what we wanted. Shopping for each other online, sending gifts across cities, staying connected in every way possible. Your name became my favorite prayer, whispered against your skin."
+      title: "Digital Desire",
+      icon: <Smartphone size={24} />,
+      color: "text-purple-400",
+      fragment: "Distance made us bolder. Video calls turned into virtual intimacy. Every Nagpur visit was combustion. Shopping for each other online, staying connected in every way possible. Your name became my favorite prayer, whispered against your skin."
     },
     {
       month: "January 2026",
-      fragment: "Six months since it all began. From that Lonavala fight to black lace surprises to packages arriving at each other's doors—we've built something extraordinary from stolen moments and midnight confessions. This isn't an ending—it's just the beginning of every tomorrow I want to wake up tangled in you."
+      title: "The Beginning",
+      icon: <InfinityIcon size={24} />,
+      color: "text-white",
+      fragment: "Six months since it all began. From that Lonavala fight to black lace surprises to packages arriving at each other's doors—we've built something extraordinary. This isn't an ending—it's just the beginning of every tomorrow I want to wake up tangled in you."
     }
-  ]
+  ];
 
   return (
-    <section className="min-h-screen section-padding pt-32 pb-20">
-      <div className="container-custom max-w-5xl">
-        <h2 className="text-5xl md:text-6xl font-cinzel font-normal tracking-ultra text-center mb-12 text-near-white">
-          Journey
-        </h2>
-        <p className="text-center text-soft-purple opacity-70 font-cinzel italic text-lg mb-24">
-          Seven months, countless moments, one unforgettable story
-        </p>
+    <section ref={containerRef} className="min-h-screen bg-black text-white relative overflow-hidden py-32">
 
-        <div className="flex flex-col gap-24 md:gap-32 mt-24">
-          {months.map((item, index) => (
-            <MonthBlock key={index} month={item.month} fragment={item.fragment} index={index} />
-          ))}
+      {/* --- AMBIENT BACKGROUND --- */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-rose-900/20 rounded-full blur-[120px] opacity-50" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[120px] opacity-50" />
+      </div>
+
+      <div className="container max-w-6xl mx-auto px-6 relative z-10">
+
+        {/* --- HEADER --- */}
+        <div className="text-center mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6"
+          >
+            <Calendar size={14} className="text-rose-400" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/60">The Chronology</span>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-6xl md:text-8xl font-serif mb-6 bg-gradient-to-r from-white via-white to-white/60 bg-clip-text text-transparent"
+          >
+            The Journey
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl font-serif italic text-white/60 max-w-2xl mx-auto"
+          >
+            "Seven months. Two cities. Infinite memories."
+          </motion.p>
         </div>
 
-        {/* Summary Card */}
-        <motion.div
-          className="mt-32 glass-card text-center"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1.5, ease: [0.6, 0.05, 0.01, 0.9] }}
-        >
-          <h3 className="text-2xl md:text-3xl font-cinzel tracking-widest mb-6 text-muted-magenta">
-            Our Journey in Numbers
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-8">
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-cinzel font-semibold text-near-white mb-2">
-                196+
-              </div>
-              <div className="text-xs md:text-sm text-soft-purple opacity-70 tracking-wider uppercase">
-                Days Together
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-cinzel font-semibold text-near-white mb-2">
-                3000+
-              </div>
-              <div className="text-xs md:text-sm text-soft-purple opacity-70 tracking-wider uppercase">
-                Messages
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-cinzel font-semibold text-near-white mb-2">
-                ∞
-              </div>
-              <div className="text-xs md:text-sm text-soft-purple opacity-70 tracking-wider uppercase">
-                Kisses Shared
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl md:text-5xl font-cinzel font-semibold text-near-white mb-2">
-                2
-              </div>
-              <div className="text-xs md:text-sm text-soft-purple opacity-70 tracking-wider uppercase">
-                Cities, One Love
-              </div>
-            </div>
-          </div>
+        {/* --- TIMELINE --- */}
+        <div className="relative">
+          {/* Central Line (Desktop) / Left Line (Mobile) */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-white/10 md:-translate-x-1/2" />
+          <motion.div
+            style={{ scaleY }}
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-rose-500 via-purple-500 to-blue-500 md:-translate-x-1/2 origin-top"
+          />
 
-          {/* Additional Stats Row */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mt-12 pt-8 border-t border-white/10">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-cinzel font-semibold text-near-white mb-2">
-                10+
-              </div>
-              <div className="text-xs md:text-sm text-soft-purple opacity-70 tracking-wider uppercase">
-                Hotel Nights
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-cinzel font-semibold text-near-white mb-2">
-                1
-              </div>
-              <div className="text-xs md:text-sm text-soft-purple opacity-70 tracking-wider uppercase">
-                Black Lace Gift
-              </div>
-            </div>
-            <div className="text-center md:col-span-1 col-span-2">
-              <div className="text-3xl md:text-4xl font-cinzel font-semibold text-near-white mb-2">
-                ∞
-              </div>
-              <div className="text-xs md:text-sm text-soft-purple opacity-70 tracking-wider uppercase">
-                Gifts Exchanged
-              </div>
-            </div>
+          <div className="space-y-24 md:space-y-32">
+            {timelineData.map((item, index) => (
+              <TimelineCard key={index} data={item} index={index} />
+            ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Quote Card */}
-        <motion.div
-          className="mt-16 text-center px-6 py-8 border border-white/10 rounded-md bg-gradient-to-br from-muted-magenta/5 to-transparent"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 1.2, delay: 0.2 }}
-        >
-          <p className="text-lg md:text-xl font-cinzel italic text-near-white opacity-90 leading-loose max-w-3xl mx-auto">
-            "From office washrooms to Hyderabad hotels, from black lace surprises to t-shirts shipped across cities—
-            every moment added to our story. Distance tested us, desire brought us closer, and love kept us coming back for more."
-          </p>
-          <p className="mt-4 text-sm text-muted-magenta opacity-70 tracking-widest font-inter uppercase">
-            — Our Journey Continues
-          </p>
-        </motion.div>
+        {/* --- STATS GRID --- */}
+        <div className="mt-40 border-t border-white/10 pt-20">
+          <h3 className="text-center font-serif text-3xl md:text-4xl mb-16">By The Numbers</h3>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <StatBox value="196+" label="Days Together" delay={0} />
+            <StatBox value="3000+" label="Messages Sent" delay={0.1} />
+            <StatBox value="∞" label="Kisses Shared" delay={0.2} />
+            <StatBox value="2" label="Cities Conquered" delay={0.3} />
+            <StatBox value="10+" label="Hotel Nights" delay={0.4} />
+            <StatBox value="1" label="Black Lace Gift" delay={0.5} highlight />
+            <StatBox value="∞" label="Gifts Exchanged" delay={0.6} className="col-span-2" />
+          </div>
+        </div>
+
+        {/* --- FOOTER QUOTE --- */}
+        <div className="mt-32 text-center max-w-3xl mx-auto p-12 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md">
+           <Heart className="mx-auto text-rose-500 mb-6 animate-pulse" fill="currentColor" />
+           <p className="font-serif text-xl md:text-2xl italic leading-relaxed text-white/90">
+             "Distance tested us, desire brought us closer, and love kept us coming back for more.
+             This isn't an ending—it's just the beginning."
+           </p>
+        </div>
+
       </div>
     </section>
-  )
-}
+  );
+};
 
-const MonthBlock = ({ month, fragment, index }) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
+// --- SUB-COMPONENT: TIMELINE CARD ---
+const TimelineCard = ({ data, index }) => {
+  const isEven = index % 2 === 0;
 
   return (
-    <motion.div
-      ref={ref}
-      className="text-center max-w-3xl mx-auto"
-      initial={{ opacity: 0, y: 60 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{
-        duration: 1.8,
-        delay: index * 0.1,
-        ease: [0.6, 0.05, 0.01, 0.9]
-      }}
-    >
-      <div className="mb-6 animate-heartbeat inline-block">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-            className="fill-muted-magenta"
-          />
-        </svg>
-      </div>
-      <h3 className="text-3xl md:text-4xl font-cinzel tracking-widest mb-7 text-soft-purple">
-        {month}
-      </h3>
-      <p className="font-cinzel italic text-base md:text-lg leading-relaxed md:leading-loose tracking-wide text-near-white opacity-85 px-4">
-        {fragment}
-      </p>
-    </motion.div>
-  )
-}
+    <div className={`relative flex items-center ${isEven ? 'md:flex-row-reverse' : ''} md:justify-between pl-12 md:pl-0 group`}>
 
-export default Journey
+      {/* Node on Line */}
+      <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-black border border-white/20 flex items-center justify-center z-20 group-hover:scale-125 transition-transform duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+        <div className={`w-2 h-2 rounded-full ${data.color.replace('text-', 'bg-')}`} />
+      </div>
+
+      {/* Content Side */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, delay: index * 0.1 }}
+        className="w-full md:w-[45%]"
+      >
+        <div className="p-8 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-500 hover:-translate-y-2 group-hover:shadow-2xl">
+
+          <div className="flex items-center justify-between mb-6">
+            <span className={`text-xs font-bold uppercase tracking-widest ${data.color}`}>{data.month}</span>
+            <div className={`p-2 rounded-full bg-white/5 ${data.color}`}>
+              {data.icon}
+            </div>
+          </div>
+
+          <h3 className="text-3xl font-serif mb-4 group-hover:text-white transition-colors">{data.title}</h3>
+
+          <p className="text-white/60 leading-relaxed font-sans text-sm md:text-base group-hover:text-white/80 transition-colors">
+            {data.fragment}
+          </p>
+
+        </div>
+      </motion.div>
+
+      {/* Empty Side for Spacing */}
+      <div className="hidden md:block w-[45%]" />
+
+    </div>
+  );
+};
+
+// --- SUB-COMPONENT: STAT BOX ---
+const StatBox = ({ value, label, delay, highlight, className = "" }) => (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    whileInView={{ opacity: 1, scale: 1 }}
+    viewport={{ once: true }}
+    transition={{ delay, duration: 0.5 }}
+    whileHover={{ y: -5 }}
+    className={`p-6 md:p-8 rounded-2xl border text-center transition-all duration-300 ${highlight ? 'bg-rose-500/10 border-rose-500/30' : 'bg-white/5 border-white/10 hover:bg-white/10'} ${className}`}
+  >
+    <div className={`text-3xl md:text-5xl font-serif mb-2 ${highlight ? 'text-rose-400' : 'text-white'}`}>
+      {value}
+    </div>
+    <div className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-white/40">
+      {label}
+    </div>
+  </motion.div>
+);
+
+export default Journey;
