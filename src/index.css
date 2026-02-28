@@ -1,56 +1,90 @@
 @import "tailwindcss";
 
+/* ─── BASE ────────────────────────────────────────────────────────────────────
+   Font stack: font-serif → system serif (matches all pages)
+   Background: #060608 → matches bg-[#060608] used site-wide
+   All custom color tokens removed — pure Tailwind + CSS vars only
+──────────────────────────────────────────────────────────────────────────────*/
+
 @layer base {
+
   *, ::before, ::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
 
-  html {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+  /* ── Scrollbar: hidden site-wide ── */
+  html,
+  body,
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  html::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    overflow-x: hidden;
   }
 
   body {
-    background: linear-gradient(to bottom, #0f0f0f, #111111);
-    color: #f5f5f5;
-    font-family: Inter, sans-serif;
-    line-height: 1.9;
-    letter-spacing: 0.5px;
+    background-color: #060608;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.8;
+    letter-spacing: 0.3px;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
-  }
-
+  /* ── Headings: serif — matches font-serif used on all pages ── */
   h1, h2, h3, h4, h5, h6 {
-    font-family: Cinzel, serif;
+    font-family: ui-serif, Georgia, serif;
     font-weight: 400;
-    letter-spacing: 1px;
-    line-height: 1.2;
+    letter-spacing: 0.5px;
+    line-height: 1.15;
+    color: rgba(255, 255, 255, 0.85);
   }
 
-  /* Hide scrollbar for all elements */
+  /* ── Text selection ── */
+  ::selection {
+    background-color: rgba(244, 63, 94, 0.35);
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  /* ── Focus ring ── */
+  :focus-visible {
+    outline: 1px solid rgba(244, 63, 94, 0.4);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* ── Remove tap highlight on mobile ── */
   * {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    -webkit-tap-highlight-color: transparent;
   }
 
-  *::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
+  /* ── Smooth anchor scroll ── */
+  html {
+    scroll-behavior: smooth;
   }
 }
 
+/* ─── COMPONENTS ──────────────────────────────────────────────────────────────
+   These mirror the Tailwind utility patterns used across all pages,
+   exposed as reusable classes for non-Tailwind contexts (e.g. prose content).
+──────────────────────────────────────────────────────────────────────────────*/
+
 @layer components {
+
+  /* Section vertical rhythm — matches py-32 used site-wide */
   .section-padding {
     padding-block: 6rem;
   }
@@ -67,24 +101,137 @@
     }
   }
 
-  .container-custom {
-    max-width: 48rem;
-    margin-inline: auto;
-    padding-inline: 1.5rem;
-  }
-
+  /* ── Glass card — mirrors site card system ── */
+  /* bg-white/[0.02] border border-white/5 rounded-2xl */
   .glass-card {
-    background: rgba(255,255,255,0.02);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 6px;
-    padding: 2.5rem;
-    transition: all 0.7s ease;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;           /* rounded-2xl */
+    padding: 1.5rem;               /* p-6 */
+    transition: background 0.5s ease, border-color 0.5s ease;
   }
 
   .glass-card:hover {
-    background: rgba(255,255,255,0.03);
-    border-color: rgba(192,132,252,0.2);
-    box-shadow: 0 0 20px rgba(192,132,252,0.08);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.10);
+  }
+
+  /* ── Pill badge — matches category pill pattern site-wide ── */
+  /* px-3 py-1 rounded-full text-[8px] font-bold uppercase tracking-widest border */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.30);
+  }
+
+  /* ── Whisper text — matches text-white/12 font-serif italic pattern ── */
+  .whisper {
+    font-family: ui-serif, Georgia, serif;
+    font-style: italic;
+    font-size: 0.5625rem;          /* ~9px */
+    color: rgba(255, 255, 255, 0.12);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Ghost button — matches rounded-full bg-white/[0.03] border border-white/8 ── */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.75rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.40);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  /* ── Spine line — matches timeline vertical connector ── */
+  .spine {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(255, 255, 255, 0.05) 20%,
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent
+    );
+  }
+
+  /* ── Ambient blob — mirrors fixed inset-0 ambient divs ── */
+  .ambient-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(120px);
+    pointer-events: none;
+  }
+}
+
+/* ─── UTILITIES ───────────────────────────────────────────────────────────────
+   Thin extras not in Tailwind v4 by default
+──────────────────────────────────────────────────────────────────────────────*/
+
+@layer utilities {
+
+  /* Force GPU layer for heavy animated elements */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  /* Font serif shorthand matching font-serif Tailwind class */
+  .font-serif {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+  }
+
+  /* Signature style used in Promises + ThankYou sign-off */
+  .font-signature {
+    font-family: ui-serif, Georgia, serif;
+    font-style: italic;
+    letter-spacing: -0.02em;
+  }
+
+  /* Gradient text shorthand — matches bg-clip-text pattern */
+  .text-gradient-white {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 1),
+      rgba(255, 255, 255, 0.9) 40%,
+      rgba(255, 255, 255, 0.3)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Rose gradient text — used in Promises heading */
+  .text-gradient-rose {
+    background: linear-gradient(135deg, #fb7185, #e11d48);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }

@@ -1,251 +1,325 @@
-import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import Navigation from "./components/Navigation";
-import Loader from "./components/Loader";
-import { Play, SkipForward, Music2 } from "lucide-react";
+import React, { lazy, Suspense, useEffect, useRef, useState, useCallback } from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import Navigation from './components/Navigation'
+import Loader from './components/Loader'
+import { Play, SkipForward, Music2, Pause } from 'lucide-react'
 
-// --- 🎵 AUDIO ASSETS 🎵 ---
-import song1 from "./assets/audio/song1.mp3";
-import song2 from "./assets/audio/song2.mp3";
-import song3 from "./assets/audio/song3.mp3";
-import song4 from "./assets/audio/song4.mp3";
-import song5 from "./assets/audio/song5.mp3";
-import song6 from "./assets/audio/song6.mp3";
-import song7 from "./assets/audio/song7.mp3";
-import song8 from "./assets/audio/song8.mp3";
-import song9 from "./assets/audio/song9.mp3";
-import song10 from "./assets/audio/song10.mp3";
-import song11 from "./assets/audio/song11.mp3";
-import song12 from "./assets/audio/song12.mp3";
+// ─── AUDIO ASSETS ─────────────────────────────────────────────────────────────
+import song1  from './assets/audio/song1.mp3'
+import song2  from './assets/audio/song2.mp3'
+import song3  from './assets/audio/song3.mp3'
+import song4  from './assets/audio/song4.mp3'
+import song5  from './assets/audio/song5.mp3'
+import song6  from './assets/audio/song6.mp3'
+import song7  from './assets/audio/song7.mp3'
+import song8  from './assets/audio/song8.mp3'
+import song9  from './assets/audio/song9.mp3'
+import song10 from './assets/audio/song10.mp3'
+import song11 from './assets/audio/song11.mp3'
+import song12 from './assets/audio/song12.mp3'
 
-// --- 📦 LAZY LOADED CHAPTERS 📦 ---
-const Home = lazy(() => import("./pages/Home"));
-const AboutFalguni = lazy(() => import("./pages/AboutFalguni"));
-const OurStory = lazy(() => import("./pages/OurStory"));
-const Journey = lazy(() => import("./pages/Journey"));
-const IntimateMemories = lazy(() => import("./pages/IntimateMemories"));
-const Places = lazy(() => import("./pages/Places"));
-const InsideWorld = lazy(() => import("./pages/InsideWorld"));
-const LoveLetter = lazy(() => import("./pages/LoveLetter"));
-const Gallery = lazy(() => import("./pages/Gallery"));
-const Reasons = lazy(() => import("./pages/Reasons"));
-const Quiz = lazy(() => import("./pages/Quiz"));
-const Future = lazy(() => import("./pages/Future"));
-const Compatibility = lazy(() => import("./pages/Compatibility"));
-const Promises = lazy(() => import("./pages/Promises"));
-const Timeline = lazy(() => import("./pages/FutureTimeline"));
-const ThankYou = lazy(() => import("./pages/ThankYou"));
+// ─── LAZY PAGES ───────────────────────────────────────────────────────────────
+const Home             = lazy(() => import('./pages/Home'))
+const AboutFalguni     = lazy(() => import('./pages/AboutFalguni'))
+const OurStory         = lazy(() => import('./pages/OurStory'))
+const Journey          = lazy(() => import('./pages/Journey'))
+const IntimateMemories = lazy(() => import('./pages/IntimateMemories'))
+const Places           = lazy(() => import('./pages/Places'))
+const InsideWorld      = lazy(() => import('./pages/InsideWorld'))
+const LoveLetter       = lazy(() => import('./pages/LoveLetter'))
+const Gallery          = lazy(() => import('./pages/Gallery'))
+const Reasons          = lazy(() => import('./pages/Reasons'))
+const Quiz             = lazy(() => import('./pages/Quiz'))
+const Future           = lazy(() => import('./pages/Future'))
+const Compatibility    = lazy(() => import('./pages/Compatibility'))
+const Promises         = lazy(() => import('./pages/Promises'))
+const FutureTimeline   = lazy(() => import('./pages/FutureTimeline'))
+const ThankYou         = lazy(() => import('./pages/ThankYou'))
 
-// --- 🎬 SCROLL TO TOP WRAPPER 🎬 ---
+// ─── PLAYLIST ─────────────────────────────────────────────────────────────────
+// Sources: loveMasterData.json · meta.playlist[]
+const RAW_PLAYLIST = [
+  { src: song1,  name: 'Tum Se Hi'               },
+  { src: song2,  name: 'Khoobsurat'              },
+  { src: song3,  name: 'Zara Zara'               },
+  { src: song4,  name: 'Phir Bhi Tumko Chaahunga'},
+  { src: song5,  name: 'Channa Ve'               },
+  { src: song6,  name: 'Ve Maahi Kesari'         },
+  { src: song7,  name: 'Agar Tum Saath Ho'       },
+  { src: song8,  name: 'Tera Ban Jaunga'         },
+  { src: song9,  name: 'Perfect'                 },
+  { src: song10, name: 'Rewrite The Stars'       },
+  { src: song11, name: 'Until I Found You'       },
+  { src: song12, name: 'Say You Won\'t Let Go'   },
+]
+
+const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5)
+
+// ─── SCROLL TO TOP ────────────────────────────────────────────────────────────
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-};
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 
+// ─── APP ──────────────────────────────────────────────────────────────────────
 function App() {
-  // --- STATE MANAGEMENT ---
-  const audioRef = useRef(new Audio());
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [showWelcome, setShowWelcome] = useState(true);
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [currentSongName, setCurrentSongName] = useState("");
-  const [shuffledPlaylist, setShuffledPlaylist] = useState([]);
+  const audioRef           = useRef(null)
+  const fadeRef            = useRef(null)
+  const [isPlaying,        setIsPlaying]        = useState(false)
+  const [showWelcome,      setShowWelcome]      = useState(true)
+  const [songIndex,        setSongIndex]        = useState(0)
+  const [playlist,         setPlaylist]         = useState([])
+  const [currentSongName,  setCurrentSongName]  = useState('')
+  const [playerExpanded,   setPlayerExpanded]   = useState(false)
 
-  // --- PLAYLIST CONFIG ---
-  const rawPlaylist = [
-    { src: song1, name: "Tum Se Hi" },
-    { src: song2, name: "Khoobsurat" },
-    { src: song3, name: "Zara Zara" },
-    { src: song4, name: "Phir Bhi Tumko Chaahunga" },
-    { src: song5, name: "Channa Ve" },
-    { src: song6, name: "Ve Maahi Kesari" },
-    { src: song7, name: "Agar Tum Saath Ho" },
-    { src: song8, name: "Tera Ban Jaunga" },
-    { src: song9, name: "Perfect" },
-    { src: song10, name: "Rewrite The Stars" },
-    { src: song11, name: "Until I Found You" },
-    { src: song12, name: "Say You Won't Let Go" },
-  ];
-
-  // --- INITIALIZATION ---
+  // ── Init audio element once ──
   useEffect(() => {
-    const shuffled = [...rawPlaylist].sort(() => Math.random() - 0.5);
-    setShuffledPlaylist(shuffled);
-    setCurrentSongName(shuffled[0]?.name || "");
-
-    audioRef.current.volume = 0.4;
-    audioRef.current.onended = handleNextSong;
-
+    const audio        = new Audio()
+    audio.volume       = 0
+    audioRef.current   = audio
+    const shuffled     = shuffle(RAW_PLAYLIST)
+    setPlaylist(shuffled)
+    setCurrentSongName(shuffled[0]?.name ?? '')
     return () => {
-      audioRef.current.pause();
-      audioRef.current.src = "";
-    };
-  }, []);
+      audio.pause()
+      audio.src = ''
+      clearInterval(fadeRef.current)
+    }
+  }, [])
 
-  // --- AUDIO LOGIC ---
+  // ── Track change ──
   useEffect(() => {
-    if (shuffledPlaylist.length > 0) {
-      const audio = audioRef.current;
-      const currentTrack = shuffledPlaylist[currentSongIndex];
+    const audio = audioRef.current
+    if (!audio || playlist.length === 0) return
+    const track = playlist[songIndex]
+    audio.src   = track.src
+    setCurrentSongName(track.name)
+    if (isPlaying) audio.play().catch(() => {})
+  }, [songIndex, playlist])   // intentionally excludes isPlaying
 
-      if (audio.src !== currentTrack.src) {
-        audio.src = currentTrack.src;
-        if (isPlaying) {
-          audio.play().catch(e => console.log("Playback interrupted", e));
-        }
-      }
-      setCurrentSongName(currentTrack.name);
-    }
-  }, [currentSongIndex, shuffledPlaylist, isPlaying]);
+  // ── Auto-advance on track end ──
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    const onEnd = () => setSongIndex(i => (i + 1) % playlist.length)
+    audio.addEventListener('ended', onEnd)
+    return () => audio.removeEventListener('ended', onEnd)
+  }, [playlist])
 
-  const startExperience = () => {
-    setShowWelcome(false);
-    setIsPlaying(true);
-    audioRef.current.play().catch(e => console.log("Autoplay blocked", e));
+  // ── Fade in helper ──
+  const fadeIn = useCallback(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    clearInterval(fadeRef.current)
+    audio.volume   = 0
+    let v          = 0
+    fadeRef.current = setInterval(() => {
+      v = Math.min(v + 0.04, 0.4)
+      audio.volume = v
+      if (v >= 0.4) clearInterval(fadeRef.current)
+    }, 180)
+  }, [])
 
-    // Fade in
-    audioRef.current.volume = 0;
-    let vol = 0;
-    const fadeInterval = setInterval(() => {
-      if (vol < 0.4) {
-        vol += 0.05;
-        audioRef.current.volume = vol;
-      } else {
-        clearInterval(fadeInterval);
-      }
-    }, 200);
-  };
+  // ── Fade out helper ──
+  const fadeOut = useCallback((cb) => {
+    const audio = audioRef.current
+    if (!audio) return
+    clearInterval(fadeRef.current)
+    let v = audio.volume
+    fadeRef.current = setInterval(() => {
+      v = Math.max(v - 0.05, 0)
+      audio.volume = v
+      if (v <= 0) { clearInterval(fadeRef.current); cb?.() }
+    }, 80)
+  }, [])
 
-  const togglePlayPause = () => {
+  const startExperience = useCallback(() => {
+    setShowWelcome(false)
+    setIsPlaying(true)
+    audioRef.current?.play().catch(() => {})
+    fadeIn()
+  }, [fadeIn])
+
+  const togglePlay = useCallback(() => {
+    const audio = audioRef.current
+    if (!audio) return
     if (isPlaying) {
-      audioRef.current.pause();
+      fadeOut(() => audio.pause())
     } else {
-      audioRef.current.play();
+      audio.play().catch(() => {})
+      fadeIn()
     }
-    setIsPlaying(!isPlaying);
-  };
+    setIsPlaying(p => !p)
+  }, [isPlaying, fadeIn, fadeOut])
 
-  const handleNextSong = () => {
-    setCurrentSongIndex((prev) => (prev + 1) % shuffledPlaylist.length);
-  };
+  const skipNext = useCallback(() => {
+    setSongIndex(i => (i + 1) % playlist.length)
+  }, [playlist.length])
 
   return (
     <Router>
       <ScrollToTop />
-      <div className="bg-black min-h-screen text-white selection:bg-rose-500 selection:text-white overflow-x-hidden">
+      <div className="bg-[#060608] min-h-screen text-white selection:bg-rose-500/60 selection:text-white overflow-x-hidden">
 
-        {/* --- WELCOME GATE --- */}
+        {/* ── Welcome Gate ── */}
         <AnimatePresence>
           {showWelcome && (
             <motion.div
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
-              exit={{ opacity: 0, transition: { duration: 1.5 } }}
+              key="welcome"
+              className="fixed inset-0 z-[100] flex items-center justify-center bg-[#060608]"
+              exit={{ opacity: 0, transition: { duration: 1.5, ease: 'easeInOut' } }}
             >
-              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
+              {/* Ambient */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-rose-900/8 rounded-full blur-[180px]" />
+              </div>
+
               <div className="text-center px-6 relative z-10">
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
+                  initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
+                  transition={{ duration: 1.5, ease: 'easeOut' }}
+                  className="flex flex-col items-center"
                 >
-                  <Music2 size={64} className="mx-auto text-rose-500 mb-8 animate-pulse" />
-                  <h1 className="font-serif text-5xl md:text-7xl mb-6 tracking-tight">Falguni</h1>
-                  <p className="font-sans text-xs md:text-sm tracking-[0.3em] uppercase opacity-50 mb-12">
-                    Put on your headphones • The Story of Us
+                  {/* Icon */}
+                  <motion.div
+                    animate={{ scale: [1, 1.06, 1] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+                    className="mb-8"
+                  >
+                    <Music2 size={40} className="text-rose-400/50" />
+                  </motion.div>
+
+                  {/* Name */}
+                  <h1 className="font-serif text-5xl md:text-7xl mb-3 tracking-tight bg-gradient-to-b from-white via-white/90 to-white/30 bg-clip-text text-transparent">
+                    Falguni
+                  </h1>
+
+                  {/* Tagline */}
+                  <p className="text-[9px] md:text-[10px] tracking-[0.35em] uppercase text-white/20 font-bold mb-3">
+                    The Story of Us
                   </p>
+                  <p className="text-[8px] tracking-[0.25em] uppercase text-white/12 mb-14">
+                    Put on headphones · For your eyes only
+                  </p>
+
+                  {/* CTA */}
                   <motion.button
                     onClick={startExperience}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group relative px-10 py-4 bg-white/5 border border-white/10 rounded-full overflow-hidden hover:bg-white/10 transition-all"
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="group px-10 py-3.5 bg-white/[0.03] border border-white/8 rounded-full hover:bg-white/[0.07] hover:border-white/15 transition-all duration-500"
                   >
-                    <span className="relative z-10 text-xs font-bold uppercase tracking-widest flex items-center gap-3">
-                      <Play size={12} fill="currentColor" /> Enter World
+                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/45 group-hover:text-white/70 transition-colors flex items-center gap-3">
+                      <Play size={10} fill="currentColor" /> Enter World
                     </span>
                   </motion.button>
+
+                  {/* Playlist preview */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="mt-8 text-[8px] uppercase tracking-widest text-white/10"
+                  >
+                    {RAW_PLAYLIST.length} songs · shuffled · autoplay
+                  </motion.p>
                 </motion.div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* --- MINIMALIST FLOATING PLAYER --- */}
-        {!showWelcome && (
-          <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1 }}
-            className="fixed bottom-6 right-6 z-50"
-          >
-            <div className="flex items-center gap-3 bg-black/60 backdrop-blur-xl border border-white/10 rounded-full py-2 px-2 pr-5 shadow-2xl hover:bg-black/80 transition-all duration-300">
-
-              {/* Play/Pause Button with Mini Equalizer */}
-              <button
-                onClick={togglePlayPause}
-                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-rose-500 hover:text-white transition-colors"
+        {/* ── Floating Player ── */}
+        <AnimatePresence>
+          {!showWelcome && (
+            <motion.div
+              key="player"
+              initial={{ y: 80, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 80, opacity: 0 }}
+              transition={{ delay: 0.8, duration: 0.6, ease: 'easeOut' }}
+              className="fixed bottom-5 right-5 z-50"
+            >
+              <motion.div
+                layout
+                onClick={() => setPlayerExpanded(e => !e)}
+                className="flex items-center gap-3 bg-[#0a0a0c]/85 backdrop-blur-2xl border border-white/5 rounded-full py-2 pl-2 pr-4 shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:border-white/10 transition-all duration-300 cursor-pointer"
+                // onClick={e => e.stopPropagation()}
               >
-                {isPlaying ? (
-                   <div className="flex gap-[2px] items-end h-3">
-                     {[1, 2, 3].map(i => (
-                       <motion.div
-                         key={i}
-                         animate={{ height: [3, 12, 3] }}
-                         transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.1 }}
-                         className="w-[2px] bg-current rounded-full"
-                       />
-                     ))}
-                   </div>
-                ) : (
-                  <Play size={14} fill="currentColor" className="ml-0.5" />
-                )}
-              </button>
+                {/* Play / Pause */}
+                <button
+                  onClick={togglePlay}
+                  className="w-9 h-9 rounded-full bg-white/[0.04] border border-white/8 flex items-center justify-center hover:bg-white/[0.08] hover:border-white/15 transition-all duration-300 shrink-0"
+                >
+                  {isPlaying ? (
+                    <div className="flex gap-[2.5px] items-end h-3">
+                      {[0, 0.1, 0.2].map((delay, i) => (
+                        <motion.div
+                          key={i}
+                          animate={{ height: ['3px', '11px', '3px'] }}
+                          transition={{ duration: 0.7, repeat: Infinity, delay, ease: 'easeInOut' }}
+                          className="w-[2px] bg-rose-400/70 rounded-full"
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <Play size={12} fill="currentColor" className="text-white/40 ml-0.5" />
+                  )}
+                </button>
 
-              {/* Song Info */}
-              <div className="flex flex-col max-w-[120px]">
-                <span className="text-[9px] uppercase tracking-widest text-white/40 font-bold">Playing</span>
-                <span className="text-xs font-serif text-white/90 truncate">{currentSongName}</span>
-              </div>
+                {/* Song info */}
+                <div className="flex flex-col min-w-0 max-w-[110px]">
+                  <span className="text-[7px] uppercase tracking-[0.3em] text-white/20 font-bold leading-none mb-0.5">
+                    Now Playing
+                  </span>
+                  <span className="text-[11px] font-serif text-white/60 truncate leading-tight">
+                    {currentSongName}
+                  </span>
+                </div>
 
-              {/* Skip Button */}
-              <button onClick={handleNextSong} className="ml-2 text-white/40 hover:text-white transition-colors">
-                <SkipForward size={14} />
-              </button>
-            </div>
-          </motion.div>
-        )}
+                {/* Skip */}
+                <button
+                  onClick={skipNext}
+                  className="text-white/20 hover:text-white/50 transition-colors duration-300 shrink-0"
+                >
+                  <SkipForward size={13} />
+                </button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-        {/* --- GLOBAL NAVIGATION --- */}
+        {/* ── Navigation ── */}
         <Navigation />
 
-        {/* --- MAIN PAGE CONTENT --- */}
+        {/* ── Routes ── */}
         <Suspense fallback={<Loader />}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<AboutFalguni />} />
-            <Route path="/story" element={<OurStory />} />
-            <Route path="/journey" element={<Journey />} />
-            <Route path="/memories" element={<IntimateMemories />} />
-            <Route path="/places" element={<Places />} />
-            <Route path="/inside" element={<InsideWorld />} />
-            <Route path="/letter" element={<LoveLetter />} />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/reasons" element={<Reasons />} />
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/future" element={<Future />} />
-            <Route path="/compatibility" element={<Compatibility />} />
-            <Route path="/promises" element={<Promises />} />
-            <Route path="/timeline" element={<Timeline />} />
-            <Route path="/thankyou" element={<ThankYou />} />
+            <Route path="/"            element={<Home />}             />
+            <Route path="/about"       element={<AboutFalguni />}     />
+            <Route path="/story"       element={<OurStory />}         />
+            <Route path="/journey"     element={<Journey />}          />
+            <Route path="/memories"    element={<IntimateMemories />} />
+            <Route path="/places"      element={<Places />}           />
+            <Route path="/inside"      element={<InsideWorld />}      />
+            <Route path="/letter"      element={<LoveLetter />}       />
+            <Route path="/gallery"     element={<Gallery />}          />
+            <Route path="/reasons"     element={<Reasons />}          />
+            <Route path="/quiz"        element={<Quiz />}             />
+            <Route path="/future"      element={<Future />}           />
+            <Route path="/compatibility" element={<Compatibility />}  />
+            <Route path="/promises"    element={<Promises />}         />
+            <Route path="/timeline"    element={<FutureTimeline />}   />
+            <Route path="/thankyou"    element={<ThankYou />}         />
           </Routes>
         </Suspense>
 
       </div>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

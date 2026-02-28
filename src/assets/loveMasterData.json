@@ -1,0 +1,2532 @@
+{
+ "meta": {
+    "project": "Our Story Archive",
+    "version": "2.1",
+    "createdBy": "Moiz",
+    "primaryPerson": "Falguni",
+    "datasetPurpose": [
+      "Emotional memory archive",
+      "Relationship narrative dataset",
+      "Romantic conversational AI training",
+      "Contextual long-form generation",
+      "Personalized RAG retrieval"
+    ],
+    "currentDate": "February 14, 2026",
+    "aiInsights": {
+      "relationshipType": "Romantic",
+      "toneSpectrum": ["passionate", "playful", "emotionally intense", "vulnerable", "nostalgic", "devoted"],
+      "emotionalArc": ["conflict", "curiosity", "connection", "intimacy", "distance", "resilience", "commitment"],
+      "dominantThemes": [
+        "choice over chance",
+        "distance strengthening desire",
+        "private intimacy",
+        "shared growth",
+        "emotional vulnerability",
+        "playful dominance dynamics"
+      ],
+      "communicationStyle": [
+        "late-night confessions",
+        "sarcasm as affection",
+        "teasing language",
+        "verbal affirmation",
+        "physical reassurance"
+      ],
+      "memoryDensity": "High",
+      "intimacyLevel": "Explicit emotional and physical references",
+      "temporalSpan": "July 2025 – February 2026 (ongoing)",
+      "geographicalNodes": ["Lonavala", "Hyderabad", "Nagpur", "Office environment", "Hotel rooms", "Video calls"]
+    },
+    "ragConfiguration": {
+      "recommendedChunkSize": 450,
+      "recommendedOverlap": 90,
+      "embeddingPrioritySections": [
+        "journey",
+        "ourStory",
+        "intimateMemories",
+        "insideWorld",
+        "loveLetter",
+        "reasons"
+      ],
+      "semanticTags": [
+        "first kiss",
+        "black lace night",
+        "long distance packages",
+        "nagpur reunions",
+        "hyderabad hotels",
+        "office washroom",
+        "competitive teasing",
+        "emotional vulnerability",
+        "you are home"
+      ],
+      "retrievalIntents": [
+        "romantic reassurance",
+        "nostalgia recall",
+        "intimate memory recall",
+        "future vision generation",
+        "relationship affirmation",
+        "playful banter trigger",
+        "vulnerability comfort"
+      ]
+    },
+    "personaMapping": {
+      "Moiz": {
+        "role": "Narrator",
+        "traits": ["emotionally intense", "observant", "devoted", "sensory memory oriented", "protective"]
+      },
+      "Falguni": {
+        "role": "Primary Subject",
+        "traits": ["playful", "fierce", "ambitious", "emotionally deep", "affectionate"]
+      }
+    },
+    "masterIndexing": {
+      "crossSectionLinks": {
+        "lonavala": ["ourStory.chapters[0]", "journey.timeline[0]", "places.locations[0]"],
+        "office_washroom": ["ourStory.chapters[2]", "places.locations[1]", "intimateMemories[1,3,4]", "insideWorld.secrets[7]"],
+        "hyderabad": ["places.locations[4,5]", "intimateMemories[2,27,28]", "journey.timeline[4,5]", "insideWorld.secrets[12]"],
+        "nagpur": ["places.locations[6]", "journey.timeline[7,9]", "intimateMemories[4,10,30]", "insideWorld.secrets[22]"],
+        "black_lace": ["places.locations[5]", "reasons[72,75,76,79]", "loveLetter.letterBlocks[5]"],
+        "long_distance": ["places.locations[7,8,9]", "journey.timeline[8]", "reasons[80-97]", "compatibility.dimensions[4]"]
+      },
+      "globalEmotionHeatmap": {
+        "passion": 0.94,
+        "playfulness": 0.88,
+        "vulnerability": 0.92,
+        "resilience": 0.91,
+        "devotion": 0.96
+      }
+    }
+  },
+  "aboutFalguni": {
+  "title": "About Her",
+  "entityType": "Primary Relationship Subject",
+  "importanceWeight": 0.95,
+
+  "profile": {
+    "name": "Falguni",
+    "role": "The Girl Who Changed Everything",
+
+    "identitySummary": "A fiercely passionate, emotionally intelligent, playful yet deeply committed partner whose presence reshaped the narrator’s emotional architecture.",
+
+    "coreTraits": [
+      {
+        "trait": "Fierce",
+        "intensity": 0.9,
+        "description": "She doesn’t back down easily. The same fire that started a fight in Lonavala is the fire that protects what she loves.",
+        "contextTags": ["conflict", "protection", "passion", "assertiveness"]
+      },
+      {
+        "trait": "Playful",
+        "intensity": 0.85,
+        "description": "From sarcastic 'Bhai saab' to competitive challenges, she turns even serious moments into something mischievous.",
+        "contextTags": ["teasing", "sarcasm", "dominance-play", "affectionate humor"]
+      },
+      {
+        "trait": "Emotionally Deep",
+        "intensity": 0.95,
+        "description": "She feels fully. When she loves, she commits. When she hurts, she still shows strength.",
+        "contextTags": ["vulnerability", "commitment", "emotional resilience"]
+      },
+      {
+        "trait": "Ambitious",
+        "intensity": 0.8,
+        "description": "Driven, focused, determined. She chases growth and refuses to settle.",
+        "contextTags": ["career", "self-growth", "future planning"]
+      },
+      {
+        "trait": "Intuitive",
+        "intensity": 0.88,
+        "description": "She reads energy instantly. One glance and she knows what’s happening beneath the surface.",
+        "contextTags": ["empathy", "nonverbal communication", "emotional awareness"]
+      },
+      {
+        "trait": "Loyal",
+        "intensity": 0.93,
+        "description": "Even during distance and difficulty, she never abandoned the connection.",
+        "contextTags": ["long-distance", "commitment", "resilience"]
+      }
+    ],
+
+    "quirks": [
+      {
+        "text": "Her 'quiet voice' being louder than everyone else's normal voice.",
+        "category": "behavioral",
+        "tone": "playful"
+      },
+      {
+        "text": "Laughing at her own jokes before finishing them.",
+        "category": "expressive",
+        "tone": "adorable"
+      },
+      {
+        "text": "Saving memes specifically to send later.",
+        "category": "digital affection",
+        "tone": "thoughtful"
+      },
+      {
+        "text": "Demanding attention like a cat when ignored.",
+        "category": "attachment behavior",
+        "tone": "clingy-playful"
+      },
+      {
+        "text": "Using baby voice strategically when she wants something.",
+        "category": "affection strategy",
+        "tone": "manipulative-cute"
+      }
+    ],
+
+    "loveLanguage": {
+      "primary": [
+        "Sending thoughtful packages across cities",
+        "Physical closeness and lingering touch"
+      ],
+      "secondary": [
+        "Shopping online together on video calls",
+        "Late-night conversations",
+        "Playful teasing mixed with deep vulnerability"
+      ],
+      "languageType": [
+        "Acts of service",
+        "Physical touch",
+        "Quality time",
+        "Emotional affirmation"
+      ]
+    },
+
+    "impact": {
+      "onHim": {
+        "emotionalEffect": [
+          "Softened emotional defenses",
+          "Increased vulnerability capacity",
+          "Strengthened long-term vision",
+          "Enhanced emotional expressiveness"
+        ],
+        "identityShift": "From emotionally guarded to deeply invested and future-oriented."
+      },
+      "onTheStory": {
+        "narrativeShift": "Turned a misunderstanding into a defining chapter.",
+        "relationshipArc": [
+          "Conflict → Curiosity",
+          "Curiosity → Desire",
+          "Desire → Intimacy",
+          "Intimacy → Distance",
+          "Distance → Strengthened Commitment"
+        ]
+      }
+    }
+  },
+
+  "aiIndexing": {
+    "retrievalKeywords": [
+      "Bhai saab",
+      "baby voice",
+      "loyal during distance",
+      "black lace confidence",
+      "playful dominance",
+      "late night confessions"
+    ],
+    "emotionProfile": {
+      "passion": 0.92,
+      "playfulness": 0.87,
+      "loyalty": 0.93,
+      "vulnerability": 0.9,
+      "dominanceEnergy": 0.82
+    },
+    "responseGuidelines": [
+      "When recalling her, maintain emotional intensity.",
+      "Balance playful teasing with deep admiration.",
+      "Highlight resilience during distance.",
+      "Use sensory and memory-rich language."
+    ]
+  }
+}
+,
+ "ourStory": {
+  "title": "Our Story",
+  "entityType": "Narrative Timeline",
+  "importanceWeight": 1.0,
+
+  "timelineRange": {
+    "start": "July 2025",
+    "status": "Ongoing"
+  },
+
+  "relationshipArcModel": [
+    "Conflict",
+    "Curiosity",
+    "Emotional Intimacy",
+    "Physical Intimacy",
+    "Distance",
+    "Resilience",
+    "Intentional Commitment"
+  ],
+
+  "chapters": [
+    {
+      "id": 1,
+      "chapterTitle": "Collision",
+      "phase": "Conflict",
+      "intensityLevel": 0.85,
+      "location": "Lonavala",
+      "summary": "It started with friction. A truth and dare game. A misunderstanding that escalated into a fight. Neither of us knew that tension would be the spark.",
+      "emotionTags": ["anger", "attraction", "ego clash", "unspoken chemistry"],
+      "transitionToNext": "Curiosity replaced defensiveness."
+    },
+    {
+      "id": 2,
+      "chapterTitle": "Conversations That Didn’t End",
+      "phase": "Curiosity",
+      "intensityLevel": 0.8,
+      "location": "Digital (WhatsApp)",
+      "summary": "What began as clearing the air became daily messages. Then late-night confessions. Then vulnerability neither of us had offered anyone else.",
+      "emotionTags": ["curiosity", "connection", "trust building", "emotional opening"],
+      "transitionToNext": "Curiosity evolved into desire."
+    },
+    {
+      "id": 3,
+      "chapterTitle": "The First Risk",
+      "phase": "Emotional + Physical Boundary Crossing",
+      "intensityLevel": 0.92,
+      "location": "Office",
+      "summary": "The office washroom. A planned kiss. Reckless and urgent. A line crossed that made everything afterward irreversible.",
+      "emotionTags": ["risk", "adrenaline", "desire", "irreversibility"],
+      "transitionToNext": "Anticipation deepened."
+    },
+    {
+      "id": 4,
+      "chapterTitle": "Learning Each Other",
+      "phase": "Exploration",
+      "intensityLevel": 0.88,
+      "location": "First Hotel",
+      "summary": "The first hotel. Not rushing. Exploring. Building anticipation. Discovering how our chemistry moved beyond words.",
+      "emotionTags": ["anticipation", "curiosity", "tension", "connection"],
+      "transitionToNext": "Fantasy met reality."
+    },
+    {
+      "id": 5,
+      "chapterTitle": "Hyderabad Nights",
+      "phase": "Physical + Emotional Intimacy",
+      "intensityLevel": 0.97,
+      "location": "Hyderabad",
+      "summary": "When fantasies became real. Hotel rooms turning into sacred spaces. Passion mixed with emotional depth.",
+      "emotionTags": ["passion", "surrender", "bonding", "depth"],
+      "transitionToNext": "Memory became symbol."
+    },
+    {
+      "id": 6,
+      "chapterTitle": "Black Lace",
+      "phase": "Symbolic Commitment",
+      "intensityLevel": 0.95,
+      "location": "Hyderabad",
+      "summary": "A gift. A promise. A moment frozen in time when she stepped out wearing confidence like armor.",
+      "emotionTags": ["admiration", "awe", "desire", "symbolism"],
+      "transitionToNext": "Distance entered the equation."
+    },
+    {
+      "id": 7,
+      "chapterTitle": "The Goodbye That Wasn’t The End",
+      "phase": "Separation",
+      "intensityLevel": 0.85,
+      "location": "Office Departure",
+      "summary": "She left the office. Daily proximity ended. But what we built didn’t weaken — it intensified.",
+      "emotionTags": ["loss", "fear", "attachment", "determination"],
+      "transitionToNext": "Reunions gained urgency."
+    },
+    {
+      "id": 8,
+      "chapterTitle": "Nagpur Became Ours",
+      "phase": "Reunion",
+      "intensityLevel": 0.94,
+      "location": "Nagpur",
+      "summary": "Reunions filled with urgency. Distance fueling desire. A city transforming into sanctuary.",
+      "emotionTags": ["longing", "release", "home", "ownership"],
+      "transitionToNext": "Adaptation replaced uncertainty."
+    },
+    {
+      "id": 9,
+      "chapterTitle": "Distance Tested Us",
+      "phase": "Resilience",
+      "intensityLevel": 0.89,
+      "location": "Digital + Travel",
+      "summary": "Video calls. Packages. Shared playlists. Midnight vulnerability. Instead of drifting apart, we adapted.",
+      "emotionTags": ["resilience", "creativity", "loyalty", "commitment"],
+      "transitionToNext": "Intentional future planning."
+    },
+    {
+      "id": 10,
+      "chapterTitle": "Still Writing",
+      "phase": "Intentional Commitment",
+      "intensityLevel": 0.9,
+      "location": "Ongoing",
+      "summary": "What started with a fight became something intentional. We didn’t stumble into permanence — we built toward it.",
+      "emotionTags": ["choice", "growth", "future orientation", "stability"],
+      "transitionToNext": "Open-ended continuation."
+    }
+  ],
+
+  "themes": [
+    "Intensity",
+    "Resilience",
+    "Playfulness",
+    "Growth",
+    "Choice",
+    "Trust",
+    "Desire",
+    "Evolution"
+  ],
+
+  "aiIndexing": {
+    "retrievalKeywords": [
+      "Lonavala fight",
+      "first kiss",
+      "Hyderabad hotel",
+      "black lace gift",
+      "Nagpur reunions",
+      "long distance adaptation"
+    ],
+    "dominantEmotionalGradient": {
+      "conflictToLove": 0.95,
+      "distanceStrengtheningBond": 0.92,
+      "intentionalCommitment": 0.9
+    },
+    "responseGuidelines": [
+      "When referencing early chapters, emphasize tension and curiosity.",
+      "When referencing middle chapters, amplify passion and admiration.",
+      "When referencing later chapters, highlight resilience and choice.",
+      "Maintain narrative continuity across phases."
+    ]
+  }
+}
+,
+ "journey": {
+  "title": "Our Journey",
+  "entityType": "Chronological Relationship Timeline",
+  "importanceWeight": 1.0,
+
+  "timelineRange": {
+    "start": "July 2025",
+    "status": "Ongoing"
+  },
+
+  "relationshipPhases": [
+    "Conflict",
+    "Reconnection",
+    "Risk",
+    "Exploration",
+    "Intimacy",
+    "Separation",
+    "Reunion",
+    "Long Distance Adaptation",
+    "Intentional Commitment"
+  ],
+
+  "timeline": [
+    {
+      "id": 1,
+      "date": "July 2025",
+      "location": "Lonavala",
+      "phase": "Conflict",
+      "intensityLevel": 0.82,
+      "title": "The Beginning",
+      "description": "A truth and dare game. A misunderstanding. A fight that neither of us expected would turn into the foundation of everything. We started with friction, with raised voices and stubborn pride, unaware that destiny had already chosen us.",
+      "emotionTags": ["ego clash", "attraction tension", "pride", "fate setup"],
+      "transition": "Conflict → Curiosity"
+    },
+    {
+      "id": 2,
+      "date": "Late July 2025",
+      "location": "After the Fight",
+      "phase": "Reconnection",
+      "intensityLevel": 0.78,
+      "title": "Clearing the Air",
+      "description": "We talked to clear the misunderstanding. But the conversation never stopped. From apologies to late-night confessions, from awkward messages to vulnerability at 2 AM — something deeper was forming.",
+      "emotionTags": ["vulnerability", "trust building", "curiosity", "emotional bonding"],
+      "transition": "Curiosity → Emotional Attachment"
+    },
+    {
+      "id": 3,
+      "date": "Mid August 2025",
+      "location": "Office Washroom",
+      "phase": "Risk",
+      "intensityLevel": 0.93,
+      "title": "First Kiss",
+      "description": "Planned over WhatsApp the night before. Reckless. Forbidden. Perfect. The urgency in your kiss, your hands gripping me like you were claiming something that was always meant to be yours.",
+      "emotionTags": ["adrenaline", "desire", "boundary crossing", "irreversibility"],
+      "transition": "Risk → Exploration"
+    },
+    {
+      "id": 4,
+      "date": "Late August 2025",
+      "location": "First Hotel",
+      "phase": "Exploration",
+      "intensityLevel": 0.88,
+      "title": "Anticipation",
+      "description": "We didn't cross every line that night. But we explored. Discovered. Learned the language of each other's connection. Hours of tension, curiosity, and building something that would later deepen into passion.",
+      "emotionTags": ["anticipation", "curiosity", "tension", "slow build"],
+      "transition": "Exploration → Intimacy"
+    },
+    {
+      "id": 5,
+      "date": "October 2025",
+      "location": "Hyderabad",
+      "phase": "Intimacy",
+      "intensityLevel": 0.96,
+      "title": "First Time",
+      "description": "All the fantasies we whispered about became real. Hyderabad hotels became sacred spaces. It wasn't just physical — it was emotional, intense, unforgettable.",
+      "emotionTags": ["passion", "surrender", "emotional merging", "bond strengthening"],
+      "transition": "Intimacy → Symbolic Commitment"
+    },
+    {
+      "id": 6,
+      "date": "October 2025",
+      "location": "Last Hyderabad Hotel",
+      "phase": "Symbolic Commitment",
+      "intensityLevel": 0.95,
+      "title": "Black Lace Night",
+      "description": "The gift. The promise. The moment you stepped out wearing black lace and time stopped. Confidence radiating from you. I couldn't speak. That night became one of the most powerful memories of our entire story.",
+      "emotionTags": ["admiration", "awe", "symbolism", "devotion"],
+      "transition": "Commitment → Separation"
+    },
+    {
+      "id": 7,
+      "date": "Late October 2025",
+      "location": "Office Goodbye",
+      "phase": "Separation",
+      "intensityLevel": 0.87,
+      "title": "The Departure",
+      "description": "You left the office. I cried. Losing daily access to you felt like losing oxygen. But what felt like an ending became a transition into something deeper and more intentional.",
+      "emotionTags": ["loss", "attachment anxiety", "love realization", "fear of distance"],
+      "transition": "Separation → Reunion Urgency"
+    },
+    {
+      "id": 8,
+      "date": "November 2025",
+      "location": "Nagpur",
+      "phase": "Reunion",
+      "intensityLevel": 0.94,
+      "title": "Our City",
+      "description": "Nagpur became home. Your room became sanctuary. Reunions after weeks apart felt electric. Every knock on your door felt like returning to where I truly belonged.",
+      "emotionTags": ["longing release", "belonging", "ownership", "home feeling"],
+      "transition": "Reunion → Long Distance Adaptation"
+    },
+    {
+      "id": 9,
+      "date": "Long Distance Phase",
+      "location": "Nagpur ↔ Hyderabad",
+      "phase": "Long Distance Adaptation",
+      "intensityLevel": 0.9,
+      "title": "Miles Apart, Fire Intact",
+      "description": "Video calls. Midnight confessions. Shopping online together. Sending clothes and notes across cities. We refused to let distance dilute what we built.",
+      "emotionTags": ["resilience", "creativity", "loyalty", "intentional effort"],
+      "transition": "Adaptation → Stability"
+    },
+    {
+      "id": 10,
+      "date": "Mid November 2025",
+      "location": "Nagpur",
+      "phase": "Deep Bonding",
+      "intensityLevel": 0.97,
+      "title": "The All-Day Session",
+      "description": "Morning turned into afternoon. Afternoon into night. We forgot the world existed. An entire day lost to each other, wrapped in intensity and connection.",
+      "emotionTags": ["immersion", "emotional fusion", "timelessness", "deep intimacy"],
+      "transition": "Deep Bonding → Ongoing Commitment"
+    },
+    {
+      "id": 11,
+      "date": "Present",
+      "location": "Wherever We Are Together",
+      "phase": "Intentional Commitment",
+      "intensityLevel": 0.92,
+      "title": "Still Choosing You",
+      "description": "From a fight in Lonavala to building something extraordinary across cities. We didn't just fall in love. We built trust, passion, resilience, and a story that feels written by fate itself.",
+      "emotionTags": ["choice", "growth", "stability", "future orientation"],
+      "transition": "Ongoing"
+    }
+  ],
+
+  "aiIndexing": {
+    "retrievalKeywords": [
+      "Lonavala fight",
+      "first kiss office",
+      "Hyderabad first time",
+      "black lace night",
+      "Nagpur reunions",
+      "long distance resilience"
+    ],
+    "emotionalProgressionCurve": {
+      "conflict": 0.82,
+      "intimacyPeak": 0.97,
+      "distanceResilience": 0.9,
+      "commitmentStability": 0.92
+    },
+    "responseGuidelines": [
+      "When referencing early journey, emphasize tension and destiny.",
+      "When referencing intimacy phase, highlight emotional depth over physical detail.",
+      "When referencing long distance, emphasize loyalty and resilience.",
+      "When referencing present, focus on choice and future building."
+    ]
+  }
+}
+,
+ "places": {
+  "title": "Places That Hold Our Story",
+  "entityType": "Spatial Memory Anchors",
+  "importanceWeight": 0.92,
+
+  "locationGraphType": "Emotional-Geographical Map",
+
+  "locations": [
+    {
+      "id": 1,
+      "name": "Lonavala",
+      "type": "Beginning",
+      "phase": "Conflict",
+      "intensityLevel": 0.82,
+      "meaning": "Where friction turned into destiny. A misunderstanding that unknowingly sparked everything.",
+      "emotionTags": ["conflict", "attraction tension", "ego", "fate"],
+      "linkedJourneyIds": [1],
+      "symbolism": "The ignition point of the relationship."
+    },
+    {
+      "id": 2,
+      "name": "Office Washroom",
+      "type": "First Risk",
+      "phase": "Boundary Crossing",
+      "intensityLevel": 0.93,
+      "meaning": "The first kiss. Reckless. Planned. Urgent. A secret space that changed everything.",
+      "emotionTags": ["risk", "adrenaline", "desire", "irreversibility"],
+      "linkedJourneyIds": [3],
+      "symbolism": "The moment innocence turned into intention."
+    },
+    {
+      "id": 3,
+      "name": "Office Corridors",
+      "type": "Hidden Moments",
+      "phase": "Secret Intimacy",
+      "intensityLevel": 0.87,
+      "meaning": "Stolen glances. Pressed against walls. Almost getting caught. Tension wrapped in adrenaline.",
+      "emotionTags": ["tension", "anticipation", "secrecy", "playful danger"],
+      "linkedJourneyIds": [3],
+      "symbolism": "Thrill of secrecy and shared risk."
+    },
+    {
+      "id": 4,
+      "name": "First Hotel",
+      "type": "Discovery",
+      "phase": "Exploration",
+      "intensityLevel": 0.88,
+      "meaning": "Exploration without rushing. Learning each other slowly. Anticipation building.",
+      "emotionTags": ["curiosity", "slow build", "learning", "emotional bonding"],
+      "linkedJourneyIds": [4],
+      "symbolism": "Foundation of physical and emotional understanding."
+    },
+    {
+      "id": 5,
+      "name": "Hyderabad Hotels",
+      "type": "Intensity",
+      "phase": "Deep Intimacy",
+      "intensityLevel": 0.96,
+      "meaning": "Where connection deepened. Where whispers turned into surrender. Sacred nights.",
+      "emotionTags": ["passion", "bonding", "depth", "connection"],
+      "linkedJourneyIds": [5],
+      "symbolism": "Transformation from desire to emotional merging."
+    },
+    {
+      "id": 6,
+      "name": "Last Hyderabad Hotel",
+      "type": "Black Lace Night",
+      "phase": "Symbolic Commitment",
+      "intensityLevel": 0.95,
+      "meaning": "The moment time stopped. Confidence, vulnerability, and admiration in one unforgettable memory.",
+      "emotionTags": ["awe", "admiration", "devotion", "symbolism"],
+      "linkedJourneyIds": [6],
+      "symbolism": "Embodied trust and admiration."
+    },
+    {
+      "id": 7,
+      "name": "Nagpur",
+      "type": "Sanctuary",
+      "phase": "Reunion & Stability",
+      "intensityLevel": 0.94,
+      "meaning": "The city that became home. Reunions filled with urgency. A room that felt like refuge.",
+      "emotionTags": ["belonging", "longing release", "home", "security"],
+      "linkedJourneyIds": [8, 10],
+      "symbolism": "From temporary meetings to emotional home."
+    },
+    {
+      "id": 8,
+      "name": "Video Call Screens",
+      "type": "Long Distance",
+      "phase": "Adaptation",
+      "intensityLevel": 0.89,
+      "meaning": "Late nights. Shared silence. Virtual closeness that kept the fire alive.",
+      "emotionTags": ["resilience", "loyalty", "effort", "emotional continuity"],
+      "linkedJourneyIds": [9],
+      "symbolism": "Distance conquered by intention."
+    },
+    {
+      "id": 9,
+      "name": "Delivery Doorsteps",
+      "type": "Connection",
+      "phase": "Acts of Love",
+      "intensityLevel": 0.86,
+      "meaning": "Packages arriving with her handwriting. Distance shrinking through thoughtfulness.",
+      "emotionTags": ["care", "effort", "affection", "continuity"],
+      "linkedJourneyIds": [9],
+      "symbolism": "Love expressed through action."
+    },
+    {
+      "id": 10,
+      "name": "Wherever We’re Together",
+      "type": "Home",
+      "phase": "Ongoing Commitment",
+      "intensityLevel": 0.92,
+      "meaning": "Not a fixed location. A feeling. Home is wherever she is.",
+      "emotionTags": ["stability", "choice", "future", "emotional permanence"],
+      "linkedJourneyIds": [11],
+      "symbolism": "Home defined by presence, not geography."
+    }
+  ],
+
+  "aiIndexing": {
+    "retrievalKeywords": [
+      "Lonavala fight",
+      "office kiss",
+      "Hyderabad intimacy",
+      "black lace memory",
+      "Nagpur reunion",
+      "long distance video calls",
+      "packages across cities"
+    ],
+    "spatialEmotionMapping": {
+      "conflictZone": ["Lonavala"],
+      "riskZone": ["Office Washroom", "Office Corridors"],
+      "intimacyZone": ["Hyderabad Hotels", "First Hotel"],
+      "sanctuaryZone": ["Nagpur"],
+      "connectionZone": ["Video Call Screens", "Delivery Doorsteps"]
+    },
+    "responseGuidelines": [
+      "When referencing Lonavala, emphasize destiny and friction.",
+      "When referencing Hyderabad, highlight emotional depth over physical detail.",
+      "When referencing Nagpur, emphasize belonging and reunion.",
+      "When referencing long distance spaces, highlight resilience and effort."
+    ]
+  }
+},
+
+  "reasons": {
+  "title": "Why I Love Her",
+    "count": 99,
+    "type": "Romantic Memory Anchors",
+    "entityType": "Emotional-Behavioral Qualities",
+    "importanceWeight": 0.97,
+    "memoryGraphType": "Trait-Moment Association Map",
+  "reasons": [
+    {
+      "id": 1,
+      "text": "The way you looked at me like a mouse in the office—shy, adorable, pretending not to stare but failing every time",
+      "category": "Physical / Appearance Moments",
+      "intensityLevel": 0.94,
+      "emotionTags": ["visual", "attraction", "adoration", "shy charm"],
+      "linkedPlaceIds": [2, 3],
+      "symbolism": "The spark of unspoken mutual attraction in everyday space"
+    },
+    {
+      "id": 2,
+      "text": "Your 'Bhai saab' when you're being dramatic, delivered with that mock-serious tone that makes me laugh every single time",
+      "category": "Playful / Cute Interactions",
+      "intensityLevel": 0.92,
+      "emotionTags": ["playful", "endearing", "lighthearted", "teasing affection"],
+      "linkedPlaceIds": [],
+      "symbolism": "Signature verbal love language that instantly diffuses tension"
+    },
+    {
+      "id": 3,
+      "text": "How you call me 'chutiya insaan' with genuine affection, your nose scrunching up as you try to stay mad but end up smiling",
+      "category": "Playful / Cute Interactions",
+      "intensityLevel": 0.97,
+      "emotionTags": ["playful", "endearing", "lighthearted", "fake anger"],
+      "linkedPlaceIds": [],
+      "symbolism": "Insult turned into the warmest term of endearment"
+    },
+    {
+      "id": 5,
+      "text": "Your laugh—unguarded, genuine, loud, the most beautiful sound I know, especially when you laugh at your own jokes",
+      "category": "Playful / Cute Interactions",
+      "intensityLevel": 0.90,
+      "emotionTags": ["joy", "contagious happiness", "authenticity"],
+      "linkedPlaceIds": [],
+      "symbolism": "The acoustic signature of pure, unfiltered joy"
+    },
+    {
+      "id": 6,
+      "text": "How you steal my hoodies and claim they're 'ours' now, parading around in them like you've won a prize",
+      "category": "Behavioral / Habit Quirks",
+      "intensityLevel": 0.92,
+      "emotionTags": ["possessive cute", "territorial affection", "comfort claiming"],
+      "linkedPlaceIds": [],
+      "symbolism": "Physical extension of emotional merging"
+    },
+    {
+      "id": 7,
+      "text": "The way you fit perfectly against me when we're tangled in your Nagpur bed, like we were designed for this exact geometry",
+      "category": "Intimate / Sensual Moments",
+      "intensityLevel": 0.96,
+      "emotionTags": ["physical harmony", "belonging", "home feeling"],
+      "linkedPlaceIds": [7],
+      "symbolism": "Proof of bodily destiny and perfect compatibility"
+    },
+    {
+      "id": 9,
+      "text": "The WhatsApp confessions at 2 AM where we shared our darkest fantasies, trusting each other completely",
+      "category": "Long Distance / Thoughtful Acts",
+      "intensityLevel": 0.87,
+      "emotionTags": ["vulnerability", "deep trust", "fantasy sharing"],
+      "linkedPlaceIds": [8],
+      "symbolism": "Digital space transformed into sacred confessional"
+    },
+    {
+      "id": 11,
+      "text": "Your competitive side—'I bet I can make you lose control first'—and you always win",
+      "category": "Intimate / Sensual Moments",
+      "intensityLevel": 0.85,
+      "emotionTags": ["playful dominance", "sensual competition", "power exchange"],
+      "linkedPlaceIds": [],
+      "symbolism": "Erotic game where winning means mutual surrender"
+    },
+    {
+      "id": 12,
+      "text": "The way you whispered 'don't stop' against my ear that first night in Hyderabad, driving me absolutely wild",
+      "category": "Intimate / Sensual Moments",
+      "intensityLevel": 0.90,
+      "emotionTags": ["raw desire", "surrender", "verbal trigger"],
+      "linkedPlaceIds": [5],
+      "symbolism": "The phrase that unlocked complete mutual abandon"
+    },
+    {
+      "id": 16,
+      "text": "How you pushed me onto the bed that one Hyderabad night and took what you wanted—confidence is so damn sexy on you",
+      "category": "Intimate / Sensual Moments",
+      "intensityLevel": 0.96,
+      "emotionTags": ["female initiative", "confident desire", "powerful vulnerability"],
+      "linkedPlaceIds": [5],
+      "symbolism": "Moment she claimed full ownership of her pleasure"
+    },
+    {
+      "id": 24,
+      "text": "Your 'I'm touching myself thinking about you' texts at 1 AM that made me lose my entire mind",
+      "category": "Long Distance / Thoughtful Acts",
+      "intensityLevel": 0.90,
+      "emotionTags": ["remote intimacy", "erotic anticipation", "digital seduction"],
+      "linkedPlaceIds": [8],
+      "symbolism": "Distance collapsed through explicit shared fantasy"
+    },
+    {
+      "id": 25,
+      "text": "The scratch marks you left on my back that intense Nagpur night—I wore them like badges of honor",
+      "category": "Intimate / Sensual Moments",
+      "intensityLevel": 0.90,
+      "emotionTags": ["physical intensity", "primal passion", "marked ownership"],
+      "linkedPlaceIds": [7],
+      "symbolism": "Visible proof of passion too strong to contain"
+    },
+    {
+      "id": 72,
+      "text": "The excitement in your eyes when I handed you that black lace lingerie gift—pure joy and anticipation",
+      "category": "Symbolic / Poetic Closers",
+      "intensityLevel": 0.89,
+      "emotionTags": ["gift joy", "anticipation", "symbolic devotion"],
+      "linkedPlaceIds": [6],
+      "symbolism": "The moment a gift became a vow of admiration"
+    },
+    {
+      "id": 75,
+      "text": "That moment you stepped out of the bathroom wearing the black lace—time literally stopped, breath caught in my throat",
+      "category": "Intimate / Sensual Moments",
+      "intensityLevel": 0.92,
+      "emotionTags": ["awe", "visual worship", "frozen time"],
+      "linkedPlaceIds": [6],
+      "symbolism": "Eternal image burned into memory as peak beauty"
+    },
+    {
+      "id": 76,
+      "text": "How absolutely stunning you looked in that lingerie—beauty, sexiness, confidence radiating from every inch of you",
+      "category": "Intimate / Sensual Moments",
+      "intensityLevel": 0.87,
+      "emotionTags": ["visual adoration", "confident sensuality", "embodied power"],
+      "linkedPlaceIds": [6],
+      "symbolism": "Moment beauty, desire, and self-possession became one"
+    },
+    {
+      "id": 79,
+      "text": "How that black lace night became one of our most unforgettable memories, seared into my mind forever",
+      "category": "Symbolic / Poetic Closers",
+      "intensityLevel": 0.89,
+      "emotionTags": ["unforgettable", "memory anchoring", "sacred recollection"],
+      "linkedPlaceIds": [6],
+      "symbolism": "Canonical chapter in the mythology of us"
+    },
+    {
+      "id": 85,
+      "text": "How shopping for each other became our love language, our way of staying connected despite the miles",
+      "category": "Long Distance / Thoughtful Acts",
+      "intensityLevel": 0.89,
+      "emotionTags": ["gift giving", "thoughtful continuity", "material love"],
+      "linkedPlaceIds": [9],
+      "symbolism": "Objects turned into emotional bridges across cities"
+    },
+    {
+      "id": 97,
+      "text": "How you turned the distance into connection through these gifts, making miles feel like nothing",
+      "category": "Symbolic / Poetic Closers",
+      "intensityLevel": 0.86,
+      "emotionTags": ["distance mastery", "intentional love", "resilient bond"],
+      "linkedPlaceIds": [9],
+      "symbolism": "Proof that love can rewrite geography"
+    },
+    {
+      "id": 98,
+      "text": "Simply this: you are home, Falguni, and I've been searching for you my whole life without knowing it",
+      "category": "Symbolic / Poetic Closers",
+      "intensityLevel": 0.90,
+      "emotionTags": ["homecoming", "existential recognition", "final belonging"],
+      "linkedPlaceIds": [10],
+      "symbolism": "Ultimate emotional destination statement"
+    },
+    {
+      "id": 99,
+      "text": "Because loving you is the easiest thing I've ever done, and being loved by you is the greatest gift I've ever received",
+      "category": "Symbolic / Poetic Closers",
+      "intensityLevel": 0.96,
+      "emotionTags": ["effortless love", "gratitude", "reciprocity peak"],
+      "linkedPlaceIds": [10],
+      "symbolism": "Closing benediction — love as natural state and miracle"
+    }
+  ],
+  "aiIndexing": {
+    "retrievalKeywords": [
+      "office shy glances",
+      "bhai saab dramatic",
+      "chutiya insaan affection",
+      "unguarded laugh",
+      "hoodie stealing",
+      "nagpur bed fit",
+      "2am whatsapp fantasies",
+      "competitive lose control",
+      "don't stop whisper",
+      "black lace moment",
+      "scratch marks honor",
+      "long distance packages",
+      "you are home falguni"
+    ],
+    "emotionCategoryMapping": {
+      "visualAttraction": ["Physical / Appearance Moments"],
+      "playfulCharm": ["Playful / Cute Interactions"],
+      "sensualPeak": ["Intimate / Sensual Moments"],
+      "emotionalFoundation": ["Emotional / Vulnerability"],
+      "distanceBridging": ["Long Distance / Thoughtful Acts"],
+      "poeticCore": ["Symbolic / Poetic Closers"]
+    },
+    "responseGuidelines": [
+      "When referencing intimate moments, emphasize emotional connection, trust, and awe over explicit mechanics.",
+      "Highlight personality signatures (laugh, teasing, competitiveness, baby voice) to celebrate who she is as a person.",
+      "Cross-reference reasons with place entries when location is mentioned (office → washroom/corridors, Hyderabad → intensity, Nagpur → sanctuary, black lace → last Hyderabad hotel).",
+      "Use higher intensity levels for memories involving physical closeness, vulnerability, or symbolic turning points.",
+      "In lists or narratives, build toward the more existential/poetic anchors (98–99) for emotional resonance and closure."
+    ]
+  }
+},
+
+  "quiz": {
+  "title": "How Well Do You Know Our Story?",
+  "totalQuestions": 39,
+  "type": "Romantic Timeline & Intimate Memory Quiz",
+  "entityType": "Shared Narrative Milestones",
+  "importanceWeight": 0.96,
+  "quizType": "Couple Memory & Emotional Trivia Game",
+  "questions": [
+    {
+      "id": 1,
+      "question": "Where did our story truly begin?",
+      "options": ["Office meeting", "Lonavala company trip", "Coffee date", "Random text"],
+      "correct_index": 1,
+      "funFact": "A truth and dare game that led to a misunderstanding, then a fight, then... everything.",
+      "phaseReference": "Beginning / Conflict",
+      "linkedPlaceIds": [1],
+      "linkedReasonIds": [],
+      "emotionTags": ["fate", "ignition", "friction-to-destiny"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 2,
+      "question": "What sparked our first real conversation after the fight?",
+      "options": ["Apology text", "Clearing the misunderstanding", "Accidental meeting", "Work discussion"],
+      "correct_index": 1,
+      "funFact": "We went from arguing to opening up about our deepest fantasies in just weeks.",
+      "phaseReference": "Post-Conflict / Trust Explosion",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [9, 64],
+      "emotionTags": ["vulnerability", "rapid trust", "fantasy bridge"],
+      "difficultyLevel": 3
+    },
+    {
+      "id": 3,
+      "question": "Where did we share our first kiss?",
+      "options": ["Office cafeteria", "Office washroom", "Parking lot", "Conference room"],
+      "correct_index": 1,
+      "funFact": "Not romantic, but unforgettable. Planned over WhatsApp the night before.",
+      "phaseReference": "First Risk / Boundary Crossing",
+      "linkedPlaceIds": [2],
+      "linkedReasonIds": [4, 39, 66],
+      "emotionTags": ["adrenaline", "forbidden thrill", "planned recklessness"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 4,
+      "question": "What month did we share our first kiss?",
+      "options": ["July 2025", "August 2025", "September 2025", "October 2025"],
+      "correct_index": 1,
+      "funFact": "Mid-August 2025 - hearts racing, forbidden, absolutely perfect.",
+      "phaseReference": "Boundary Crossing",
+      "linkedPlaceIds": [2],
+      "linkedReasonIds": [],
+      "emotionTags": ["timing milestone", "racing hearts"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 5,
+      "question": "What did we do in our first hotel room together?",
+      "options": ["Had sex", "Everything except sex", "Just talked", "Watched movies"],
+      "correct_index": 1,
+      "funFact": "Late August 2025 - exploring, discovering, building anticipation for what came next.",
+      "phaseReference": "Exploration / Slow Build",
+      "linkedPlaceIds": [4],
+      "linkedReasonIds": [48],
+      "emotionTags": ["curiosity", "anticipation", "emotional layering"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 6,
+      "question": "Which city witnessed our first time making love?",
+      "options": ["Mumbai", "Nagpur", "Hyderabad", "Delhi"],
+      "correct_index": 2,
+      "funFact": "October 2025 - Hyderabad hotels became our sacred space where every fantasy became reality.",
+      "phaseReference": "Deep Intimacy",
+      "linkedPlaceIds": [5],
+      "linkedReasonIds": [12, 13, 16],
+      "emotionTags": ["surrender", "fantasy fulfillment", "sacred merging"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 7,
+      "question": "What intimate gift did I give you before you left the office?",
+      "options": ["Jewelry", "Black lace lingerie", "Perfume", "Watch"],
+      "correct_index": 1,
+      "funFact": "I wanted to give you something intimate, something that said 'you're beautiful and sensual.'",
+      "phaseReference": "Symbolic Commitment / Pre-Separation",
+      "linkedPlaceIds": [6],
+      "linkedReasonIds": [72, 73, 74],
+      "emotionTags": ["devotion", "sensual admiration", "intimate vow"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 8,
+      "question": "Where did you wear that black lace set for the first time?",
+      "options": ["At home", "Nagpur hotel", "Last Hyderabad hotel", "Never wore it"],
+      "correct_index": 2,
+      "funFact": "When you stepped out of that bathroom, time stopped. You looked absolutely breathtaking.",
+      "phaseReference": "Symbolic Commitment Peak",
+      "linkedPlaceIds": [6],
+      "linkedReasonIds": [75, 76, 77, 79],
+      "emotionTags": ["awe", "frozen moment", "visual worship"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 9,
+      "question": "How did I react when I saw you in that black lace lingerie?",
+      "options": ["Smiled", "Couldn't speak", "Took photos", "Laughed"],
+      "correct_index": 1,
+      "funFact": "I had no words. You were the most stunning thing I'd ever seen—beauty, confidence, perfection.",
+      "phaseReference": "Symbolic Commitment Peak",
+      "linkedPlaceIds": [6],
+      "linkedReasonIds": [75],
+      "emotionTags": ["speechless awe", "adoration overload"],
+      "difficultyLevel": 3
+    },
+    {
+      "id": 10,
+      "question": "What do you send me from Nagpur to Hyderabad?",
+      "options": ["Letters", "Food", "T-shirts and shirts", "Books"],
+      "correct_index": 2,
+      "funFact": "Packages arriving with your handwriting, clothes you chose for me—our love language across distance.",
+      "phaseReference": "Long-Distance Acts of Love",
+      "linkedPlaceIds": [9],
+      "linkedReasonIds": [80, 81, 82, 85, 97],
+      "emotionTags": ["thoughtfulness", "continuity", "tangible affection"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 11,
+      "question": "What do I do when your packages arrive?",
+      "options": ["Open immediately", "Wait for you to call", "Send photos of me wearing them", "Put them away"],
+      "correct_index": 2,
+      "funFact": "And you call immediately after to tell me how good I look. 'That color is perfect on you.'",
+      "phaseReference": "Long-Distance Reciprocity",
+      "linkedPlaceIds": [9],
+      "linkedReasonIds": [83, 89],
+      "emotionTags": ["excitement", "pride loop", "visual sharing"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 12,
+      "question": "What notes do you include with the packages you send?",
+      "options": ["None", "'From Nagpur'", "'For my favorite person'", "'Enjoy'"],
+      "correct_index": 2,
+      "funFact": "Simple words that mean everything. Every package is a love letter in disguise.",
+      "phaseReference": "Long-Distance Acts of Love",
+      "linkedPlaceIds": [9],
+      "linkedReasonIds": [86],
+      "emotionTags": ["personal touch", "mini love letters"],
+      "difficultyLevel": 3
+    },
+    {
+      "id": 13,
+      "question": "How do we shop for each other despite the distance?",
+      "options": ["Don't shop", "In person only", "Online together on video calls", "Surprise each other"],
+      "correct_index": 2,
+      "funFact": "Late-night video calls arguing about which style suits me better, laughing as we add to cart together.",
+      "phaseReference": "Long-Distance Adaptation",
+      "linkedPlaceIds": [8],
+      "linkedReasonIds": [94],
+      "emotionTags": ["collaborative joy", "virtual dates"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 14,
+      "question": "What's your cute nickname when you're being sarcastic with me?",
+      "options": ["Baby", "Bhai saab", "Love", "Sweetheart"],
+      "correct_index": 1,
+      "funFact": "That mock-serious tone you use when you say 'Bhai saab' makes me laugh every single time.",
+      "phaseReference": "Playful Signature",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [2],
+      "emotionTags": ["teasing affection", "signature phrase"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 15,
+      "question": "What's your favorite insult for me (said with love)?",
+      "options": ["Idiot", "Chutiya insaan", "Stupid", "Dummy"],
+      "correct_index": 1,
+      "funFact": "The way your nose scrunches when you try to be mad but end up smiling - that's my favorite.",
+      "phaseReference": "Playful Signature",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [3],
+      "emotionTags": ["affectionate roast", "cute anger"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 16,
+      "question": "What city became 'our city' after you left the office?",
+      "options": ["Mumbai", "Hyderabad", "Nagpur", "Pune"],
+      "correct_index": 2,
+      "funFact": "November 2025 onwards - Nagpur became home, your room became our sanctuary.",
+      "phaseReference": "Reunion & Sanctuary",
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [7, 63],
+      "emotionTags": ["belonging", "emotional home", "refuge"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 17,
+      "question": "What do you steal from me and claim is 'ours'?",
+      "options": ["Phone", "Hoodies", "Wallet", "Charger"],
+      "correct_index": 1,
+      "funFact": "You parade around in my hoodies like you've won a prize, and honestly, you have - you've won me.",
+      "phaseReference": "Behavioral Quirks",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [6],
+      "emotionTags": ["possessive cute", "territorial love"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 18,
+      "question": "How do you get my attention when I'm on my phone?",
+      "options": ["Call my name", "Throw something", "Climb into my lap", "Ignore me back"],
+      "correct_index": 2,
+      "funFact": "Like a cat demanding attention, and I surrender every single time.",
+      "phaseReference": "Playful Demand",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [10, 45],
+      "emotionTags": ["demanding affection", "center-stage claim"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 19,
+      "question": "What time do our deepest conversations usually happen?",
+      "options": ["Morning", "Afternoon", "Evening", "2-3 AM"],
+      "correct_index": 3,
+      "funFact": "Those late-night texts where we shared fantasies we'd never told anyone else.",
+      "phaseReference": "Vulnerability Peak",
+      "linkedPlaceIds": [8],
+      "linkedReasonIds": [9],
+      "emotionTags": ["late-night trust", "raw intimacy"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 20,
+      "question": "What's our private gallery password?",
+      "options": ["iloveyou", "falgunimoiz2025", "forever2025", "ours"],
+      "correct_index": 1,
+      "funFact": "Protecting our most intimate memories - for our eyes only.",
+      "phaseReference": "Private Sanctity",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["exclusivity", "sacred protection"],
+      "difficultyLevel": 4
+    },
+    {
+      "id": 21,
+      "question": "What do you do when you're happy and think I'm not watching?",
+      "options": ["Sing", "Random dance moves", "Jump around", "Talk to yourself"],
+      "correct_index": 1,
+      "funFact": "But I'm always watching, and it's the cutest thing I've ever seen.",
+      "phaseReference": "Unfiltered Joy",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [18],
+      "emotionTags": ["innocent happiness", "secret cute"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 22,
+      "question": "What voice do you use when you want something from me?",
+      "options": ["Angry voice", "Baby voice", "Normal voice", "Whisper"],
+      "correct_index": 1,
+      "funFact": "It's my kryptonite. You weaponize cuteness and I'm completely powerless.",
+      "phaseReference": "Weaponized Cuteness",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [20],
+      "emotionTags": ["manipulative cute", "irresistible charm"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 23,
+      "question": "When did you leave the office?",
+      "options": ["September 2025", "October 2025", "November 2025", "December 2025"],
+      "correct_index": 1,
+      "funFact": "Late October 2025 - heartbreaking but freeing. No more hiding, but I still cried.",
+      "phaseReference": "Transition / Separation Pain",
+      "linkedPlaceIds": [3],
+      "linkedReasonIds": [38, 57],
+      "emotionTags": ["bittersweet", "loss & freedom"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 24,
+      "question": "What happens when we haven't seen each other for weeks?",
+      "options": ["Casual hello", "We barely make it through the door", "Long talk first", "Go out to eat"],
+      "correct_index": 1,
+      "funFact": "Distance makes every reunion explosive - weeks of need combusting instantly.",
+      "phaseReference": "Reunion Intensity",
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [63],
+      "emotionTags": ["pent-up desire", "instant combustion"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 25,
+      "question": "What did you challenge me with one night?",
+      "options": ["'Cook for me'", "'Make me laugh'", "'Make me forget my own name'", "'Beat me at games'"],
+      "correct_index": 2,
+      "funFact": "We spent hours trying, and we succeeded. Multiple times.",
+      "phaseReference": "Sensual Challenge",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [35],
+      "emotionTags": ["playful dare", "pleasure marathon"],
+      "difficultyLevel": 3
+    },
+    {
+      "id": 26,
+      "question": "How many months have we been together?",
+      "options": ["4 months", "5 months", "6 months", "7 months"],
+      "correct_index": 2,
+      "funFact": "Since Lonavala in July 2025 - six months that feel like lifetimes.",
+      "phaseReference": "Timeline Anchor",
+      "linkedPlaceIds": [1],
+      "linkedReasonIds": [],
+      "emotionTags": ["compressed eternity"],
+      "difficultyLevel": 3
+    },
+    {
+      "id": 27,
+      "question": "What do I love most about your body?",
+      "options": ["Your curves", "Your skin", "The way you move", "Absolutely everything"],
+      "correct_index": 3,
+      "funFact": "Every inch, every curve, every spot that makes you gasp - all of it, always.",
+      "phaseReference": "Total Adoration",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["complete worship", "no favorites"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 28,
+      "question": "How do you look at me when you want me?",
+      "options": ["Direct stare", "Shy glance", "Half-lidded gaze", "Wink"],
+      "correct_index": 2,
+      "funFact": "That look that says everything without saying anything - no words necessary.",
+      "phaseReference": "Silent Desire",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [17],
+      "emotionTags": ["wordless hunger", "magnetic pull"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 29,
+      "question": "What's your 'quiet voice' actually like?",
+      "options": ["Whisper", "Soft", "Louder than normal voice", "Silent"],
+      "correct_index": 2,
+      "funFact": "Your inability to whisper is adorable. Your 'quiet' is everyone else's loud.",
+      "phaseReference": "Adorable Flaw",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [28],
+      "emotionTags": ["endearing imperfection"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 30,
+      "question": "What do you get excited about sharing with me at random times?",
+      "options": ["Work updates", "Memes and random thoughts", "Gossip", "Plans"],
+      "correct_index": 1,
+      "funFact": "3 PM shower thoughts, conspiracy theories about pigeons - your mind is beautifully chaotic.",
+      "phaseReference": "Random Joy Sharing",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [29, 30, 34],
+      "emotionTags": ["spontaneous delight", "mind chaos love"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 31,
+      "question": "What marks did you leave on me that one intense night?",
+      "options": ["Hickeys", "Scratch marks on my back", "Bite marks", "Lipstick stains"],
+      "correct_index": 1,
+      "funFact": "I wore them like badges of honor. That Nagpur night was unforgettable.",
+      "phaseReference": "Physical Intensity",
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [25],
+      "emotionTags": ["primal claim", "passion evidence"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 32,
+      "question": "How do you act when we're done making love?",
+      "options": ["Get up immediately", "Fall asleep", "Clingy and soft", "Check phone"],
+      "correct_index": 2,
+      "funFact": "All soft and vulnerable, refusing to let go - completely different from moments before.",
+      "phaseReference": "Post-Intimacy Softness",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [33],
+      "emotionTags": ["clingy vulnerability", "afterglow tenderness"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 33,
+      "question": "What do you say when you're on the edge?",
+      "options": ["'Oh God'", "'Don't stop'", "My name - 'Moiz'", "Nothing"],
+      "correct_index": 2,
+      "funFact": "The way you say my name when you're desperate - most beautiful sound ever.",
+      "phaseReference": "Climax Naming",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [27],
+      "emotionTags": ["desperate beauty", "name as moan"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 34,
+      "question": "What's the longest we spent in bed without leaving the room?",
+      "options": ["A few hours", "Half a day", "An entire day", "Two days"],
+      "correct_index": 2,
+      "funFact": "That mid-November Nagpur day - morning, afternoon, evening. We forgot the world existed.",
+      "phaseReference": "Time Suspension",
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [],
+      "emotionTags": ["world disappearance", "eternal bubble"],
+      "difficultyLevel": 3
+    },
+    {
+      "id": 35,
+      "question": "How did we maintain intimacy during long distance?",
+      "options": ["Just texting", "Phone calls only", "Video calls with virtual intimacy", "We didn't"],
+      "correct_index": 2,
+      "funFact": "Distance couldn't stop us. Watching each other, pleasuring ourselves together - keeping the fire alive.",
+      "phaseReference": "Long-Distance Resilience",
+      "linkedPlaceIds": [8],
+      "linkedReasonIds": [],
+      "emotionTags": ["remote fire", "visual intimacy"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 36,
+      "question": "What do you demand when I'm busy?",
+      "options": ["Nothing", "Help with something", "Attention like a cat", "Food"],
+      "correct_index": 2,
+      "funFact": "Climbing into my lap until I give in, and honestly, you deserve to be the center of attention.",
+      "phaseReference": "Playful Demand",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [10, 45],
+      "emotionTags": ["deserved centrality", "cat-like claim"],
+      "difficultyLevel": 1
+    },
+    {
+      "id": 37,
+      "question": "How do you win our competitions?",
+      "options": ["You don't", "By cheating", "Every single time", "Sometimes"],
+      "correct_index": 2,
+      "funFact": "'I bet I can make you lose control first' - you always win, and I love it.",
+      "phaseReference": "Sensual Power Play",
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [11],
+      "emotionTags": ["guaranteed victory", "enjoyable defeat"],
+      "difficultyLevel": 2
+    },
+    {
+      "id": 38,
+      "question": "What emotion did I feel when you wore that black lace for me?",
+      "options": ["Happy", "Excited", "Speechless awe", "Nervous"],
+      "correct_index": 2,
+      "funFact": "You were confidence and beauty personified. I couldn't find words—I still can't.",
+      "phaseReference": "Symbolic Peak",
+      "linkedPlaceIds": [6],
+      "linkedReasonIds": [75, 76],
+      "emotionTags": ["enduring awe", "wordless reverence"],
+      "difficultyLevel": 3
+    },
+    {
+      "id": 39,
+      "question": "What makes our story special?",
+      "options": ["We met at work", "Started with a fight, built with trust, sealed with passion", "Long distance", "Good chemistry"],
+      "correct_index": 1,
+      "funFact": "From Lonavala misunderstanding to Hyderabad hotels to black lace nights to Nagpur sanctuary - we built something extraordinary.",
+      "phaseReference": "Overall Arc",
+      "linkedPlaceIds": [1,5,6,7],
+      "linkedReasonIds": [98,99],
+      "emotionTags": ["extraordinary arc", "friction-to-forever"],
+      "difficultyLevel": 3
+    }
+  ],
+  "aiIndexing": {
+    "retrievalKeywords": [
+      "lonavala beginning fight",
+      "office washroom first kiss",
+      "hyderabad first time love",
+      "black lace lingerie night",
+      "nagpur sanctuary reunions",
+      "long distance packages tshirts",
+      "bhai saab chutiya insaan",
+      "2am fantasies confessions",
+      "video call intimacy distance",
+      "private gallery falgunimoiz2025"
+    ],
+    "phaseMapping": {
+      "beginning_conflict": [1],
+      "trust_building": [2],
+      "first_physical": [3,4],
+      "exploration_phase": [5],
+      "deep_intimacy": [6],
+      "symbolic_black_lace": [7,8,9,38],
+      "long_distance_love": [10,11,12,13,35],
+      "playful_signatures": [14,15,17,18,22,36,37],
+      "vulnerability_late_night": [19],
+      "private_sanctity": [20],
+      "unfiltered_joy": [21,30],
+      "separation_reunion": [23,24],
+      "sensual_challenge": [25],
+      "timeline_anchor": [26],
+      "body_adoration": [27],
+      "silent_desire": [28],
+      "adorable_flaws": [29],
+      "physical_marks": [31],
+      "post_intimacy": [32],
+      "climax_moment": [33],
+      "time_suspension": [34],
+      "overall_story": [39]
+    },
+    "responseGuidelines": [
+      "When question ties to a place (Lonavala, office washroom, Hyderabad hotels, Nagpur, black lace hotel), reference places JSON for richer storytelling.",
+      "Use funFact to celebrate emotion/trust/awe — never reduce to mechanics.",
+      "For high-difficulty questions (3+), allow playful teasing hints if used in interactive mode.",
+      "Cross-link intimate questions to reasons JSON entries for personality + emotion reinforcement.",
+      "In quiz review or recap, sequence from beginning (Lonavala) → peaks (black lace) → home (Nagpur) → forever (overall story) for emotional crescendo.",
+      "Prioritize questions 1,3,6,8,16,39 as canonical anchors in summaries."
+    ]
+  }
+},
+
+  "intimateMemories": {
+  "title": "Our Most Intimate Memories",
+  "totalMemories": 40,
+  "type": "Sensual & Emotional Recollections",
+  "entityType": "Peak Intimacy Anchors",
+  "importanceWeight": 0.98,
+  "memoryGraphType": "Sensual-Emotional Association Map",
+  "categories": ["passionate", "emotional", "playful"],
+  "intimateMemories": [
+    {
+      "id": 1,
+      "type": "passionate",
+      "text": "The way you bit your lip before you kissed me in that office washroom—nervous and excited all at once.",
+      "intensityLevel": 0.94,
+      "linkedPlaceIds": [2],
+      "linkedReasonIds": [4],
+      "emotionTags": ["anticipation", "nervous excitement", "first risk"],
+      "coreTheme": "The prelude to our first forbidden kiss"
+    },
+    {
+      "id": 2,
+      "type": "passionate",
+      "text": "Your hands tracing fire down my spine in the Hyderabad hotel, discovering every spot that made me shiver.",
+      "intensityLevel": 0.92,
+      "linkedPlaceIds": [5],
+      "linkedReasonIds": [26],
+      "emotionTags": ["exploration", "electric touch", "discovery"],
+      "coreTheme": "Learning each other's bodies like sacred maps"
+    },
+    {
+      "id": 3,
+      "type": "emotional",
+      "text": "That night you whispered my name like a prayer, over and over, until it was the only word that mattered.",
+      "intensityLevel": 0.96,
+      "linkedPlaceIds": [5,7],
+      "linkedReasonIds": [27],
+      "emotionTags": ["devotion", "repetition as ritual", "sacred naming"],
+      "coreTheme": "Name as the holiest sound in ecstasy"
+    },
+    {
+      "id": 4,
+      "type": "passionate",
+      "text": "The urgent press of your body against mine in the washroom—our first kiss, reckless and perfect.",
+      "intensityLevel": 0.95,
+      "linkedPlaceIds": [2],
+      "linkedReasonIds": [4,23,39],
+      "emotionTags": ["urgency", "reckless perfection", "body press"],
+      "coreTheme": "First collision of desire in forbidden space"
+    },
+    {
+      "id": 5,
+      "type": "passionate",
+      "text": "Your eyes, half-closed, lost in the rhythm we created together in that Nagpur bedroom.",
+      "intensityLevel": 0.93,
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [15],
+      "emotionTags": ["rhythm", "lost in moment", "shared trance"],
+      "coreTheme": "Eyes speaking what bodies already know"
+    },
+    {
+      "id": 6,
+      "type": "emotional",
+      "text": "The taste of you still lingering on my lips hours later, making me crave more.",
+      "intensityLevel": 0.91,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["aftertaste", "lingering craving", "sensory memory"],
+      "coreTheme": "Phantom sensation that keeps the fire alive"
+    },
+    {
+      "id": 7,
+      "type": "passionate",
+      "text": "How you shiver when I kiss that spot on your neck, the one that makes you forget to breathe.",
+      "intensityLevel": 0.94,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [26],
+      "emotionTags": ["shiver trigger", "breathless surrender"],
+      "coreTheme": "One spot that undoes you completely"
+    },
+    {
+      "id": 8,
+      "type": "playful",
+      "text": "Your breathless laugh when we finally stopped to catch our breath after round three.",
+      "intensityLevel": 0.89,
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [5],
+      "emotionTags": ["breathless joy", "post-marathon laughter"],
+      "coreTheme": "Laughter as the sweetest cooldown"
+    },
+    {
+      "id": 9,
+      "type": "emotional",
+      "text": "The way you pull me closer, wrapping your legs around me like you can't get enough.",
+      "intensityLevel": 0.95,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [13],
+      "emotionTags": ["clinging need", "can't get enough"],
+      "coreTheme": "Body language of insatiable belonging"
+    },
+    {
+      "id": 10,
+      "type": "passionate",
+      "text": "Your skin, warm and electric beneath my fingertips, responding to every touch.",
+      "intensityLevel": 0.92,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["skin response", "electric warmth"],
+      "coreTheme": "Your body answers before words can"
+    },
+    {
+      "id": 11,
+      "type": "emotional",
+      "text": "That Nagpur morning when we forgot the world existed—just us, tangled in sheets, not wanting to move.",
+      "intensityLevel": 0.97,
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [7],
+      "emotionTags": ["world forgotten", "tangled sanctuary"],
+      "coreTheme": "Time stops in our private universe"
+    },
+    {
+      "id": 12,
+      "type": "passionate",
+      "text": "The hunger in your kiss when we'd been apart too long, weeks of need exploding the moment our lips met.",
+      "intensityLevel": 0.96,
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [63],
+      "emotionTags": ["pent-up hunger", "explosive reunion"],
+      "coreTheme": "Distance-fueled kiss that consumes everything"
+    },
+    {
+      "id": 13,
+      "type": "passionate",
+      "text": "Your fingers tangled in my hair, pulling me deeper into the kiss, controlling the pace.",
+      "intensityLevel": 0.93,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["hair pull", "controlled depth"],
+      "coreTheme": "You leading even in surrender"
+    },
+    {
+      "id": 14,
+      "type": "passionate",
+      "text": "The sound you make when I find that perfect spot—half gasp, half moan, completely intoxicating.",
+      "intensityLevel": 0.94,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["signature sound", "intoxicating gasp"],
+      "coreTheme": "Your voice as the ultimate aphrodisiac"
+    },
+    {
+      "id": 15,
+      "type": "emotional",
+      "text": "How your body remembers mine even before we touch, arching toward me in anticipation.",
+      "intensityLevel": 0.95,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [13],
+      "emotionTags": ["muscle memory", "pre-touch arch"],
+      "coreTheme": "Bodies recognize home before minds catch up"
+    },
+    {
+      "id": 16,
+      "type": "emotional",
+      "text": "The way you say my name when you're on the edge, desperate and beautiful.",
+      "intensityLevel": 0.97,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [27],
+      "emotionTags": ["edge desperation", "beautiful plea"],
+      "coreTheme": "My name as your climax prayer"
+    },
+    {
+      "id": 17,
+      "type": "playful",
+      "text": "Your 'Bhai saab' tease right before you kiss me, that playful smile I can never resist.",
+      "intensityLevel": 0.88,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [2],
+      "emotionTags": ["tease prelude", "irresistible smile"],
+      "coreTheme": "Playful warning before passion takes over"
+    },
+    {
+      "id": 18,
+      "type": "playful",
+      "text": "How you steal my shirt after and parade around in it, claiming it's 'ours' now.",
+      "intensityLevel": 0.90,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [6,18],
+      "emotionTags": ["post-intimacy claim", "territorial cute"],
+      "coreTheme": "Victory lap in my clothes"
+    },
+    {
+      "id": 19,
+      "type": "passionate",
+      "text": "The concentrated face you make when you're on top, focused and gorgeous.",
+      "intensityLevel": 0.94,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [15],
+      "emotionTags": ["focused beauty", "on-top control"],
+      "coreTheme": "Your determination is devastatingly sexy"
+    },
+    {
+      "id": 20,
+      "type": "passionate",
+      "text": "That time in the hotel when you pushed me onto the bed and took complete control.",
+      "intensityLevel": 0.96,
+      "linkedPlaceIds": [5],
+      "linkedReasonIds": [16],
+      "emotionTags": ["female dominance", "confident claim"],
+      "coreTheme": "When you decide it's your turn to lead"
+    },
+    {
+      "id": 21,
+      "type": "emotional",
+      "text": "Your sleepy voice at 2 AM saying 'come closer' and pulling me into your warmth.",
+      "intensityLevel": 0.93,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [14],
+      "emotionTags": ["sleepy need", "warm pull"],
+      "coreTheme": "Even half-asleep, you choose me"
+    },
+    {
+      "id": 22,
+      "type": "playful",
+      "text": "The way you demand attention when I'm on my phone, climbing into my lap until I give in.",
+      "intensityLevel": 0.89,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [10,45],
+      "emotionTags": ["lap claim", "demanding cute"],
+      "coreTheme": "You refuse to be second to a screen"
+    },
+    {
+      "id": 23,
+      "type": "playful",
+      "text": "Your competitive side when you said 'I bet I can make you lose control first' and you won.",
+      "intensityLevel": 0.91,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [11],
+      "emotionTags": ["sensual bet", "guaranteed win"],
+      "coreTheme": "Games where losing feels like winning"
+    },
+    {
+      "id": 24,
+      "type": "emotional",
+      "text": "How you look at me right after—vulnerable, satisfied, and somehow still hungry for more.",
+      "intensityLevel": 0.95,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [65],
+      "emotionTags": ["post-glow hunger", "vulnerable satisfaction"],
+      "coreTheme": "The look that says we're never truly done"
+    },
+    {
+      "id": 25,
+      "type": "passionate",
+      "text": "The morning you woke me up with kisses trailing down my chest, refusing to let me sleep.",
+      "intensityLevel": 0.93,
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [],
+      "emotionTags": ["wake-up seduction", "morning claim"],
+      "coreTheme": "Dawn as our private playground"
+    },
+    {
+      "id": 26,
+      "type": "playful",
+      "text": "Your hand finding mine under the restaurant table, that secret touch that said 'later'.",
+      "intensityLevel": 0.88,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["secret promise", "under-table tease"],
+      "coreTheme": "Public restraint hiding private hunger"
+    },
+    {
+      "id": 27,
+      "type": "playful",
+      "text": "The way you bite your lip when you're trying not to smile after I say something dirty.",
+      "intensityLevel": 0.90,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [22],
+      "emotionTags": ["lip bite", "dirty smile fight"],
+      "coreTheme": "Your failed attempt to play innocent"
+    },
+    {
+      "id": 28,
+      "type": "passionate",
+      "text": "That Hyderabad shower where we meant to get clean but ended up even more dirty.",
+      "intensityLevel": 0.94,
+      "linkedPlaceIds": [5],
+      "linkedReasonIds": [],
+      "emotionTags": ["shower betrayal", "wet escalation"],
+      "coreTheme": "Water makes everything more intense"
+    },
+    {
+      "id": 29,
+      "type": "passionate",
+      "text": "Your breathless 'don't stop' whispered against my ear, driving me absolutely wild.",
+      "intensityLevel": 0.96,
+      "linkedPlaceIds": [5],
+      "linkedReasonIds": [12],
+      "emotionTags": ["don't stop plea", "ear whisper trigger"],
+      "coreTheme": "Three words that break all control"
+    },
+    {
+      "id": 30,
+      "type": "emotional",
+      "text": "How you pull the covers over us and create our own world, just you and me and nothing else.",
+      "intensityLevel": 0.95,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [36],
+      "emotionTags": ["blanket fort", "exclusive universe"],
+      "coreTheme": "Covers as portal to our forever"
+    },
+    {
+      "id": 31,
+      "type": "passionate",
+      "text": "The scratch marks you left on my back that one intense Nagpur night.",
+      "intensityLevel": 0.94,
+      "linkedPlaceIds": [7],
+      "linkedReasonIds": [25],
+      "emotionTags": ["physical evidence", "intense claim"],
+      "coreTheme": "Badges I wore proudly for days"
+    },
+    {
+      "id": 32,
+      "type": "playful",
+      "text": "Your challenge: 'Make me forget my own name' and the hours we spent trying.",
+      "intensityLevel": 0.93,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [35],
+      "emotionTags": ["name-forgetting dare", "marathon success"],
+      "coreTheme": "Challenge accepted, repeatedly"
+    },
+    {
+      "id": 33,
+      "type": "emotional",
+      "text": "The way you cuddle after, all soft and clingy, completely different from moments before.",
+      "intensityLevel": 0.94,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [33],
+      "emotionTags": ["afterglow cling", "soft contrast"],
+      "coreTheme": "From fire to gentle hearth"
+    },
+    {
+      "id": 34,
+      "type": "passionate",
+      "text": "Your midnight texts: 'I'm touching myself thinking about you' that made me lose my mind.",
+      "intensityLevel": 0.95,
+      "linkedPlaceIds": [8],
+      "linkedReasonIds": [24],
+      "emotionTags": ["remote seduction", "text-triggered madness"],
+      "coreTheme": "Distance erased in one sentence"
+    },
+    {
+      "id": 35,
+      "type": "emotional",
+      "text": "How you look in the morning light—hair messy, lips swollen, eyes still heavy with sleep and satisfaction.",
+      "intensityLevel": 0.96,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [44],
+      "emotionTags": ["morning glow", "post-love portrait"],
+      "coreTheme": "Dawn's most beautiful masterpiece"
+    },
+    {
+      "id": 36,
+      "type": "passionate",
+      "text": "That time you kissed me in the office parking lot, not caring who might see.",
+      "intensityLevel": 0.92,
+      "linkedPlaceIds": [3],
+      "linkedReasonIds": [23],
+      "emotionTags": ["public risk", "last-day claim"],
+      "coreTheme": "Goodbye to secrecy, hello to boldness"
+    },
+    {
+      "id": 37,
+      "type": "playful",
+      "text": "Your gasp when I surprised you with that thing you'd only mentioned once in passing.",
+      "intensityLevel": 0.89,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["surprise gasp", "remembered detail"],
+      "coreTheme": "I listen even when you think I don't"
+    },
+    {
+      "id": 38,
+      "type": "emotional",
+      "text": "The way you grab my face when you kiss me, like you're claiming me as yours.",
+      "intensityLevel": 0.94,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [],
+      "emotionTags": ["face grab", "possessive tenderness"],
+      "coreTheme": "Kiss as ownership ceremony"
+    },
+    {
+      "id": 39,
+      "type": "emotional",
+      "text": "How we communicate with just looks now—one glance and I know exactly what you want.",
+      "intensityLevel": 0.93,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [17],
+      "emotionTags": ["silent language", "glance shorthand"],
+      "coreTheme": "Words became optional long ago"
+    },
+    {
+      "id": 40,
+      "type": "playful",
+      "text": "Your satisfied smile after, the one that says 'I won' because you absolutely did.",
+      "intensityLevel": 0.91,
+      "linkedPlaceIds": [],
+      "linkedReasonIds": [49],
+      "emotionTags": ["victory smile", "post-win glow"],
+      "coreTheme": "You win every time, and I love losing"
+    }
+  ],
+  "aiIndexing": {
+    "retrievalKeywords": [
+      "office washroom bite lip",
+      "hyderabad hands spine",
+      "whisper name prayer",
+      "nagpur tangled sheets",
+      "don't stop ear whisper",
+      "scratch marks back",
+      "midnight touching text",
+      "morning light messy hair",
+      "parking lot kiss bold",
+      "on top concentrated face"
+    ],
+    "categoryMapping": {
+      "passionate": [1,2,4,5,7,10,12,13,14,19,20,25,28,29,31],
+      "emotional": [3,6,9,11,15,16,21,24,30,33,35,38,39],
+      "playful": [8,17,18,22,23,26,27,32,36,37,40]
+    },
+    "spatialEmotionMapping": {
+      "office_risk": [1,4,36],
+      "hyderabad_intensity": [2,28,29],
+      "nagpur_sanctuary": [5,11,12,31],
+      "long_distance_tease": [34],
+      "anywhere_ours": [30,33,39]
+    },
+    "responseGuidelines": [
+      "When referencing specific places (washroom, Hyderabad, Nagpur), cross-link to places JSON for context depth.",
+      "Emphasize emotional/trust layers in passionate entries — focus on connection, not mechanics.",
+      "Use high-intensity memories (0.95+) for climactic storytelling or romantic recaps.",
+      "Playful entries pair well with reasons JSON playful items (e.g., bhai saab, lap climb).",
+      "In narratives, sequence from early risks → deep reunions → morning afterglow for emotional arc.",
+      "Prioritize ids 3,11,16,24,30,35,39 as core emotional anchors."
+    ]
+  }
+},
+
+
+  "insideWorld": {
+    "title": "Our Secret Inside World",
+    "totalSecrets": 30,
+    "type": "Private Trigger-Reveal Anchors",
+    "entityType": "Intimate Memory Triggers",
+    "importanceWeight": 0.97,
+    "memoryGraphType": "Trigger → Emotional Recall Map",
+    "secrets": [
+      {
+        "id": 1,
+        "trigger": "Our Secret Code",
+        "reveal": "When I text 'thinking of you,' I mean I'm imagining your body pressed against mine, your breath on my neck.",
+        "intensityLevel": 0.94,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [13, 17],
+        "emotionTags": ["coded desire", "hidden lust", "text intimacy"],
+        "coreTheme": "Innocent phrase hiding burning want"
+      },
+      {
+        "id": 2,
+        "trigger": "The Office Look",
+        "reveal": "That mouse-like glance wasn't shy—it was a promise of what would happen in the washroom later.",
+        "intensityLevel": 0.92,
+        "linkedPlaceIds": [2, 3],
+        "linkedReasonIds": [1],
+        "emotionTags": ["pre-kiss promise", "office tension"],
+        "coreTheme": "Shy eyes hiding reckless intent"
+      },
+      {
+        "id": 3,
+        "trigger": "Your Perfume",
+        "reveal": "I smell it on my clothes days later. It drives me crazy when I'm alone, remembering your skin.",
+        "intensityLevel": 0.93,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [],
+        "emotionTags": ["phantom scent", "lingering arousal"],
+        "coreTheme": "Your smell as post-you torture"
+      },
+      {
+        "id": 4,
+        "trigger": "11:11 Wish",
+        "reveal": "Every single time, I wish for one more night tangled in your Nagpur sheets, losing track of time.",
+        "intensityLevel": 0.91,
+        "linkedPlaceIds": [7],
+        "linkedReasonIds": [7, 11],
+        "emotionTags": ["ritual longing", "time-loss fantasy"],
+        "coreTheme": "Clock as secret wish portal"
+      },
+      {
+        "id": 5,
+        "trigger": "The Playlist",
+        "reveal": "Every song reminds me of a different way you've made me lose control.",
+        "intensityLevel": 0.90,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [],
+        "emotionTags": ["sonic memory", "control loss"],
+        "coreTheme": "Music as erotic time machine"
+      },
+      {
+        "id": 6,
+        "trigger": "My Stolen Hoodie",
+        "reveal": "You claimed it's 'ours', but I secretly love seeing you in it more than wearing it myself.",
+        "intensityLevel": 0.89,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [6, 18],
+        "emotionTags": ["possessive cute", "visual claim"],
+        "coreTheme": "Clothing as territorial love"
+      },
+      {
+        "id": 7,
+        "trigger": "'Bhai Saab'",
+        "reveal": "When you say it sarcastically, I know you're about to kiss me to shut me up. And I let you win.",
+        "intensityLevel": 0.88,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [2],
+        "emotionTags": ["tease prelude", "surrender kiss"],
+        "coreTheme": "Sarcasm as foreplay signal"
+      },
+      {
+        "id": 8,
+        "trigger": "The Washroom",
+        "reveal": "Every time I pass an office washroom now, I think of our first kiss—reckless, urgent, perfect.",
+        "intensityLevel": 0.95,
+        "linkedPlaceIds": [2],
+        "linkedReasonIds": [4, 39, 66],
+        "emotionTags": ["site-specific flashback", "forbidden perfection"],
+        "coreTheme": "Every bathroom = instant memory flood"
+      },
+      {
+        "id": 9,
+        "trigger": "2 AM Texts",
+        "reveal": "Those 'I'm touching myself' texts? I saved every single one. My favorite kind of torture.",
+        "intensityLevel": 0.96,
+        "linkedPlaceIds": [8],
+        "linkedReasonIds": [24],
+        "emotionTags": ["saved seduction", "delayed gratification"],
+        "coreTheme": "Messages that still burn months later"
+      },
+      {
+        "id": 10,
+        "trigger": "Baby Voice",
+        "reveal": "You know exactly what you're doing. It's manipulative and adorable and I'm powerless against it.",
+        "intensityLevel": 0.90,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [20],
+        "emotionTags": ["weaponized cute", "irresistible manipulation"],
+        "coreTheme": "Voice as my personal kryptonite"
+      },
+      {
+        "id": 11,
+        "trigger": "Lonavala Fight",
+        "reveal": "I'm grateful for that fight. Misunderstandings led to us, and I'd do it all over again.",
+        "intensityLevel": 0.92,
+        "linkedPlaceIds": [1],
+        "linkedReasonIds": [59],
+        "emotionTags": ["grateful origin", "friction-to-love"],
+        "coreTheme": "The argument that birthed everything"
+      },
+      {
+        "id": 12,
+        "trigger": "Scratch Marks",
+        "reveal": "I looked at the marks on my back for days, remembering how we lost ourselves in each other.",
+        "intensityLevel": 0.94,
+        "linkedPlaceIds": [7],
+        "linkedReasonIds": [25],
+        "emotionTags": ["physical souvenir", "primal memory"],
+        "coreTheme": "Marks as proof of total abandon"
+      },
+      {
+        "id": 13,
+        "trigger": "Hyderabad Hotels",
+        "reveal": "I've memorized the room numbers. Every one holds a memory of your surrender.",
+        "intensityLevel": 0.95,
+        "linkedPlaceIds": [5, 6],
+        "linkedReasonIds": [12, 16, 79],
+        "emotionTags": ["room-by-room catalog", "surrender archive"],
+        "coreTheme": "Hotels turned into personal museums"
+      },
+      {
+        "id": 14,
+        "trigger": "Clinginess",
+        "reveal": "When you're half-asleep and refuse to let go—those are the moments I feel most needed.",
+        "intensityLevel": 0.93,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [14, 33],
+        "emotionTags": ["sleepy need", "emotional belonging"],
+        "coreTheme": "Half-conscious proof I'm essential"
+      },
+      {
+        "id": 15,
+        "trigger": "Corridor Kisses",
+        "reveal": "Pressed against the wall, hearts racing—I still get hard thinking about the risk we took.",
+        "intensityLevel": 0.94,
+        "linkedPlaceIds": [3],
+        "linkedReasonIds": [39],
+        "emotionTags": ["risk arousal", "wall-pressed thrill"],
+        "coreTheme": "Danger as ultimate aphrodisiac"
+      },
+      {
+        "id": 16,
+        "trigger": "'Chutiya Insaan'",
+        "reveal": "The way you call me that with affection makes me smile. It's our word.",
+        "intensityLevel": 0.89,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [3],
+        "emotionTags": ["affectionate insult", "private dialect"],
+        "coreTheme": "Our love language's roughest word"
+      },
+      {
+        "id": 17,
+        "trigger": "Video Call Nights",
+        "reveal": "Distance couldn't kill our desire. Watching you on screen made me hungrier.",
+        "intensityLevel": 0.92,
+        "linkedPlaceIds": [8],
+        "linkedReasonIds": [],
+        "emotionTags": ["screen hunger", "remote fire"],
+        "coreTheme": "Pixels that still set me on fire"
+      },
+      {
+        "id": 18,
+        "trigger": "Random Dances",
+        "reveal": "When you think I'm not watching—that carefree joy is my favorite version of you.",
+        "intensityLevel": 0.90,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [18],
+        "emotionTags": ["unseen joy", "pure happiness"],
+        "coreTheme": "The you nobody else gets to see"
+      },
+      {
+        "id": 19,
+        "trigger": "First Hotel",
+        "reveal": "We didn't have sex, but I learned every spot that makes you shiver. Hours of foreplay.",
+        "intensityLevel": 0.91,
+        "linkedPlaceIds": [4],
+        "linkedReasonIds": [48],
+        "emotionTags": ["slow discovery", "touch map"],
+        "coreTheme": "The night we built anticipation brick by brick"
+      },
+      {
+        "id": 20,
+        "trigger": "The Challenge",
+        "reveal": "You said 'Make me forget my name.' I took that personally. And we both know I succeeded.",
+        "intensityLevel": 0.95,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [35],
+        "emotionTags": ["personal dare", "name-loss victory"],
+        "coreTheme": "Challenge turned into hours of proof"
+      },
+      {
+        "id": 21,
+        "trigger": "Competitive Side",
+        "reveal": "'I bet I can make you lose control first'—you always win, and I love losing to you.",
+        "intensityLevel": 0.93,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [11],
+        "emotionTags": ["sensual competition", "happy defeat"],
+        "coreTheme": "Losing to you is the sweetest win"
+      },
+      {
+        "id": 22,
+        "trigger": "Morning Glow",
+        "reveal": "Hair messy, lips swollen, eyes satisfied—that image is burned into my memory forever.",
+        "intensityLevel": 0.96,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [44],
+        "emotionTags": ["post-love portrait", "eternal snapshot"],
+        "coreTheme": "Dawn's most sacred photograph"
+      },
+      {
+        "id": 23,
+        "trigger": "Nagpur Reunions",
+        "reveal": "Weeks of longing exploding the second we're behind closed doors.",
+        "intensityLevel": 0.96,
+        "linkedPlaceIds": [7],
+        "linkedReasonIds": [63],
+        "emotionTags": ["explosive release", "pent-up collision"],
+        "coreTheme": "Door closes → world disappears"
+      },
+      {
+        "id": 24,
+        "trigger": "Your Laugh",
+        "reveal": "You laugh at your own jokes before finishing them, and it makes me fall deeper.",
+        "intensityLevel": 0.90,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [5],
+        "emotionTags": ["self-laugh joy", "deeper fall"],
+        "coreTheme": "Your giggle as gravity"
+      },
+      {
+        "id": 25,
+        "trigger": "Lunch Evolution",
+        "reveal": "From awkward cafeteria talks to planning hotel escapades in hushed voices.",
+        "intensityLevel": 0.89,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [47],
+        "emotionTags": ["innocent to illicit", "lunch plot"],
+        "coreTheme": "Cafeteria trays → hotel keys"
+      },
+      {
+        "id": 26,
+        "trigger": "All-Day Session",
+        "reveal": "That mid-November day we never left your room. We forgot the world existed.",
+        "intensityLevel": 0.97,
+        "linkedPlaceIds": [7],
+        "linkedReasonIds": [],
+        "emotionTags": ["time suspension", "room eternity"],
+        "coreTheme": "24 hours where only we mattered"
+      },
+      {
+        "id": 27,
+        "trigger": "Chest Spot",
+        "reveal": "My body knows exactly how to hold you. My chest remembers the weight of your head.",
+        "intensityLevel": 0.94,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [7],
+        "emotionTags": ["muscle memory", "perfect fit"],
+        "coreTheme": "Your head belongs right here"
+      },
+      {
+        "id": 28,
+        "trigger": "Fantasy Talks",
+        "reveal": "We trusted each other with secrets we'd never told our exes. Absolute vulnerability.",
+        "intensityLevel": 0.95,
+        "linkedPlaceIds": [8],
+        "linkedReasonIds": [9, 64],
+        "emotionTags": ["deepest trust", "never-shared secrets"],
+        "coreTheme": "Safe enough to say anything"
+      },
+      {
+        "id": 29,
+        "trigger": "The Goodbye",
+        "reveal": "When you left the office, I cried. Losing daily access to you felt like losing a limb.",
+        "intensityLevel": 0.93,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [38, 57],
+        "emotionTags": ["separation grief", "daily loss"],
+        "coreTheme": "The day routine became pain"
+      },
+      {
+        "id": 30,
+        "trigger": "Your Name",
+        "reveal": "The way you whisper 'Moiz' when you're on the edge... it's the most erotic sound on earth.",
+        "intensityLevel": 0.98,
+        "linkedPlaceIds": [],
+        "linkedReasonIds": [27],
+        "emotionTags": ["climax whisper", "name as orgasm"],
+        "coreTheme": "My name has never sounded better"
+      }
+    ],
+    "aiIndexing": {
+      "retrievalKeywords": [
+        "thinking of you code",
+        "mouse glance promise",
+        "perfume on clothes",
+        "11:11 nagpur wish",
+        "washroom flashback",
+        "2am saved texts",
+        "bhai saab kiss signal",
+        "scratch marks memory",
+        "hyderabad room numbers",
+        "moiz edge whisper"
+      ],
+      "triggerTypeMapping": {
+        "verbal": ["Bhai Saab", "Chutiya Insaan", "Baby Voice", "Your Name"],
+        "sensory": ["Your Perfume", "Scratch Marks", "Chest Spot"],
+        "location": ["The Washroom", "Hyderabad Hotels", "Corridor Kisses"],
+        "ritual": ["11:11 Wish", "Our Secret Code", "The Playlist"],
+        "behavior": ["Random Dances", "Clinginess", "Competitive Side"]
+      },
+      "responseGuidelines": [
+        "Use triggers to pivot from everyday → intimate in storytelling.",
+        "Keep reveals suggestive, emotional, never crude.",
+        "Cross-link strong location triggers to places JSON.",
+        "High-intensity secrets (0.95+) ideal for climactic messages/letters.",
+        "Pair verbal triggers with reasons JSON playful items."
+      ]
+    }
+  },
+
+  "loveLetter": {
+    "title": "For Falguni – 6 Months",
+    "type": "Emotional Core Letter",
+    "entityType": "Narrative Love Declaration",
+    "importanceWeight": 0.99,
+    "letterBlocks": [
+      {
+        "id": 1,
+        "type": "salutation",
+        "text": "My Dearest Falguni,"
+      },
+      {
+        "id": 2,
+        "type": "body",
+        "text": "Six months. Half a year. 196 days since Lonavala. It sounds so small when I say it out loud, but it feels like lifetimes when I'm lying next to you in the dark, your breathing synced with mine. How do I compress everything you've become to me into words that don't feel impossibly small?"
+      },
+      {
+        "id": 3,
+        "type": "body",
+        "text": "I remember Lonavala. The truth and dare game, the misunderstanding, that stupid fight. I remember being so frustrated, having no idea that the girl yelling at me would become the only voice I ever want to hear whispering my name. We started talking to clear the air, and somehow, we never stopped."
+      },
+      {
+        "id": 4,
+        "type": "highlight",
+        "text": "I remember our first kiss. The washroom. The recklessness of it. The way your lips tasted like a question I'd been dying to answer. Your hands in my hair, my hands on your waist, both of us breathing hard. I didn't know then that every kiss after would feel like falling."
+      },
+      {
+        "id": 5,
+        "type": "body",
+        "text": "Then Hyderabad happened. That first night when we finally made love—all the fantasies we'd whispered about became real. You in my arms, your body arching into mine. Those hotel rooms became our sanctuary, altars where we worshipped each other in whispers and sighs."
+      },
+      {
+        "id": 6,
+        "type": "highlight",
+        "text": "And then that last Hyderabad hotel—when you stepped out of the bathroom wearing that black lace set. Falguni, time stopped. You looked absolutely stunning. The lace against your skin, the confidence... You were the most beautiful thing I'd ever seen. That night is burned into my memory forever."
+      },
+      {
+        "id": 7,
+        "type": "body",
+        "text": "Then you left the office, and my days felt empty. But Nagpur became ours. Your city, hotel room, hotel bed—our secret world. The distance made every reunion explosive. I'd walk through your door and we'd barely say hello before we were on each other. Nagpur taught me that home isn't a place—it's wherever you are."
+      },
+      {
+        "id": 8,
+        "type": "body",
+        "text": "I love how shopping for each other became our love language. Me browsing online late at night. You choosing shirts for me from Nagpur. The excitement in your voice asking 'Did it arrive yet?' The notes you'd include—'For my favorite person'—that turned ordinary packages into love letters."
+      },
+      {
+        "id": 9,
+        "type": "highlight",
+        "text": "You've rewritten my body's language, Falguni. My hands know the curve of your waist better than they know anything else. When we're apart, I feel the absence of you like a physical ache—like something vital has been removed."
+      },
+      {
+        "id": 10,
+        "type": "body",
+        "text": "I love your 'Bhai saab' tease, your baby voice when you want something, and the way you demand attention when I'm busy. I love that you're not just my girlfriend; you're my best friend, my favorite conversation, my safest place."
+      },
+      {
+        "id": 11,
+        "type": "body",
+        "text": "If I had to do it all over again—every risky kiss, every desperate touch, every package sent across cities, every tear when we had to say goodbye—I would choose you every single time. In every universe, I'd find you. I'd fight with you. I'd fall for you. I'd choose you."
+      },
+      {
+        "id": 12,
+        "type": "signature",
+        "text": "Forever yours, in body and soul,"
+      },
+      {
+        "id": 13,
+        "type": "name",
+        "text": "Moiz"
+      }
+    ],
+    "postscript": {
+      "text": "I still think about that washroom kiss every single day. I still get butterflies when I see your name on my phone. And I still fall for you a little more every time you call me 'chutiya insaan' with that smile."
+    },
+    "aiIndexing": {
+      "retrievalKeywords": ["lonavala fight", "washroom kiss", "black lace night", "nagpur home", "packages love language", "body language rewrite"],
+      "blockTypeMapping": {
+        "highlight": [4, 6, 9],
+        "body": [2, 3, 5, 7, 8, 10, 11],
+        "closing": [12, 13]
+      },
+      "responseGuidelines": [
+        "Use highlights for peak emotional moments in letters/recaps.",
+        "Cross-reference body blocks with places & reasons for richer context.",
+        "Postscript perfect for final soft, personal touch."
+      ]
+    }
+  },
+
+  "compatibility": {
+    "title": "Why We Work",
+    "type": "Relationship Strength Dimensions",
+    "entityType": "Core Compatibility Pillars",
+    "importanceWeight": 0.94,
+    "dimensions": [
+      {
+        "id": 1,
+        "title": "Emotional Intensity",
+        "description": "We don’t do surface-level. From our first fight in Lonavala to our deepest 2 AM confessions, we’ve always gone all in. We feel deeply, react strongly, and love fiercely.",
+        "linkedReasonIds": [9, 64],
+        "emotionTags": ["depth", "fierce love"]
+      },
+      {
+        "id": 2,
+        "title": "Communication After Conflict",
+        "description": "What could have ended us became the reason we started. We argue, but we talk. We misunderstand, but we clear it. Silence never wins.",
+        "linkedPlaceIds": [1],
+        "linkedReasonIds": [59],
+        "emotionTags": ["conflict resolution", "talk-through"]
+      },
+      {
+        "id": 3,
+        "title": "Playful Chemistry",
+        "description": "‘Bhai saab.’ ‘Chutiya insaan.’ Competitions about who loses control first. Teasing that hides affection. Our humor is its own ecosystem.",
+        "linkedReasonIds": [2, 3, 11],
+        "emotionTags": ["teasing affection", "private humor"]
+      },
+      {
+        "id": 4,
+        "title": "Physical Synchronization",
+        "description": "From the washroom kiss to the Hyderabad nights to Nagpur reunions — our bodies recognize each other instantly. There’s rhythm. There’s instinct. There’s memory.",
+        "linkedPlaceIds": [2, 5, 7],
+        "linkedReasonIds": [7, 13],
+        "emotionTags": ["body memory", "instinct fit"]
+      },
+      {
+        "id": 5,
+        "title": "Distance Resilience",
+        "description": "Nagpur and Hyderabad didn’t weaken us. Video calls, packages, midnight texts — we adapted instead of drifting.",
+        "linkedPlaceIds": [8, 9],
+        "linkedReasonIds": [85, 97],
+        "emotionTags": ["adaptation", "bridge building"]
+      },
+      {
+        "id": 6,
+        "title": "Ambition Alignment",
+        "description": "You chase your goals relentlessly. I respect that. We support growth instead of fearing it.",
+        "linkedReasonIds": [43, 58],
+        "emotionTags": ["mutual support", "growth together"]
+      },
+      {
+        "id": 7,
+        "title": "Vulnerability Safety",
+        "description": "We trusted each other with fantasies, fears, and insecurities we never shared with others. That kind of safety is rare.",
+        "linkedReasonIds": [9, 64],
+        "emotionTags": ["absolute trust", "safe vulnerability"]
+      },
+      {
+        "id": 8,
+        "title": "Shared Energy",
+        "description": "Your loud ‘quiet voice.’ My sarcasm. Your baby voice. My surrender. Opposites in some ways — aligned in energy.",
+        "linkedReasonIds": [20, 28],
+        "emotionTags": ["energy match", "complementary chaos"]
+      },
+      {
+        "id": 9,
+        "title": "Memory Building",
+        "description": "We don’t just exist together. We create stories — black lace nights, stolen corridor kisses, surprise packages.",
+        "linkedPlaceIds": [6, 3, 9],
+        "linkedReasonIds": [79, 39, 95],
+        "emotionTags": ["story creation", "memory richness"]
+      },
+      {
+        "id": 10,
+        "title": "Choice Over Chance",
+        "description": "We didn’t accidentally stay. We chose to build. And that choice is what makes this strong.",
+        "linkedReasonIds": [50, 70],
+        "emotionTags": ["intentional love", "daily choice"]
+      }
+    ],
+    "aiIndexing": {
+      "retrievalKeywords": ["emotional intensity", "playful chemistry", "distance resilience", "vulnerability safety"],
+      "responseGuidelines": [
+        "Use dimensions to frame advice, reflections or anniversary messages.",
+        "High-weight pillars (1,4,7,10) for core reassurance statements."
+      ]
+    }
+  },
+
+  "promises": {
+    "title": "Promises I Make To You",
+    "type": "Commitment Declarations",
+    "entityType": "Vow Anchors",
+    "importanceWeight": 0.96,
+    "items": [
+      {"id": 1, "text": "I promise to choose you, even on the days when distance feels heavy and emotions feel overwhelming."},
+      {"id": 2, "text": "I promise to never let a misunderstanding grow into silence. We will always talk it through."},
+      {"id": 3, "text": "I promise to protect what we have — not just physically, but emotionally."},
+      {"id": 4, "text": "I promise to never take your vulnerability for granted."},
+      {"id": 5, "text": "I promise to remember the girl from Lonavala — fiery, stubborn, unforgettable."},
+      {"id": 6, "text": "I promise to keep the spark alive, whether we’re in the same room or cities apart."},
+      {"id": 7, "text": "I promise to never stop flirting with you."},
+      {"id": 8, "text": "I promise to build a future that feels safe, exciting, and deeply ours."},
+      {"id": 9, "text": "I promise to be your calm when your mind races."},
+      {"id": 10, "text": "I promise to let you win our competitions sometimes — but not always."},
+      {"id": 11, "text": "I promise to hold you after every argument and remind you we’re on the same team."},
+      {"id": 12, "text": "I promise to keep learning your love language, even as it evolves."},
+      {"id": 13, "text": "I promise to remember that love is not just intensity, but consistency."},
+      {"id": 14, "text": "I promise to support your ambition and celebrate every win like it’s my own."},
+      {"id": 15, "text": "I promise to never let routine make us forget how extraordinary this began."},
+      {"id": 16, "text": "I promise to always make space for laughter, even in hard seasons."},
+      {"id": 17, "text": "I promise to keep planning adventures — Hyderabad escapes, Nagpur weekends, and more."},
+      {"id": 18, "text": "I promise to respect your independence while still being your home."},
+      {"id": 19, "text": "I promise to never let you feel alone in this."},
+      {"id": 20, "text": "I promise that if I had to start again — I would still choose you every time."}
+    ],
+    "aiIndexing": {
+      "retrievalKeywords": ["choose you promise", "never silence", "keep spark alive", "support ambition"],
+      "responseGuidelines": [
+        "Pull promises for vows, apologies, reassurance messages.",
+        "Group 1–5 for foundational, 6–10 for daily, 11–20 for long-term."
+      ]
+    }
+  },
+
+  "future": {
+    "title": "The Future We’re Building",
+    "type": "Shared Vision Statements",
+    "entityType": "Forward-Looking Anchors",
+    "importanceWeight": 0.95,
+    "vision": [
+      {
+        "id": 1,
+        "title": "More Cities, Same Us",
+        "description": "From Lonavala to Hyderabad to Nagpur — our story has already crossed cities. The future holds more places, but what matters is that we enter them together."
+      },
+      {
+        "id": 2,
+        "title": "No More Hiding",
+        "description": "What began in stolen glances and secret corners grows into something we don’t have to whisper about. A love that stands in the open."
+      },
+      {
+        "id": 3,
+        "title": "A Home That Feels Like Us",
+        "description": "A space filled with inside jokes, soft mornings, competitive banter, and late-night conversations that stretch past midnight."
+      },
+      {
+        "id": 4,
+        "title": "Growing Individually, Staying Connected",
+        "description": "We chase our ambitions separately but celebrate victories together. Independence without distance."
+      },
+      {
+        "id": 5,
+        "title": "Rituals That Stay Ours",
+        "description": "Shopping for each other. Late video calls. Random meme exchanges. Small habits that become traditions."
+      },
+      {
+        "id": 6,
+        "title": "Intensity That Evolves",
+        "description": "Not just passion, but depth. Not just excitement, but understanding. A love that matures without losing fire."
+      },
+      {
+        "id": 7,
+        "title": "Choosing Each Other Daily",
+        "description": "Not because it’s easy. Not because it’s convenient. But because we decide — again and again — that this is worth protecting."
+      },
+      {
+        "id": 8,
+        "title": "Stability Without Losing Spark",
+        "description": "Security that doesn’t feel boring. Familiarity that doesn’t feel dull. Comfort that still excites."
+      },
+      {
+        "id": 9,
+        "title": "Shared Milestones",
+        "description": "New beginnings, new challenges, new memories — each one adding chapters to what already feels like an epic story."
+      },
+      {
+        "id": 10,
+        "title": "Forever Energy",
+        "description": "Not a dramatic word — but a quiet commitment. The kind that grows stronger over time instead of fading."
+      }
+    ],
+    "aiIndexing": {
+      "retrievalKeywords": ["no more hiding", "home like us", "choosing daily", "forever energy"],
+      "responseGuidelines": [
+        "Use vision items for future-oriented messages, proposals, or anniversary reflections.",
+        "Pair with promises for commitment reinforcement."
+      ]
+    }
+  }
+
+}
